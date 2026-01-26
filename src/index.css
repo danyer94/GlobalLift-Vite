@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --ink: #0b1b28;
-  --graphite: #102435;
-  --steel: #133146;
-  --slate: #1c3f5b;
+  --ink: #0b0f14;
+  --graphite: #111821;
+  --steel: #17212c;
+  --slate: #1f2a38;
   --signal: #3da2e2;
   --signal-strong: #2d8fce;
   --signal-soft: #78c4f2;
-  --text: #e9f2f8;
-  --muted: #a8bdcc;
+  --text: #e8eef5;
+  --muted: #9aa6b2;
   --line: rgba(255, 255, 255, 0.1);
   --plate: #f7fbff;
   --plate-border: #d6e5f2;
