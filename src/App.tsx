@@ -351,7 +351,7 @@ function App() {
                     {lanes.map((lane) => (
                       <div
                         key={lane.route}
-                        className="flex items-center justify-between rounded-xl border border-white/10 bg-ink/60 px-4 py-3"
+                        className="flex items-center justify-between rounded-xl border border-slate/60 bg-white/80 px-4 py-3"
                       >
                         <div>
                           <p className="text-sm font-medium text-mist break-words">{lane.route}</p>
@@ -471,7 +471,7 @@ function App() {
                   {locations.map((location) => (
                     <div
                       key={location.city}
-                      className="flex items-start gap-4 rounded-2xl border border-white/10 bg-ink/50 p-4"
+                      className="flex items-start gap-4 rounded-2xl border border-slate/60 bg-white/80 p-4"
                     >
                       <MapPin className="mt-1 h-5 w-5 text-signal" aria-hidden="true" />
                       <div>
@@ -512,7 +512,7 @@ function App() {
                       loading="lazy"
                       decoding="async"
                     />
-                    <div className="absolute inset-0 bg-ink/50"></div>
+                    <div className="absolute inset-0 bg-mist/70"></div>
                     <div className="absolute bottom-6 left-6">
                       <span className="badge">{caseStudy.category}</span>
                       <h3 className="mt-4 text-xl font-semibold text-mist break-words">{caseStudy.title}</h3>
@@ -623,7 +623,7 @@ function App() {
                       onChange={handleInputChange}
                       aria-invalid={Boolean(formErrors.name)}
                       aria-describedby={formErrors.name ? 'name-error' : undefined}
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-ink/70 px-4 py-3 text-sm focus:border-signal"
+                      className="mt-2 w-full rounded-xl border border-slate/60 bg-white px-4 py-3 text-sm focus:border-signal"
                       placeholder="Ej. Ana Pérez…"
                     />
                     {formErrors.name ? (
@@ -648,7 +648,7 @@ function App() {
                       onChange={handleInputChange}
                       aria-invalid={Boolean(formErrors.email)}
                       aria-describedby={formErrors.email ? 'email-error' : undefined}
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-ink/70 px-4 py-3 text-sm focus:border-signal"
+                      className="mt-2 w-full rounded-xl border border-slate/60 bg-white px-4 py-3 text-sm focus:border-signal"
                       placeholder="Ej. nombre@empresa.com…"
                     />
                     {formErrors.email ? (
@@ -671,7 +671,7 @@ function App() {
                       onChange={handleInputChange}
                       aria-invalid={Boolean(formErrors.company)}
                       aria-describedby={formErrors.company ? 'company-error' : undefined}
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-ink/70 px-4 py-3 text-sm focus:border-signal"
+                      className="mt-2 w-full rounded-xl border border-slate/60 bg-white px-4 py-3 text-sm focus:border-signal"
                       placeholder="Ej. GlobalLift Logistics…"
                     />
                     {formErrors.company ? (
@@ -694,7 +694,7 @@ function App() {
                       onChange={handleInputChange}
                       aria-invalid={Boolean(formErrors.message)}
                       aria-describedby={formErrors.message ? 'message-error' : undefined}
-                      className="mt-2 w-full rounded-xl border border-white/10 bg-ink/70 px-4 py-3 text-sm focus:border-signal"
+                      className="mt-2 w-full rounded-xl border border-slate/60 bg-white px-4 py-3 text-sm focus:border-signal"
                       placeholder={`Ej. Exportamos ${numberFormatter.format(
                         12
                       )} contenedores/mes a Europa…`}
@@ -761,7 +761,7 @@ function App() {
               <p>Sostenibilidad</p>
             </div>
           </div>
-          <div className="mt-10 flex flex-col gap-4 border-t border-white/5 pt-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
+          <div className="mt-10 flex flex-col gap-4 border-t border-slate/60 pt-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
             <p>© {new Date().getFullYear()} GlobalLift. Todos los derechos reservados.</p>
             <div className="flex items-center gap-4">
               <a href="https://www.linkedin.com" className="text-muted transition-colors hover:text-signal" aria-label="LinkedIn">
