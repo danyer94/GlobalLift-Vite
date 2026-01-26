@@ -285,7 +285,9 @@ function App() {
                   decoding="async"
                 />
               </span>
-              <span className="sr-only">GlobalLift</span>
+              <span className="text-sm font-semibold tracking-[0.2em] text-mist md:text-base">
+                GLOBAL<span className="text-signal">LIFT</span>
+              </span>
             </a>
             <div className="hidden items-center gap-8 md:flex">
               {navItems.map((item) => (
@@ -723,19 +725,22 @@ function App() {
         <div className="container mx-auto px-6">
           <div className="grid gap-10 lg:grid-cols-[1.2fr,0.8fr,0.8fr]">
             <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <span className="logo-plate">
-                    <img
-                      src={brandLogoSrc}
-                      alt="GlobalLift Import & Export"
-                      className="h-10 w-auto"
-                      width={220}
-                      height={120}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </span>
-                </div>
+              <div className="flex items-center gap-3">
+                <span className="logo-plate">
+                  <img
+                    src={brandLogoSrc}
+                    alt="GlobalLift Import & Export"
+                    className="h-10 w-auto"
+                    width={220}
+                    height={120}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+                <span className="text-sm font-semibold tracking-[0.2em] text-mist md:text-base">
+                  GLOBAL<span className="text-signal">LIFT</span>
+                </span>
+              </div>
               <p className="text-sm text-muted">
                 Soluciones premium de exportación para empresas que necesitan control, velocidad y precisión
                 global.
