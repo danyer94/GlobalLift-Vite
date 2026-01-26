@@ -1,6 +1,5 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 import {
-  Globe2,
   Ship,
   Plane,
   TrendingUp,
@@ -30,6 +29,8 @@ const percentFormatter = new Intl.NumberFormat('en-US', {
 });
 
 const otifDisplay = percentFormatter.format(0.984);
+
+const brandLogoSrc = `${import.meta.env.BASE_URL}logo/Global-Lift.png`;
 
 const highlights = [
   `Cumplimiento Aduanero ${numberFormatter.format(360)}°`,
@@ -273,7 +274,14 @@ function App() {
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between py-4">
             <a href="#top" className="flex items-center gap-3">
-              <Globe2 className="h-8 w-8 text-signal" aria-hidden="true" />
+              <img
+                src={brandLogoSrc}
+                alt="GlobalLift"
+                className="h-9 w-auto"
+                width={160}
+                height={160}
+                decoding="async"
+              />
               <span className="text-lg font-semibold tracking-[0.2em] text-mist">
                 GLOBAL<span className="text-signal">LIFT</span>
               </span>
@@ -712,7 +720,15 @@ function App() {
           <div className="grid gap-10 lg:grid-cols-[1.2fr,0.8fr,0.8fr]">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <Globe2 className="h-8 w-8 text-signal" aria-hidden="true" />
+                <img
+                  src={brandLogoSrc}
+                  alt="GlobalLift"
+                  className="h-9 w-auto"
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span className="text-lg font-semibold tracking-[0.2em] text-mist">
                   GLOBAL<span className="text-signal">LIFT</span>
                 </span>
