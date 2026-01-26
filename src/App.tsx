@@ -180,7 +180,7 @@ const getFieldError = (name: keyof FormState, value: string) => {
   const trimmed = value.trim();
 
   if (name === 'name') {
-    return trimmed.length === 0 ? 'El nombre es obligatorio.' : '';
+    return trimmed.length === 0 ? 'Ingresa tu nombre.' : '';
   }
 
   if (name === 'email') {
@@ -189,7 +189,7 @@ const getFieldError = (name: keyof FormState, value: string) => {
   }
 
   if (name === 'company') {
-    return trimmed.length === 0 ? 'La empresa es obligatoria.' : '';
+    return trimmed.length === 0 ? 'Ingresa el nombre de tu empresa.' : '';
   }
 
   if (name === 'message') {
@@ -273,18 +273,19 @@ function App() {
       <nav className="fixed top-0 z-50 w-full nav-blur" aria-label="Navegación principal">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between py-4">
-            <a href="#top" className="flex items-center gap-3">
-              <img
-                src={brandLogoSrc}
-                alt="GlobalLift"
-                className="h-9 w-auto"
-                width={160}
-                height={160}
-                decoding="async"
-              />
-              <span className="text-lg font-semibold tracking-[0.2em] text-mist">
-                GLOBAL<span className="text-signal">LIFT</span>
+            <a href="#top" className="flex items-center gap-3 transition-opacity hover:opacity-90">
+              <span className="logo-plate">
+                <img
+                  src={brandLogoSrc}
+                  alt="GlobalLift Import & Export"
+                  className="h-10 w-auto"
+                  width={220}
+                  height={120}
+                  fetchPriority="high"
+                  decoding="async"
+                />
               </span>
+              <span className="sr-only">GlobalLift</span>
             </a>
             <div className="hidden items-center gap-8 md:flex">
               {navItems.map((item) => (
@@ -409,9 +410,12 @@ function App() {
                 return (
                   <div key={service.title} className="card">
                     <Icon className="h-10 w-10 text-signal" aria-hidden="true" />
-                    <h3 className="mt-6 text-xl font-semibold text-mist">{service.title}</h3>
-                    <p className="mt-3 text-sm text-muted">{service.description}</p>
-                    <a href="#contact" className="mt-6 inline-flex items-center gap-2 text-sm text-signal">
+                    <h3 className="mt-6 text-xl font-semibold text-mist break-words">{service.title}</h3>
+                    <p className="mt-3 text-sm text-muted break-words">{service.description}</p>
+                    <a
+                      href="#contact"
+                      className="mt-6 inline-flex items-center gap-2 text-sm text-signal transition-colors hover:text-signal/80"
+                    >
                       Explorar Servicio
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </a>
@@ -719,20 +723,19 @@ function App() {
         <div className="container mx-auto px-6">
           <div className="grid gap-10 lg:grid-cols-[1.2fr,0.8fr,0.8fr]">
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <img
-                  src={brandLogoSrc}
-                  alt="GlobalLift"
-                  className="h-9 w-auto"
-                  width={160}
-                  height={160}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="text-lg font-semibold tracking-[0.2em] text-mist">
-                  GLOBAL<span className="text-signal">LIFT</span>
-                </span>
-              </div>
+                <div className="flex items-center gap-3">
+                  <span className="logo-plate">
+                    <img
+                      src={brandLogoSrc}
+                      alt="GlobalLift Import & Export"
+                      className="h-10 w-auto"
+                      width={220}
+                      height={120}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                </div>
               <p className="text-sm text-muted">
                 Soluciones premium de exportación para empresas que necesitan control, velocidad y precisión
                 global.
