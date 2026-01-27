@@ -202,6 +202,39 @@
   display: block;
 }
 
+.product-backdrop {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-backdrop::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--product-bg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  filter: saturate(0.85) contrast(1.05);
+}
+
+.product-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(247, 251, 255, 0.96) 0%,
+    rgba(247, 251, 255, 0.86) 50%,
+    rgba(234, 243, 251, 0.98) 100%
+  );
+}
+
+.product-backdrop > * {
+  position: relative;
+  z-index: 1;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
