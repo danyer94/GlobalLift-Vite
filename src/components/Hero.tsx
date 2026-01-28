@@ -23,7 +23,7 @@ export function Hero({
       </div>
       <div className="relative z-10 flex w-full">
         <div className="container mx-auto px-6 pb-20 flex flex-col items-center justify-center w-full">
-          <div className="max-w-2xl mx-auto space-y-8 reveal text-center" style={{ animationDelay: '0.1s' }}>
+          <div className="hero-copy max-w-2xl mx-auto space-y-8 reveal text-center" style={{ animationDelay: '0.1s' }}>
             <span className="badge mx-auto">Export Intelligence</span>
             <div className="space-y-5">
               <h1 className="text-4xl font-semibold leading-tight md:text-6xl">
