@@ -15,17 +15,12 @@ import {
   companyProfile,
   companyValues,
   differentiators,
-  formatEta,
-  formatStatValue,
   highlights,
-  lanes,
   locations,
   navItems,
-  otifDisplay,
   partners,
   productGallery,
   services,
-  stats,
   testimonials,
 } from './content/siteContent';
 
@@ -43,11 +38,6 @@ function App() {
       <main id="main-content">
         <Hero
           highlights={highlights}
-          lanes={lanes}
-          stats={stats}
-          otifDisplay={otifDisplay}
-          formatEta={formatEta}
-          formatStatValue={formatStatValue}
         />
         <CompanyOverview profile={companyProfile} values={companyValues} />
         <Partners partners={partners} />
