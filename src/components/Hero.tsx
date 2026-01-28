@@ -1,4 +1,5 @@
-import { ArrowRight, Check } from 'lucide-react';
+﻿import { ArrowRight, Check } from 'lucide-react';
+import type { CSSProperties } from 'react';
 import type { Lane, Stat } from '../content/siteContent';
 
 type HeroProps = {
@@ -18,8 +19,19 @@ export function Hero({
   formatEta,
   formatStatValue,
 }: HeroProps) {
+  const heroBackdropStyle = {
+    '--hero-img-1': `url(${import.meta.env.BASE_URL}images/mangos_1.jpeg)`,
+    '--hero-img-2': `url(${import.meta.env.BASE_URL}images/mangos_4.jpeg)`,
+    '--hero-img-3': `url(${import.meta.env.BASE_URL}images/tomates.jpeg)`,
+  } as CSSProperties;
+
   return (
-    <section className="hero-aurora min-h-[90vh] pt-32">
+    <section className="hero-aurora hero-showcase min-h-[90vh] pt-32" style={heroBackdropStyle}>
+      <div className="hero-media" aria-hidden="true">
+        <span className="hero-media-layer hero-media-one" />
+        <span className="hero-media-layer hero-media-two" />
+        <span className="hero-media-layer hero-media-three" />
+      </div>
       <div className="container mx-auto px-6 pb-20">
         <div className="grid items-center gap-12 lg:grid-cols-[1.1fr,0.9fr]">
           <div className="space-y-8 reveal" style={{ animationDelay: '0.1s' }}>
