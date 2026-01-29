@@ -1,8 +1,14 @@
+﻿import type { FooterCopy } from '../content/siteContent';
+
 type FooterProps = {
   logoSrc: string;
+  copy: FooterCopy;
 };
 
-export function Footer({ logoSrc }: FooterProps) {
+export function Footer({ logoSrc, copy }: FooterProps) {
+  const year = new Date().getFullYear();
+  const rights = copy.rights.replace('{{year}}', `${year}`);
+
   return (
     <footer className="bg-graphite py-12">
       <div className="container mx-auto px-6">
@@ -24,28 +30,23 @@ export function Footer({ logoSrc }: FooterProps) {
                 GLOBAL<span className="text-signal">LIFT</span>
               </span>
             </div>
-            <p className="text-sm text-muted">
-              Soluciones premium de exportación para empresas que necesitan control, velocidad y precisión
-              global.
-            </p>
+            <p className="text-sm text-muted">{copy.description}</p>
           </div>
           <div className="space-y-3 text-sm text-muted">
-            <p className="text-xs uppercase tracking-[0.3em] text-muted">Servicios</p>
-            <p>Logística marítima</p>
-            <p>Carga aérea</p>
-            <p>Consultoría</p>
-            <p>Compliance aduanero</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-muted">{copy.servicesTitle}</p>
+            {copy.servicesItems.map((item) => (
+              <p key={item}>{item}</p>
+            ))}
           </div>
           <div className="space-y-3 text-sm text-muted">
-            <p className="text-xs uppercase tracking-[0.3em] text-muted">Compañía</p>
-            <p>Nosotros</p>
-            <p>Liderazgo</p>
-            <p>Seguridad</p>
-            <p>Sostenibilidad</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-muted">{copy.companyTitle}</p>
+            {copy.companyItems.map((item) => (
+              <p key={item}>{item}</p>
+            ))}
           </div>
         </div>
         <div className="mt-10 flex flex-col gap-4 border-t border-slate/60 pt-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} GlobalLift. Todos los derechos reservados.</p>
+          <p>{rights}</p>
           <div className="flex items-center gap-4">
             <a
               href="https://www.linkedin.com"

@@ -1,23 +1,20 @@
-import type { CaseStudy } from '../content/siteContent';
+﻿import type { CaseStudiesCopy, CaseStudy } from '../content/siteContent';
 
 type CaseStudiesProps = {
   caseStudies: CaseStudy[];
+  copy: CaseStudiesCopy;
 };
 
-export function CaseStudies({ caseStudies }: CaseStudiesProps) {
+export function CaseStudies({ caseStudies, copy }: CaseStudiesProps) {
   return (
     <section id="cases" className="bg-ink py-24">
       <div className="container mx-auto px-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="badge">Casos</p>
-            <h2 className="mt-6 text-3xl font-semibold md:text-4xl">
-              Resultados Medibles para Operaciones Globales.
-            </h2>
+            <p className="badge">{copy.badge}</p>
+            <h2 className="mt-6 text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
           </div>
-          <p className="text-lg text-muted lg:max-w-xl">
-            Soluciones a medida con KPIs claros y reportes ejecutivos para equipos de dirección.
-          </p>
+          <p className="text-lg text-muted lg:max-w-xl">{copy.subheading}</p>
         </div>
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
           {caseStudies.map((caseStudy) => (

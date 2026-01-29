@@ -1,5 +1,6 @@
-import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+﻿import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import type { ContactCopy } from '../content/siteContent';
 import { numberFormatter } from '../utils/formatters';
 
 type FormState = {
@@ -7,6 +8,10 @@ type FormState = {
   email: string;
   company: string;
   message: string;
+};
+
+type ContactProps = {
+  copy: ContactCopy;
 };
 
 const initialForm: FormState = {
@@ -18,43 +23,46 @@ const initialForm: FormState = {
 
 const fieldOrder: Array<keyof FormState> = ['name', 'email', 'company', 'message'];
 
-const getFieldError = (name: keyof FormState, value: string) => {
-  const trimmed = value.trim();
-
-  if (name === 'name') {
-    return trimmed.length === 0 ? 'Ingresa tu nombre.' : '';
-  }
-
-  if (name === 'email') {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(trimmed) ? '' : 'Ingresa un correo válido.';
-  }
-
-  if (name === 'company') {
-    return trimmed.length === 0 ? 'Ingresa el nombre de tu empresa.' : '';
-  }
-
-  if (name === 'message') {
-    return trimmed.length < 10
-      ? `Describe tu operación en al menos ${numberFormatter.format(10)} caracteres.`
-      : '';
-  }
-
-  return '';
-};
-
-const validateForm = (values: FormState) => {
-  return (Object.keys(values) as Array<keyof FormState>).reduce(
-    (acc, key) => ({ ...acc, [key]: getFieldError(key, values[key]) }),
-    { ...initialForm }
-  );
-};
-
-export function Contact() {
+export function Contact({ copy }: ContactProps) {
   const [formData, setFormData] = useState<FormState>(initialForm);
   const [formErrors, setFormErrors] = useState<FormState>(initialForm);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const isDirty = Object.values(formData).some((value) => value.trim().length > 0);
+  const responseTime = numberFormatter.format(copy.responseTimeHours);
+  const messageMin = numberFormatter.format(copy.messageMinChars);
+
+  const applyTokens = (template: string) =>
+    template.replace('{{hours}}', responseTime).replace('{{min}}', messageMin);
+
+  const getFieldError = (name: keyof FormState, value: string) => {
+    const trimmed = value.trim();
+
+    if (name === 'name') {
+      return trimmed.length === 0 ? copy.errors.name : '';
+    }
+
+    if (name === 'email') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(trimmed) ? '' : copy.errors.email;
+    }
+
+    if (name === 'company') {
+      return trimmed.length === 0 ? copy.errors.company : '';
+    }
+
+    if (name === 'message') {
+      return trimmed.length < copy.messageMinChars ? applyTokens(copy.errors.message) : '';
+    }
+
+    return '';
+  };
+
+  const validateForm = (values: FormState) => {
+    return (Object.keys(values) as Array<keyof FormState>).reduce(
+      (acc, key) => ({ ...acc, [key]: getFieldError(key, values[key]) }),
+      { ...initialForm }
+    );
+  };
 
   useEffect(() => {
     if (!isDirty) {
@@ -69,6 +77,11 @@ export function Contact() {
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [isDirty]);
+
+  useEffect(() => {
+    setFormErrors(initialForm);
+    setIsSubmitted(false);
+  }, [copy]);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -104,54 +117,49 @@ export function Contact() {
     setFormData(initialForm);
   };
 
+  const description = applyTokens(copy.description);
+  const emailDetail = applyTokens(copy.emailDetail);
+  const successMessage = applyTokens(copy.successMessage);
+
   return (
     <section id="contact" className="bg-ink py-24">
       <div className="container mx-auto px-6">
         <div className="grid gap-12 lg:grid-cols-[1fr,1.1fr]">
           <div className="space-y-6">
-            <p className="badge">Contacto</p>
-            <h2 className="text-3xl font-semibold md:text-4xl">
-              Estrategia de Exportación con Control Total.
-            </h2>
-            <p className="text-lg text-muted">
-              Recibirás respuesta en menos de {numberFormatter.format(24)} horas con un diagnóstico inicial y un
-              plan de acción.
-            </p>
+            <p className="badge">{copy.badge}</p>
+            <h2 className="text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
+            <p className="text-lg text-muted">{description}</p>
             <div className="space-y-4">
               <div className="flex items-start gap-4">
                 <MapPin className="mt-1 h-5 w-5 text-signal" aria-hidden="true" />
                 <div>
-                  <p className="font-semibold text-mist">1 World Trade Center, New York</p>
-                  <p className="text-sm text-muted">Centro global de operaciones</p>
+                  <p className="font-semibold text-mist">{copy.addressTitle}</p>
+                  <p className="text-sm text-muted">{copy.addressDetail}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <Mail className="mt-1 h-5 w-5 text-signal" aria-hidden="true" />
                 <div>
-                  <p className="font-semibold text-mist">contacto@globallift.com</p>
-                  <p className="text-sm text-muted">
-                    Respuesta en menos de {numberFormatter.format(24)} horas
-                  </p>
+                  <p className="font-semibold text-mist">{copy.emailTitle}</p>
+                  <p className="text-sm text-muted">{emailDetail}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <Phone className="mt-1 h-5 w-5 text-signal" aria-hidden="true" />
                 <div>
-                  <p className="font-semibold text-mist">+1 (212) 555-7890</p>
-                  <p className="text-sm text-muted">Línea internacional directa</p>
+                  <p className="font-semibold text-mist">{copy.phoneTitle}</p>
+                  <p className="text-sm text-muted">{copy.phoneDetail}</p>
                 </div>
               </div>
             </div>
           </div>
           <div className="panel p-8">
-            <h3 className="text-xl font-semibold text-mist">Solicitar Consultoría</h3>
-            <p className="mt-2 text-sm text-muted">
-              Completa el formulario y recibe una propuesta inicial con tiempos y costos estimados.
-            </p>
+            <h3 className="text-xl font-semibold text-mist">{copy.formTitle}</h3>
+            <p className="mt-2 text-sm text-muted">{copy.formDescription}</p>
             <form onSubmit={handleSubmit} className="mt-6 space-y-4" noValidate>
               <div>
                 <label htmlFor="name" className="text-sm text-muted">
-                  Nombre completo
+                  {copy.fields.nameLabel}
                 </label>
                 <input
                   id="name"
@@ -164,7 +172,7 @@ export function Contact() {
                   aria-invalid={Boolean(formErrors.name)}
                   aria-describedby={formErrors.name ? 'name-error' : undefined}
                   className="mt-2 w-full rounded-xl border border-slate/60 bg-white px-4 py-3 text-sm focus:border-signal"
-                  placeholder="Ej. Ana Pérez"
+                  placeholder={copy.fields.namePlaceholder}
                 />
                 {formErrors.name ? (
                   <p id="name-error" className="mt-2 text-xs text-red-400" role="alert">
@@ -174,7 +182,7 @@ export function Contact() {
               </div>
               <div>
                 <label htmlFor="email" className="text-sm text-muted">
-                  Correo corporativo
+                  {copy.fields.emailLabel}
                 </label>
                 <input
                   id="email"
@@ -189,7 +197,7 @@ export function Contact() {
                   aria-invalid={Boolean(formErrors.email)}
                   aria-describedby={formErrors.email ? 'email-error' : undefined}
                   className="mt-2 w-full rounded-xl border border-slate/60 bg-white px-4 py-3 text-sm focus:border-signal"
-                  placeholder="Ej. nombre@empresa.com"
+                  placeholder={copy.fields.emailPlaceholder}
                 />
                 {formErrors.email ? (
                   <p id="email-error" className="mt-2 text-xs text-red-400" role="alert">
@@ -199,7 +207,7 @@ export function Contact() {
               </div>
               <div>
                 <label htmlFor="company" className="text-sm text-muted">
-                  Empresa
+                  {copy.fields.companyLabel}
                 </label>
                 <input
                   id="company"
@@ -212,7 +220,7 @@ export function Contact() {
                   aria-invalid={Boolean(formErrors.company)}
                   aria-describedby={formErrors.company ? 'company-error' : undefined}
                   className="mt-2 w-full rounded-xl border border-slate/60 bg-white px-4 py-3 text-sm focus:border-signal"
-                  placeholder="Ej. GlobalLift Logistics"
+                  placeholder={copy.fields.companyPlaceholder}
                 />
                 {formErrors.company ? (
                   <p id="company-error" className="mt-2 text-xs text-red-400" role="alert">
@@ -222,7 +230,7 @@ export function Contact() {
               </div>
               <div>
                 <label htmlFor="message" className="text-sm text-muted">
-                  Necesidad principal
+                  {copy.fields.messageLabel}
                 </label>
                 <textarea
                   id="message"
@@ -235,7 +243,7 @@ export function Contact() {
                   aria-invalid={Boolean(formErrors.message)}
                   aria-describedby={formErrors.message ? 'message-error' : undefined}
                   className="mt-2 w-full rounded-xl border border-slate/60 bg-white px-4 py-3 text-sm focus:border-signal"
-                  placeholder={`Ej. Exportamos ${numberFormatter.format(12)} contenedores/mes a Europa.`}
+                  placeholder={copy.fields.messagePlaceholder}
                 ></textarea>
                 {formErrors.message ? (
                   <p id="message-error" className="mt-2 text-xs text-red-400" role="alert">
@@ -244,12 +252,12 @@ export function Contact() {
                 ) : null}
               </div>
               <button type="submit" className="btn btn-primary w-full">
-                Enviar Solicitud
+                {copy.submitLabel}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </button>
               {isSubmitted ? (
                 <p className="text-sm text-signal" role="status">
-                  Gracias. Te contactaremos en menos de {numberFormatter.format(24)} horas.
+                  {successMessage}
                 </p>
               ) : null}
             </form>

@@ -1,14 +1,26 @@
-import { ArrowRight } from 'lucide-react';
-import type { NavItem } from '../content/siteContent';
+﻿import { ArrowRight } from 'lucide-react';
+import type { Language, LanguageToggleCopy, NavItem, NavigationCopy } from '../content/siteContent';
+import { LanguageToggle } from './LanguageToggle';
 
 type NavigationProps = {
   items: NavItem[];
   logoSrc: string;
+  copy: NavigationCopy;
+  languageToggleCopy: LanguageToggleCopy;
+  language: Language;
+  onLanguageChange: (value: Language) => void;
 };
 
-export function Navigation({ items, logoSrc }: NavigationProps) {
+export function Navigation({
+  items,
+  logoSrc,
+  copy,
+  languageToggleCopy,
+  language,
+  onLanguageChange,
+}: NavigationProps) {
   return (
-    <nav className="fixed top-0 z-50 w-full nav-blur" aria-label="Navegación principal">
+    <nav className="fixed top-0 z-50 w-full nav-blur" aria-label={copy.ariaLabel}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between py-4">
           <a href="#top" className="flex items-center gap-3 transition-opacity hover:opacity-90">
@@ -38,10 +50,13 @@ export function Navigation({ items, logoSrc }: NavigationProps) {
               </a>
             ))}
           </div>
-          <a href="#contact" className="btn btn-primary hidden sm:inline-flex">
-            Agendar Llamada
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          <div className="flex items-center gap-3">
+            <LanguageToggle value={language} onChange={onLanguageChange} copy={languageToggleCopy} />
+            <a href="#contact" className="btn btn-primary hidden sm:inline-flex">
+              {copy.cta}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </div>
     </nav>

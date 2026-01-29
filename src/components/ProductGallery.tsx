@@ -1,9 +1,10 @@
 ﻿import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import type { ProductGalleryItem } from '../content/siteContent';
+import type { ProductGalleryCopy, ProductGalleryItem } from '../content/siteContent';
 
 type ProductGalleryProps = {
   items: ProductGalleryItem[];
+  copy: ProductGalleryCopy;
 };
 
 const AUTO_PLAY_MS = 3000;
@@ -13,7 +14,7 @@ const PRODUCT_BACKGROUNDS = [
   `${import.meta.env.BASE_URL}images/tomates.jpeg`,
 ];
 
-export function ProductGallery({ items }: ProductGalleryProps) {
+export function ProductGallery({ items, copy }: ProductGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const total = items.length;
@@ -73,15 +74,10 @@ export function ProductGallery({ items }: ProductGalleryProps) {
       <div className="container mx-auto px-6">
         <div className="grid gap-10 lg:grid-cols-[1fr,1.1fr] lg:items-end">
           <div>
-            <p className="badge">Productos</p>
-            <h2 className="mt-6 text-3xl font-semibold md:text-4xl">
-              Catálogo exportable con empaque certificado y control de calidad.
-            </h2>
+            <p className="badge">{copy.badge}</p>
+            <h2 className="mt-6 text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
           </div>
-          <p className="text-lg text-muted">
-            Fotografías reales de productos, selección y empaquetado listos para despacho internacional. Cada lote
-            se valida con estándares de inocuidad y trazabilidad.
-          </p>
+          <p className="text-lg text-muted">{copy.subheading}</p>
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-[1.25fr,0.75fr] lg:items-start">
@@ -91,7 +87,7 @@ export function ProductGallery({ items }: ProductGalleryProps) {
                 type="button"
                 onClick={() => setIsOpen(true)}
                 className="block w-full"
-                aria-label="Ver imagen completa"
+                aria-label={copy.viewFullLabel}
               >
                 <img
                   src={activeItem.src}
@@ -108,7 +104,7 @@ export function ProductGallery({ items }: ProductGalleryProps) {
                   <p className="text-xs text-ink/75">{activeItem.category}</p>
                 </div>
                 <span className="rounded-full border border-ink/30 bg-ink/10 px-3 py-1 text-[0.6rem] uppercase tracking-[0.32em] text-ink">
-                  Click para ampliar
+                  {copy.zoomLabel}
                 </span>
               </figcaption>
             </figure>
@@ -117,7 +113,7 @@ export function ProductGallery({ items }: ProductGalleryProps) {
                 type="button"
                 onClick={() => setActiveIndex((prev) => (prev - 1 + total) % total)}
                 className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-slate/60 bg-white/80 text-mist shadow-soft backdrop-blur transition-colors hover:bg-white"
-                aria-label="Imagen anterior"
+                aria-label={copy.prevLabel}
               >
                 <ChevronLeft className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -125,14 +121,14 @@ export function ProductGallery({ items }: ProductGalleryProps) {
                 type="button"
                 onClick={() => setActiveIndex((prev) => (prev + 1) % total)}
                 className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-slate/60 bg-white/80 text-mist shadow-soft backdrop-blur transition-colors hover:bg-white"
-                aria-label="Imagen siguiente"
+                aria-label={copy.nextLabel}
               >
                 <ChevronRight className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
           </div>
           <div className="panel-solid p-6">
-            <p className="text-xs uppercase tracking-[0.32em] text-muted">Producto en foco</p>
+            <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.focusLabel}</p>
             <h3 className="mt-4 text-2xl font-semibold text-mist">{activeItem.label}</h3>
             <p className="mt-3 text-sm text-muted">{activeItem.alt}</p>
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted">
@@ -142,22 +138,18 @@ export function ProductGallery({ items }: ProductGalleryProps) {
               <span className="text-xs uppercase tracking-[0.3em] text-muted">
                 {activeIndex + 1} / {total}
               </span>
-              <span className="text-xs text-muted">Rotación automática cada 3s</span>
+              <span className="text-xs text-muted">{copy.autoRotateLabel}</span>
             </div>
             <div className="mt-6 grid gap-3 text-sm text-muted">
-              <p>Empaque certificado y trazabilidad por lote.</p>
-              <p>Control de temperatura y humedad en tránsito.</p>
-              <p>Etiquetado multilingüe y documentación lista.</p>
+              {copy.detailItems.map((item) => (
+                <p key={item}>{item}</p>
+              ))}
             </div>
           </div>
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {[
-            'Control de temperatura y humedad en cada etapa de empaque.',
-            'Etiquetado multilingüe con trazabilidad por lote y destino.',
-            'Protección de impacto para mantener frescura y presentación.',
-          ].map((item) => (
+          {copy.highlightItems.map((item) => (
             <div key={item} className="panel-solid p-5 text-sm text-muted">
               {item}
             </div>
@@ -171,14 +163,14 @@ export function ProductGallery({ items }: ProductGalleryProps) {
             type="button"
             className="absolute inset-0 cursor-default"
             onClick={() => setIsOpen(false)}
-            aria-label="Cerrar vista completa"
+            aria-label={copy.closeViewLabel}
           />
           <div className="relative z-10 w-full max-w-5xl overflow-hidden rounded-2xl border border-slate/60 bg-white shadow-soft">
             <button
               type="button"
               onClick={() => setIsOpen(false)}
               className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-slate/60 bg-white/90 text-mist shadow-soft backdrop-blur transition-colors hover:bg-white"
-              aria-label="Cerrar"
+              aria-label={copy.closeButtonLabel}
             >
               <X className="h-4 w-4" aria-hidden="true" />
             </button>
@@ -199,7 +191,7 @@ export function ProductGallery({ items }: ProductGalleryProps) {
                   type="button"
                   onClick={() => setActiveIndex((prev) => (prev - 1 + total) % total)}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-slate/60 bg-white text-mist shadow-soft transition-colors hover:bg-graphite"
-                  aria-label="Imagen anterior"
+                  aria-label={copy.prevLabel}
                 >
                   <ChevronLeft className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -207,7 +199,7 @@ export function ProductGallery({ items }: ProductGalleryProps) {
                   type="button"
                   onClick={() => setActiveIndex((prev) => (prev + 1) % total)}
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-slate/60 bg-white text-mist shadow-soft transition-colors hover:bg-graphite"
-                  aria-label="Imagen siguiente"
+                  aria-label={copy.nextLabel}
                 >
                   <ChevronRight className="h-4 w-4" aria-hidden="true" />
                 </button>

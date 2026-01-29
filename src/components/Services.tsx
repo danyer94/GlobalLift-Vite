@@ -1,26 +1,22 @@
-import { ArrowRight, Check } from 'lucide-react';
-import type { Service } from '../content/siteContent';
+﻿import { ArrowRight, Check } from 'lucide-react';
+import type { Service, ServicesCopy } from '../content/siteContent';
 
 type ServicesProps = {
   services: Service[];
   differentiators: string[];
+  copy: ServicesCopy;
 };
 
-export function Services({ services, differentiators }: ServicesProps) {
+export function Services({ services, differentiators, copy }: ServicesProps) {
   return (
     <section id="services" className="bg-ink py-24">
       <div className="container mx-auto px-6">
         <div className="grid gap-12 lg:grid-cols-[1fr,1.2fr] lg:items-end">
           <div>
-            <p className="badge">Servicios</p>
-            <h2 className="mt-6 text-3xl font-semibold md:text-4xl">
-              Operación Diseñada para Exportadores que Exigen Precisión.
-            </h2>
+            <p className="badge">{copy.badge}</p>
+            <h2 className="mt-6 text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
           </div>
-          <p className="text-lg text-muted">
-            Recibes logística, compliance y análisis operativo para reducir tiempos, riesgos y costos ocultos en
-            la cadena de exportación.
-          </p>
+          <p className="text-lg text-muted">{copy.subheading}</p>
         </div>
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {services.map((service) => {
@@ -34,7 +30,7 @@ export function Services({ services, differentiators }: ServicesProps) {
                   href="#contact"
                   className="mt-6 inline-flex items-center gap-2 text-sm text-signal transition-colors hover:text-signal/80"
                 >
-                  Explorar Servicio
+                  {copy.ctaLabel}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
