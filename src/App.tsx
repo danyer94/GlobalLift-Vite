@@ -45,7 +45,7 @@ function App() {
   }, [language]);
 
   return (
-    <div id="top" className="bg-ink text-mist antialiased">
+    <div id="top" className="bg-background text-foreground antialiased">
       <SEO 
         language={language}
         title={content.seo.title}

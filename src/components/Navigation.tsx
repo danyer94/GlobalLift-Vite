@@ -27,13 +27,13 @@ export function Navigation({ items, logoSrc, copy, language, onLanguageChange }:
                 decoding="async"
               />
             </span>
-            <span className="text-sm font-semibold tracking-[0.2em] text-mist md:text-base font-display">
-              Global <span className="text-signal">Lift</span> SRL
+            <span className="text-sm font-semibold tracking-[0.2em] text-foreground md:text-base font-display">
+              Global <span className="text-primary">Lift</span> SRL
             </span>
           </a>
           <div className="hidden items-center gap-8 md:flex">
             {items.map((item) => (
-              <a key={item.label} href={item.href} className="text-sm font-medium text-muted transition-colors hover:text-signal-strong">
+              <a key={item.label} href={item.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
                 {item.label}
               </a>
             ))}

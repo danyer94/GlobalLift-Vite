@@ -14,21 +14,21 @@ export function Values({ copy }: ValuesProps) {
         </div>
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <div className="panel-solid p-6">
-            <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.visionLabel}</p>
-            <p className="mt-3 text-sm text-mist">{copy.visionText}</p>
+            <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{copy.visionLabel}</p>
+            <p className="mt-3 text-sm text-foreground">{copy.visionText}</p>
           </div>
           <div className="panel-solid p-6">
-            <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.missionLabel}</p>
-            <p className="mt-3 text-sm text-mist">{copy.missionText}</p>
+            <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{copy.missionLabel}</p>
+            <p className="mt-3 text-sm text-foreground">{copy.missionText}</p>
           </div>
         </div>
         <div className="mt-12">
-          <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.valuesLabel}</p>
+          <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{copy.valuesLabel}</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {copy.values.map((value) => (
               <div key={value.title} className="tile">
-                <p className="text-sm font-semibold text-mist">{value.title}</p>
-                <p className="mt-2 text-sm text-muted">{value.description}</p>
+                <p className="text-sm font-semibold text-foreground">{value.title}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{value.description}</p>
               </div>
             ))}
           </div>

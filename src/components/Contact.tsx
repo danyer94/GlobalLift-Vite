@@ -47,14 +47,14 @@ export function Contact({ copy, trustCues }: ContactProps) {
             <h2 className="section-title font-display">{copy.heading}</h2>
             <p className="section-lead">{copy.description}</p>
             <div className="panel-solid p-6">
-              <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.label}</p>
-              <ul className="mt-4 space-y-3 text-sm text-muted">
+              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{copy.label}</p>
+              <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
                 {trustCues.map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="icon-dot">
                       <Check className="h-4 w-4" aria-hidden="true" />
                     </span>
-                    <span className="text-mist">{item}</span>
+                    <span className="text-foreground">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -67,7 +67,7 @@ export function Contact({ copy, trustCues }: ContactProps) {
 
                 return (
                   <div key={field.id} className={field.colSpan ?? ''}>
-                    <label htmlFor={field.id} className="text-sm text-muted">
+                    <label htmlFor={field.id} className="text-sm text-muted-foreground">
                       {label}
                     </label>
                     {field.type === 'textarea' ? (
@@ -90,7 +90,7 @@ export function Contact({ copy, trustCues }: ContactProps) {
                   {copy.form.submitLabel}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
-                <p id="contact-helper" className="mt-3 text-xs text-muted">
+                <p id="contact-helper" className="mt-3 text-xs text-muted-foreground">
                   {copy.form.micro}
                 </p>
               </div>

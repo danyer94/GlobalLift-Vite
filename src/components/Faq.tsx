@@ -41,12 +41,12 @@ export function Faq({ copy }: FaqProps) {
               itemProp="mainEntity" 
               itemType="https://schema.org/Question"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                 <span itemProp="name">{item.question}</span>
-                <ChevronDown className="h-4 w-4 text-signal transition-transform group-open:rotate-180" aria-hidden="true" />
+                <ChevronDown className="h-4 w-4 text-primary transition-transform group-open:rotate-180" aria-hidden="true" />
               </summary>
               <div data-panel itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                <p className="mt-3 text-sm text-muted" itemProp="text">{item.answer}</p>
+                <p className="mt-3 text-sm text-muted-foreground" itemProp="text">{item.answer}</p>
               </div>
             </details>
           ))}

@@ -15,11 +15,11 @@ export function LanguageToggle({ value, onChange }: LanguageToggleProps) {
 
   return (
     <div
-      className="relative grid grid-cols-2 items-center rounded-full border border-slate/60 bg-white/80 p-1 text-xs font-semibold shadow-soft backdrop-blur"
+      className="relative grid grid-cols-2 items-center rounded-full border border-border bg-card/80 p-1 text-xs font-semibold shadow-soft backdrop-blur"
       role="radiogroup"
     >
       <span
-        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full bg-signal/90 shadow-soft transition-transform duration-300 ${indicatorClass}`}
+        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full bg-primary/90 shadow-soft transition-transform duration-300 ${indicatorClass}`}
         aria-hidden="true"
       />
       {options.map((option) => {
@@ -33,7 +33,7 @@ export function LanguageToggle({ value, onChange }: LanguageToggleProps) {
             aria-checked={isActive}
             onClick={() => onChange(option.value)}
             className={`relative z-10 inline-flex items-center justify-center gap-2 rounded-full px-3 py-1.5 transition-colors ${
-              isActive ? 'text-ink' : 'text-muted hover:text-mist'
+              isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
             }`}
           >
             <span className="text-[0.6rem] uppercase tracking-[0.32em]">{option.short}</span>

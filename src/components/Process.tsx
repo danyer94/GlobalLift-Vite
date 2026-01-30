@@ -40,19 +40,19 @@ export function Process({ copy }: ProcessProps) {
                 <li key={step} className="relative">
                   {showMobileConnector ? (
                     <span
-                      className="absolute left-5 top-14 h-[calc(100%+1.5rem)] w-px bg-slate/60 lg:hidden"
+                      className="absolute left-5 top-14 h-[calc(100%+1.5rem)] w-px bg-border/70 lg:hidden"
                       aria-hidden="true"
                     />
                   ) : null}
                   <div className="panel-solid h-full p-6">
                     <div className="flex items-center gap-3">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-graphite text-lg font-semibold text-signal-strong">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-graphite text-lg font-semibold text-primary">
                         {stepNumber}
                       </span>
-                      <span className="h-px flex-1 bg-slate/60 lg:hidden" aria-hidden="true" />
+                      <span className="h-px flex-1 bg-border/70 lg:hidden" aria-hidden="true" />
                     </div>
-                    <p className="mt-4 text-sm text-muted">
-                      <span className="font-semibold text-mist">{title}</span>
+                    <p className="mt-4 text-sm text-muted-foreground">
+                      <span className="font-semibold text-foreground">{title}</span>
                       {description ? ` — ${description}` : ''}
                     </p>
                   </div>

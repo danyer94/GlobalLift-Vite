@@ -20,9 +20,9 @@ export function About({ copy }: AboutProps) {
           </div>
           <div className="panel-solid p-7 flex flex-col gap-4">
             <span className="pill">{copy.heading}</span>
-            <p className="text-lg text-mist">{copy.oneLine}</p>
+            <p className="text-lg text-foreground">{copy.oneLine}</p>
             <div className="section-divider h-px" aria-hidden="true" />
-            <p className="text-sm text-muted">{copy.paragraphs[1]}</p>
+            <p className="text-sm text-muted-foreground">{copy.paragraphs[1]}</p>
           </div>
         </div>
       </div>

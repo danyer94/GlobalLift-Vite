@@ -26,18 +26,18 @@ export function Products({ copy }: ProductsProps) {
               <span className="icon-dot">
                 <Ship className="h-4 w-4" aria-hidden="true" />
               </span>
-              <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.exportTitle}</p>
+              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{copy.exportTitle}</p>
             </div>
-            <p className="text-sm text-muted">{copy.exportText}</p>
+            <p className="text-sm text-muted-foreground">{copy.exportText}</p>
           </div>
           <div className="card flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <span className="icon-dot">
                 <Package className="h-4 w-4" aria-hidden="true" />
               </span>
-              <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.supplyTitle}</p>
+              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{copy.supplyTitle}</p>
             </div>
-            <p className="text-sm text-muted">{copy.supplyText}</p>
+            <p className="text-sm text-muted-foreground">{copy.supplyText}</p>
           </div>
         </div>
         <div className="mt-8 flex justify-start">

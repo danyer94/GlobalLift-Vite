@@ -41,10 +41,10 @@ export function Services({ copy }: ServicesProps) {
                 <span className="icon-dot">
                   <Icon className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <p className="mt-4 text-sm font-semibold text-mist">{title}</p>
-                <p className="mt-2 text-sm text-muted">{description}</p>
-                <div className="mt-6 h-px w-full bg-slate/60" aria-hidden="true" />
-                <p className="mt-3 text-xs text-muted">{copy.label}</p>
+                <p className="mt-4 text-sm font-semibold text-foreground">{title}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{description}</p>
+                <div className="mt-6 h-px w-full bg-border/70" aria-hidden="true" />
+                <p className="mt-3 text-xs text-muted-foreground">{copy.label}</p>
               </div>
             );
           })}
