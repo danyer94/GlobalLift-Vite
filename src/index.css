@@ -188,6 +188,29 @@
   background: linear-gradient(145deg, rgba(64, 160, 208, 0.12) 0%, rgba(248, 250, 252, 0.95) 45%, rgba(64, 144, 208, 0.08) 100%);
 }
 
+.hero-bg-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 1; /* por encima de ::before y ::after de hero-aurora para que se vean las fotos */
+}
+
+.hero-bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.hero-bg-slides::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, rgba(64, 160, 208, 0.35) 0%, rgba(248, 250, 252, 0.88) 45%, rgba(64, 144, 208, 0.3) 100%);
+  z-index: 1;
+}
+
 .hero-aurora::before {
   content: '';
   position: absolute;
@@ -197,7 +220,7 @@
     radial-gradient(closest-side at 82% 18%, rgba(32, 64, 96, 0.2), transparent 60%),
     radial-gradient(closest-side at 50% 78%, rgba(64, 144, 208, 0.18), transparent 65%);
   filter: blur(14px);
-  z-index: 1;
+  z-index: 0;
 }
 
 .hero-aurora::after {
@@ -209,10 +232,10 @@
     linear-gradient(90deg, rgba(15, 33, 55, 0.08) 1px, transparent 1px);
   background-size: 36px 36px;
   opacity: 0.18;
-  z-index: 1;
+  z-index: 0;
 }
 
-.hero-aurora > * {
+.hero-aurora > *:not(.hero-bg-slides) {
   position: relative;
   z-index: 2;
 }

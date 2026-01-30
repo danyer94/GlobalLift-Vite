@@ -1,6 +1,14 @@
-﻿import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { HeroCopy } from '../content/siteContent';
+
+const HERO_BG_IMAGES = [
+  '/images/aguacates.jpeg',
+  '/images/mangos_1.jpeg',
+  '/images/verdura.jpeg',
+];
+const BG_ROTATE_INTERVAL_MS = 10_000;
 
 type HeroProps = {
   copy: HeroCopy;
@@ -26,10 +34,31 @@ const highlightTitle = (title: string): ReactNode => {
 };
 
 export function Hero({ copy }: HeroProps) {
+  const [bgIndex, setBgIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setBgIndex((i) => (i + 1) % HERO_BG_IMAGES.length);
+    }, BG_ROTATE_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <section className="hero-aurora section min-h-[88vh] pt-28 pb-16 flex items-center">
+      <div className="hero-bg-slides" aria-hidden="true">
+        {HERO_BG_IMAGES.map((src, i) => (
+          <div
+            key={src}
+            className="hero-bg-slide"
+            style={{
+              backgroundImage: `url(${src})`,
+              opacity: i === bgIndex ? 1 : 0,
+            }}
+          />
+        ))}
+      </div>
       <div className="container">
-        <div className="grid w-full gap-10 lg:grid-cols-[1.1fr,0.9fr] lg:items-center">
+        <div className="flex w-full flex-col items-center gap-10">
           <div className="hero-copy space-y-7 reveal" style={{ animationDelay: '0.1s' }}>
             <div className="space-y-5">
               <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-6xl font-display">
@@ -55,7 +84,7 @@ export function Hero({ copy }: HeroProps) {
               ))}
             </div>
           </div>
-          <div className="panel-solid p-7 shadow-lift reveal" style={{ animationDelay: '0.25s' }}>
+          <div className="panel-solid p-7 shadow-lift reveal w-full max-w-2xl" style={{ animationDelay: '0.25s' }}>
             <div className="flex items-center gap-3">
               <span className="icon-dot">
                 <Check className="h-4 w-4" aria-hidden="true" />
