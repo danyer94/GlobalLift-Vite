@@ -1,15 +1,15 @@
 ﻿import { useEffect, useState } from 'react';
-import { CaseStudies } from './components/CaseStudies';
-import { CompanyOverview } from './components/CompanyOverview';
+import { About } from './components/About';
+import { Commitment } from './components/Commitment';
 import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+import { Faq } from './components/Faq';
 import { Hero } from './components/Hero';
 import { Navigation } from './components/Navigation';
-import { Network } from './components/Network';
-import { Partners } from './components/Partners';
-import { ProductGallery } from './components/ProductGallery';
+import { Process } from './components/Process';
+import { Products } from './components/Products';
 import { Services } from './components/Services';
-import { Testimonials } from './components/Testimonials';
+import { Values } from './components/Values';
+import { Why } from './components/Why';
 import { brandLogoSrc, siteContent, type Language } from './content/siteContent';
 
 const STORAGE_KEY = 'globallift-language';
@@ -42,38 +42,37 @@ function App() {
     }
   }, [language]);
 
+  useEffect(() => {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    document.title = content.seo.title;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', content.seo.description);
+    }
+  }, [content.seo.description, content.seo.title]);
+
   return (
     <div id="top" className="bg-ink text-mist">
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-signal focus:px-4 focus:py-2 focus:text-ink focus:shadow-signal"
-      >
-        {content.copy.skipToContent}
-      </a>
-      <Navigation
-        items={content.navItems}
-        logoSrc={brandLogoSrc}
-        copy={content.copy.navigation}
-        languageToggleCopy={content.copy.languageToggle}
-        language={language}
-        onLanguageChange={setLanguage}
-      />
+      <Navigation items={content.navItems} logoSrc={brandLogoSrc} copy={content.navigation} language={language} onLanguageChange={setLanguage} />
 
       <main id="main-content">
-        <Hero highlights={content.highlights} copy={content.copy.hero} />
-        <CompanyOverview profile={content.companyProfile} values={content.companyValues} copy={content.copy.companyOverview} />
-        <Partners partners={content.partners} copy={content.copy.partners} />
-        <Services services={content.services} differentiators={content.differentiators} copy={content.copy.services} />
-        <ProductGallery items={content.productGallery} copy={content.copy.productGallery} />
-        <Network locations={content.locations} copy={content.copy.network} />
-        <CaseStudies caseStudies={content.caseStudies} copy={content.copy.caseStudies} />
-        <Testimonials testimonials={content.testimonials} copy={content.copy.testimonials} />
-        <Contact copy={content.copy.contact} />
+        <Hero copy={content.hero} />
+        <About copy={content.about} />
+        <Services copy={content.services} />
+        <Products copy={content.products} />
+        <Process copy={content.process} />
+        <Why copy={content.why} />
+        <Values copy={content.values} />
+        <Commitment copy={content.commitment} />
+        <Faq copy={content.faq} />
+        <Contact copy={content.contact} />
       </main>
-
-      <Footer logoSrc={brandLogoSrc} copy={content.copy.footer} />
     </div>
   );
 }
 
 export default App;
+

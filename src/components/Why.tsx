@@ -1,7 +1,7 @@
-﻿import type { ServicesCopy } from '../content/siteContent';
+﻿import type { WhyCopy } from '../content/siteContent';
 
-type ServicesProps = {
-  copy: ServicesCopy;
+type WhyProps = {
+  copy: WhyCopy;
 };
 
 const splitItem = (item: string) => {
@@ -18,19 +18,18 @@ const splitItem = (item: string) => {
   };
 };
 
-export function Services({ copy }: ServicesProps) {
+export function Why({ copy }: WhyProps) {
   return (
-    <section id="services" className="bg-graphite py-24">
+    <section id="why" className="bg-ink py-24">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="badge">{copy.label}</p>
-            <h2 className="mt-6 text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
-          </div>
+        <div>
+          <p className="badge">{copy.label}</p>
+          <h2 className="mt-6 text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
         </div>
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {copy.items.map((item) => {
             const { title, description } = splitItem(item);
+
             return (
               <div key={item} className="card">
                 <p className="text-sm text-muted">
