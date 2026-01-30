@@ -2,6 +2,15 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1.5rem',
+        sm: '1.5rem',
+        lg: '2.5rem',
+        xl: '3rem',
+      },
+    },
     extend: {
       colors: {
         ink: 'rgb(var(--ink) / <alpha-value>)',
@@ -20,10 +29,15 @@ export default {
         display: ['Unbounded', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
+      borderRadius: {
+        panel: 'var(--radius-lg)',
+        xl: 'var(--radius-xl)',
+        '2xl': 'var(--radius-2xl)',
+      },
       boxShadow: {
-        soft: '0 24px 60px rgba(14, 34, 58, 0.12)',
-        signal: '0 0 0 1px rgba(64, 160, 208, 0.25), 0 24px 50px rgba(14, 34, 58, 0.18)',
-        lift: '0 18px 40px rgba(14, 34, 58, 0.14)',
+        soft: 'var(--shadow-soft)',
+        signal: 'var(--shadow-signal)',
+        lift: 'var(--shadow-lift)',
       },
     },
   },

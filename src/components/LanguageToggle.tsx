@@ -14,9 +14,12 @@ export function LanguageToggle({ value, onChange }: LanguageToggleProps) {
   const indicatorClass = value === 'en' ? 'translate-x-full' : 'translate-x-0';
 
   return (
-    <div className="relative grid grid-cols-2 items-center rounded-full border border-slate/70 bg-white/80 p-1 text-xs font-semibold shadow-soft backdrop-blur" role="radiogroup">
+    <div
+      className="relative grid grid-cols-2 items-center rounded-full border border-slate/60 bg-white/80 p-1 text-xs font-semibold shadow-soft backdrop-blur"
+      role="radiogroup"
+    >
       <span
-        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full bg-signal/90 shadow-signal transition-transform duration-300 ${indicatorClass}`}
+        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full bg-signal/90 shadow-soft transition-transform duration-300 ${indicatorClass}`}
         aria-hidden="true"
       />
       {options.map((option) => {

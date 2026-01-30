@@ -39,13 +39,13 @@ export function Contact({ copy, trustCues }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="bg-ink py-24">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="section section-base">
+      <div className="container">
         <div className="grid gap-12 lg:grid-cols-[1fr,1.1fr]">
           <div className="space-y-6">
             <p className="badge">{copy.label}</p>
-            <h2 className="text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
-            <p className="text-lg text-muted">{copy.description}</p>
+            <h2 className="section-title font-display">{copy.heading}</h2>
+            <p className="section-lead">{copy.description}</p>
             <div className="panel-solid p-6">
               <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.label}</p>
               <ul className="mt-4 space-y-3 text-sm text-muted">
@@ -60,7 +60,7 @@ export function Contact({ copy, trustCues }: ContactProps) {
               </ul>
             </div>
           </div>
-          <div className="panel p-8">
+          <div className="panel p-8 shadow-lift">
             <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2" aria-describedby="contact-helper">
               {fieldConfig.map((field, index) => {
                 const label = copy.form.fields[index] ?? '';

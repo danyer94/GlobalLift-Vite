@@ -7,16 +7,16 @@ type FaqProps = {
 
 export function Faq({ copy }: FaqProps) {
   return (
-    <section id="faq" className="bg-graphite py-24">
-      <div className="container mx-auto px-6">
+    <section id="faq" className="section section-alt">
+      <div className="container">
         <div>
           <p className="badge">{copy.label}</p>
-          <h2 className="mt-6 text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
+          <h2 className="section-title font-display mt-6">{copy.heading}</h2>
         </div>
         <div className="mt-12 grid gap-4">
           {copy.items.map((item) => (
             <details key={item.question} className="faq-panel group panel-solid p-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-mist">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white">
                 <span>{item.question}</span>
                 <ChevronDown className="h-4 w-4 text-signal transition-transform group-open:rotate-180" aria-hidden="true" />
               </summary>

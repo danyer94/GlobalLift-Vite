@@ -70,7 +70,7 @@ export function ProductGallery({ label, heading }: ProductGalleryProps) {
 
   return (
     <div className="mt-10 grid gap-6">
-      <div className="relative overflow-hidden rounded-2xl border border-slate/60 bg-white shadow-soft">
+      <div className="panel-solid relative overflow-hidden">
         <button type="button" onClick={() => setIsOpen(true)} className="block w-full cursor-zoom-in" aria-label={heading}>
           <img
             src={`${import.meta.env.BASE_URL}images/${activeImage}`}
@@ -80,12 +80,12 @@ export function ProductGallery({ label, heading }: ProductGalleryProps) {
             className="h-[16rem] w-full object-cover transition-transform duration-500 hover:scale-[1.02] sm:h-[20rem] lg:h-[24rem]"
           />
         </button>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-mist/70 via-mist/20 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-mist/60 via-mist/10 to-transparent" />
         <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-4">
           <button
             type="button"
             onClick={() => setActiveIndex((prev) => (prev - 1 + total) % total)}
-            className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-slate/60 bg-white/80 text-mist shadow-soft backdrop-blur transition-colors hover:bg-white"
+            className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-slate/60 bg-white/90 text-signal-strong shadow-soft backdrop-blur transition-colors hover:bg-white"
             aria-label={label}
           >
             <ChevronLeft className="h-5 w-5" aria-hidden="true" />
@@ -93,7 +93,7 @@ export function ProductGallery({ label, heading }: ProductGalleryProps) {
           <button
             type="button"
             onClick={() => setActiveIndex((prev) => (prev + 1) % total)}
-            className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-slate/60 bg-white/80 text-mist shadow-soft backdrop-blur transition-colors hover:bg-white"
+            className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-slate/60 bg-white/90 text-signal-strong shadow-soft backdrop-blur transition-colors hover:bg-white"
             aria-label={label}
           >
             <ChevronRight className="h-5 w-5" aria-hidden="true" />

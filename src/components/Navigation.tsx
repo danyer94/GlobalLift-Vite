@@ -12,8 +12,8 @@ type NavigationProps = {
 
 export function Navigation({ items, logoSrc, copy, language, onLanguageChange }: NavigationProps) {
   return (
-    <nav className="fixed top-0 z-50 w-full nav-blur">
-      <div className="container mx-auto px-6">
+    <nav className="fixed top-0 z-50 w-full nav-blur" aria-label="Primary">
+      <div className="container">
         <div className="flex items-center justify-between py-4">
           <a href="#top" className="flex items-center gap-3 transition-opacity hover:opacity-90">
             <span className="logo-plate">
@@ -27,13 +27,13 @@ export function Navigation({ items, logoSrc, copy, language, onLanguageChange }:
                 decoding="async"
               />
             </span>
-            <span className="text-sm font-semibold tracking-[0.2em] text-mist md:text-base">
+            <span className="text-sm font-semibold tracking-[0.2em] text-mist md:text-base font-display">
               Global <span className="text-signal">Lift</span> SRL
             </span>
           </a>
           <div className="hidden items-center gap-8 md:flex">
             {items.map((item) => (
-              <a key={item.label} href={item.href} className="text-sm font-medium text-muted transition-colors hover:text-mist">
+              <a key={item.label} href={item.href} className="text-sm font-medium text-muted transition-colors hover:text-signal-strong">
                 {item.label}
               </a>
             ))}

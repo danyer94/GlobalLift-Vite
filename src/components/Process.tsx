@@ -20,11 +20,11 @@ const splitItem = (item: string) => {
 
 export function Process({ copy }: ProcessProps) {
   return (
-    <section id="process" className="bg-graphite py-24">
-      <div className="container mx-auto px-6">
+    <section id="process" className="section section-plain">
+      <div className="container">
         <div>
           <p className="badge">{copy.label}</p>
-          <h2 className="mt-6 text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
+          <h2 className="section-title font-display mt-6">{copy.heading}</h2>
         </div>
         <div className="mt-12">
           <div className="relative hidden lg:block">
@@ -34,17 +34,28 @@ export function Process({ copy }: ProcessProps) {
             {copy.steps.map((step, index) => {
               const { title, description } = splitItem(step);
               const stepNumber = `${index + 1}`.padStart(2, '0');
+              const showMobileConnector = index < copy.steps.length - 1;
 
               return (
-                <li key={step} className="panel-solid p-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl font-semibold text-signal-strong">{stepNumber}</span>
-                    <span className="h-px flex-1 bg-slate/70 lg:hidden" aria-hidden="true" />
+                <li key={step} className="relative">
+                  {showMobileConnector ? (
+                    <span
+                      className="absolute left-5 top-14 h-[calc(100%+1.5rem)] w-px bg-slate/60 lg:hidden"
+                      aria-hidden="true"
+                    />
+                  ) : null}
+                  <div className="panel-solid h-full p-6">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-graphite text-lg font-semibold text-signal-strong">
+                        {stepNumber}
+                      </span>
+                      <span className="h-px flex-1 bg-slate/60 lg:hidden" aria-hidden="true" />
+                    </div>
+                    <p className="mt-4 text-sm text-muted">
+                      <span className="font-semibold text-mist">{title}</span>
+                      {description ? ` — ${description}` : ''}
+                    </p>
                   </div>
-                  <p className="mt-4 text-sm text-muted">
-                    <span className="font-semibold text-mist">{title}</span>
-                    {description ? ` — ${description}` : ''}
-                  </p>
                 </li>
               );
             })}

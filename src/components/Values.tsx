@@ -6,11 +6,11 @@ type ValuesProps = {
 
 export function Values({ copy }: ValuesProps) {
   return (
-    <section id="values" className="bg-graphite py-24">
-      <div className="container mx-auto px-6">
+    <section id="values" className="section section-base">
+      <div className="container">
         <div>
           <p className="badge">{copy.label}</p>
-          <h2 className="mt-6 text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
+          <h2 className="section-title font-display mt-6">{copy.heading}</h2>
         </div>
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <div className="panel-solid p-6">

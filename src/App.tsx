@@ -56,7 +56,7 @@ function App() {
   }, [content.seo.description, content.seo.title]);
 
   return (
-    <div id="top" className="bg-ink text-mist">
+    <div id="top" className="bg-ink text-mist antialiased">
       <Navigation items={content.navItems} logoSrc={brandLogoSrc} copy={content.navigation} language={language} onLanguageChange={setLanguage} />
 
       <main id="main-content">
