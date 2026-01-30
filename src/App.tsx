@@ -3,6 +3,7 @@ import { About } from './components/About';
 import { Commitment } from './components/Commitment';
 import { Contact } from './components/Contact';
 import { Faq } from './components/Faq';
+import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { Navigation } from './components/Navigation';
 import { Process } from './components/Process';
@@ -68,11 +69,11 @@ function App() {
         <Values copy={content.values} />
         <Commitment copy={content.commitment} />
         <Faq copy={content.faq} />
-        <Contact copy={content.contact} />
+        <Contact copy={content.contact} trustCues={content.hero.trustCues} />
       </main>
+      <Footer items={content.navItems} logoSrc={brandLogoSrc} note={content.about.oneLine} />
     </div>
   );
 }
 
 export default App;
-

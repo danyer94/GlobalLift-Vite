@@ -1,9 +1,10 @@
-﻿import { ArrowRight } from 'lucide-react';
+﻿import { ArrowRight, Check } from 'lucide-react';
 import type { FormEvent, HTMLAttributes } from 'react';
 import type { ContactCopy } from '../content/siteContent';
 
 type ContactProps = {
   copy: ContactCopy;
+  trustCues: string[];
 };
 
 type FieldConfig = {
@@ -24,7 +25,7 @@ const fieldConfig: FieldConfig[] = [
   { id: 'message', type: 'textarea', required: true, colSpan: 'sm:col-span-2' },
 ];
 
-export function Contact({ copy }: ContactProps) {
+export function Contact({ copy, trustCues }: ContactProps) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -45,12 +46,24 @@ export function Contact({ copy }: ContactProps) {
             <p className="badge">{copy.label}</p>
             <h2 className="text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
             <p className="text-lg text-muted">{copy.description}</p>
+            <div className="panel-solid p-6">
+              <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.label}</p>
+              <ul className="mt-4 space-y-3 text-sm text-muted">
+                {trustCues.map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="icon-dot">
+                      <Check className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <span className="text-mist">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div className="panel p-8">
-            <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
+            <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2" aria-describedby="contact-helper">
               {fieldConfig.map((field, index) => {
                 const label = copy.form.fields[index] ?? '';
-                const sharedClasses = `mt-2 w-full rounded-xl border border-slate/60 bg-white px-4 py-3 text-sm focus:border-signal`;
 
                 return (
                   <div key={field.id} className={field.colSpan ?? ''}>
@@ -58,13 +71,7 @@ export function Contact({ copy }: ContactProps) {
                       {label}
                     </label>
                     {field.type === 'textarea' ? (
-                      <textarea
-                        id={field.id}
-                        name={field.id}
-                        rows={4}
-                        required={field.required}
-                        className={sharedClasses}
-                      />
+                      <textarea id={field.id} name={field.id} rows={4} required={field.required} className="field-input" />
                     ) : (
                       <input
                         id={field.id}
@@ -72,7 +79,7 @@ export function Contact({ copy }: ContactProps) {
                         type={field.type}
                         inputMode={field.inputMode}
                         required={field.required}
-                        className={sharedClasses}
+                        className="field-input"
                       />
                     )}
                   </div>
@@ -83,7 +90,9 @@ export function Contact({ copy }: ContactProps) {
                   {copy.form.submitLabel}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
-                <p className="mt-3 text-xs text-muted">{copy.form.micro}</p>
+                <p id="contact-helper" className="mt-3 text-xs text-muted">
+                  {copy.form.micro}
+                </p>
               </div>
             </form>
           </div>
@@ -92,4 +101,3 @@ export function Contact({ copy }: ContactProps) {
     </section>
   );
 }
-

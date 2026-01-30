@@ -40,4 +40,3 @@ export function LanguageToggle({ value, onChange }: LanguageToggleProps) {
     </div>
   );
 }
-

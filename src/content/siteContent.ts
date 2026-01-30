@@ -21,6 +21,7 @@ export type HeroCopy = {
   secondaryCta: string;
   micro: string;
   slogans: string[];
+  trustCues: string[];
 };
 
 export type AboutCopy = {
@@ -39,6 +40,8 @@ export type ServicesCopy = {
 export type ProductsCopy = {
   label: string;
   heading: string;
+  exportTitle: string;
+  supplyTitle: string;
   exportText: string;
   supplyText: string;
   cta: string;
@@ -147,6 +150,7 @@ export const siteContent: Record<Language, SiteContent> = {
         'Comercio global, ejecución local',
         'Logística y comercio con confianza',
       ],
+      trustCues: ['Cumplimiento legal', 'Transparencia', 'Procesos estructurados'],
     },
     about: {
       label: 'QUIÉNES SOMOS',
@@ -173,6 +177,8 @@ export const siteContent: Record<Language, SiteContent> = {
     products: {
       label: 'PRODUCTOS',
       heading: 'PRODUCTOS',
+      exportTitle: 'Exportación',
+      supplyTitle: 'Abastecimiento',
       exportText:
         'Exportamos principalmente frutas, vegetales y carbón, conectando oferta en República Dominicana con oportunidades comerciales en el exterior.',
       supplyText:
@@ -321,6 +327,7 @@ export const siteContent: Record<Language, SiteContent> = {
       secondaryCta: 'Services',
       micro: 'Tell us what you need to move, source, or connect between markets.',
       slogans: ['Connecting markets. Local execution.', 'Global trade, local delivery', 'Logistics and trade, built trust'],
+      trustCues: ['Legal compliance', 'Transparency', 'Structured processes'],
     },
     about: {
       label: 'ABOUT',
@@ -347,6 +354,8 @@ export const siteContent: Record<Language, SiteContent> = {
     products: {
       label: 'PRODUCTS',
       heading: 'PRODUCTS',
+      exportTitle: 'Export',
+      supplyTitle: 'Sourcing',
       exportText:
         'We primarily export fruits, vegetables, and coal, connecting Dominican supply with international commercial opportunities.',
       supplyText:
@@ -472,4 +481,3 @@ export const siteContent: Record<Language, SiteContent> = {
     },
   },
 };
-

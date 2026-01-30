@@ -15,12 +15,14 @@ export function Faq({ copy }: FaqProps) {
         </div>
         <div className="mt-12 grid gap-4">
           {copy.items.map((item) => (
-            <details key={item.question} className="group panel-solid p-5">
+            <details key={item.question} className="faq-panel group panel-solid p-5">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-mist">
                 <span>{item.question}</span>
                 <ChevronDown className="h-4 w-4 text-signal transition-transform group-open:rotate-180" aria-hidden="true" />
               </summary>
-              <p className="mt-3 text-sm text-muted">{item.answer}</p>
+              <div data-panel>
+                <p className="mt-3 text-sm text-muted">{item.answer}</p>
+              </div>
             </details>
           ))}
         </div>
@@ -28,4 +30,3 @@ export function Faq({ copy }: FaqProps) {
     </section>
   );
 }
-

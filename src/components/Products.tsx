@@ -1,4 +1,5 @@
-﻿import type { ProductsCopy } from '../content/siteContent';
+﻿import { ArrowUpRight } from 'lucide-react';
+import type { ProductsCopy } from '../content/siteContent';
 import { ProductGallery } from './ProductGallery';
 
 type ProductsProps = {
@@ -19,12 +20,23 @@ export function Products({ copy }: ProductsProps) {
             <p>{copy.supplyText}</p>
           </div>
         </div>
-        <ProductGallery label={copy.label} heading={copy.heading} />
-        <div className="mt-10 panel-solid p-6">
-          <a href="#contact" className="text-sm font-semibold text-signal transition-colors hover:text-signal/80">
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <div className="card">
+            <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.exportTitle}</p>
+            <p className="mt-3 text-sm text-muted">{copy.exportText}</p>
+          </div>
+          <div className="card">
+            <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.supplyTitle}</p>
+            <p className="mt-3 text-sm text-muted">{copy.supplyText}</p>
+          </div>
+        </div>
+        <div className="mt-8 flex justify-start">
+          <a href="#contact" className="btn btn-outline">
             {copy.cta}
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
+        <ProductGallery label={copy.label} heading={copy.heading} />
       </div>
     </section>
   );

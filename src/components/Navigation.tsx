@@ -33,7 +33,7 @@ export function Navigation({ items, logoSrc, copy, language, onLanguageChange }:
           </a>
           <div className="hidden items-center gap-8 md:flex">
             {items.map((item) => (
-              <a key={item.label} href={item.href} className="text-sm text-muted transition-colors hover:text-mist">
+              <a key={item.label} href={item.href} className="text-sm font-medium text-muted transition-colors hover:text-mist">
                 {item.label}
               </a>
             ))}
@@ -50,4 +50,3 @@ export function Navigation({ items, logoSrc, copy, language, onLanguageChange }:
     </nav>
   );
 }
-
