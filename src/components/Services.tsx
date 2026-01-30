@@ -1,8 +1,11 @@
-﻿import type { ServicesCopy } from '../content/siteContent';
+﻿import { Boxes, Globe2, Handshake, Package, Ship, Truck } from 'lucide-react';
+import type { ServicesCopy } from '../content/siteContent';
 
 type ServicesProps = {
   copy: ServicesCopy;
 };
+
+const icons = [Globe2, Ship, Truck, Handshake, Package, Boxes, Globe2];
 
 const splitItem = (item: string) => {
   const divider = ' — ';
@@ -28,15 +31,22 @@ export function Services({ copy }: ServicesProps) {
             <h2 className="mt-6 text-3xl font-semibold md:text-4xl">{copy.heading}</h2>
           </div>
         </div>
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {copy.items.map((item) => {
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {copy.items.map((item, index) => {
             const { title, description } = splitItem(item);
+            const Icon = icons[index % icons.length];
+
             return (
-              <div key={item} className="card">
-                <p className="text-sm text-muted">
+              <div key={item} className="tile group">
+                <span className="icon-dot">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <p className="mt-4 text-sm text-muted">
                   <span className="font-semibold text-mist">{title}</span>
                   {description ? ` — ${description}` : ''}
                 </p>
+                <div className="mt-6 h-px w-full bg-slate/60" aria-hidden="true" />
+                <p className="mt-3 text-xs text-muted">{copy.label}</p>
               </div>
             );
           })}
@@ -45,4 +55,3 @@ export function Services({ copy }: ServicesProps) {
     </section>
   );
 }
-

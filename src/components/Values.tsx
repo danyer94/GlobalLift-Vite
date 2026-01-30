@@ -26,7 +26,7 @@ export function Values({ copy }: ValuesProps) {
           <p className="text-xs uppercase tracking-[0.32em] text-muted">{copy.valuesLabel}</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {copy.values.map((value) => (
-              <div key={value.title} className="card">
+              <div key={value.title} className="tile">
                 <p className="text-sm font-semibold text-mist">{value.title}</p>
                 <p className="mt-2 text-sm text-muted">{value.description}</p>
               </div>
@@ -37,4 +37,3 @@ export function Values({ copy }: ValuesProps) {
     </section>
   );
 }
-

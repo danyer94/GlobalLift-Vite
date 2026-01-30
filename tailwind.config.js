@@ -4,14 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#f7fbff',
-        graphite: '#eaf3fb',
-        steel: '#ddebf7',
-        slate: '#cfe0ef',
-        mist: '#0f2a43',
-        muted: '#5d6f82',
-        signal: '#3da2e2',
-        plate: '#ffffff',
+        ink: 'rgb(var(--ink) / <alpha-value>)',
+        graphite: 'rgb(var(--graphite) / <alpha-value>)',
+        steel: 'rgb(var(--steel) / <alpha-value>)',
+        slate: 'rgb(var(--slate) / <alpha-value>)',
+        mist: 'rgb(var(--text) / <alpha-value>)',
+        muted: 'rgb(var(--muted) / <alpha-value>)',
+        signal: 'rgb(var(--brand-secondary) / <alpha-value>)',
+        'signal-strong': 'rgb(var(--brand-primary) / <alpha-value>)',
+        'signal-soft': 'rgb(var(--brand-accent) / <alpha-value>)',
+        plate: 'rgb(var(--plate) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['Onest', 'system-ui', 'sans-serif'],
@@ -19,8 +21,9 @@ export default {
         mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       boxShadow: {
-        soft: '0 24px 60px rgba(12, 32, 58, 0.12)',
-        signal: '0 0 0 1px rgba(61, 162, 226, 0.25), 0 24px 50px rgba(12, 32, 58, 0.18)',
+        soft: '0 24px 60px rgba(14, 34, 58, 0.12)',
+        signal: '0 0 0 1px rgba(64, 160, 208, 0.25), 0 24px 50px rgba(14, 34, 58, 0.18)',
+        lift: '0 18px 40px rgba(14, 34, 58, 0.14)',
       },
     },
   },
