@@ -109,6 +109,11 @@
   .card {
     @apply rounded-2xl border border-white/10 bg-graphite p-6 shadow-soft;
   }
+
+  .faq-panel {
+    max-height: none;
+    overflow: visible;
+  }
 }
 
 .text-gradient {
