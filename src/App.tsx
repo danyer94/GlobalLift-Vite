@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { About } from './components/About';
 import { Commitment } from './components/Commitment';
 import { Contact } from './components/Contact';
@@ -8,6 +8,7 @@ import { Hero } from './components/Hero';
 import { Navigation } from './components/Navigation';
 import { Process } from './components/Process';
 import { Products } from './components/Products';
+import { SEO } from './components/SEO';
 import { Services } from './components/Services';
 import { Values } from './components/Values';
 import { Why } from './components/Why';
@@ -43,20 +44,13 @@ function App() {
     }
   }, [language]);
 
-  useEffect(() => {
-    if (typeof document === 'undefined') {
-      return;
-    }
-
-    document.title = content.seo.title;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', content.seo.description);
-    }
-  }, [content.seo.description, content.seo.title]);
-
   return (
     <div id="top" className="bg-ink text-mist antialiased">
+      <SEO 
+        language={language}
+        title={content.seo.title}
+        description={content.seo.description}
+      />
       <Navigation items={content.navItems} logoSrc={brandLogoSrc} copy={content.navigation} language={language} onLanguageChange={setLanguage} />
 
       <main id="main-content">
