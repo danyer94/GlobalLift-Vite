@@ -19,7 +19,7 @@ export function Products({ copy }: ProductsProps) {
             <p>{copy.supplyText}</p>
           </div>
         </div>
-        <ProductGallery />
+        <ProductGallery label={copy.label} heading={copy.heading} />
         <div className="mt-10 panel-solid p-6">
           <a href="#contact" className="text-sm font-semibold text-signal transition-colors hover:text-signal/80">
             {copy.cta}

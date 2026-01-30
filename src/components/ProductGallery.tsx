@@ -1,4 +1,12 @@
-﻿const PRODUCT_IMAGES = [
+import { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+
+type ProductGalleryProps = {
+  label: string;
+  heading: string;
+};
+
+const PRODUCT_IMAGES = [
   'aguacate.jpeg',
   'aguacates.jpeg',
   'aguacate_2.jpeg',
@@ -14,31 +22,142 @@
   'cajas_3.jpeg',
 ];
 
-export function ProductGallery() {
-  return (
-    <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {PRODUCT_IMAGES.map((image, index) => {
-        const src = `${import.meta.env.BASE_URL}images/${image}`;
-        const isWide = index === 0 || index === 5;
+export function ProductGallery({ label, heading }: ProductGalleryProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const total = PRODUCT_IMAGES.length;
+  const activeImage = PRODUCT_IMAGES[activeIndex] ?? PRODUCT_IMAGES[0];
+  const autoPlayMs = 3000;
 
-        return (
-          <div
-            key={image}
-            className={`group relative overflow-hidden rounded-2xl border border-slate/60 bg-white shadow-soft ${
-              isWide ? 'sm:col-span-2' : ''
-            }`}
-            aria-hidden="true"
+  useEffect(() => {
+    if (total <= 1 || isOpen) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % total);
+    }, autoPlayMs);
+
+    return () => window.clearInterval(intervalId);
+  }, [total, isOpen, autoPlayMs]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+
+      if (event.key === 'ArrowRight') {
+        setActiveIndex((prev) => (prev + 1) % total);
+      }
+
+      if (event.key === 'ArrowLeft') {
+        setActiveIndex((prev) => (prev - 1 + total) % total);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, total]);
+
+  if (total === 0) {
+    return null;
+  }
+
+  return (
+    <div className="mt-10 grid gap-6">
+      <div className="relative overflow-hidden rounded-2xl border border-slate/60 bg-white shadow-soft">
+        <button type="button" onClick={() => setIsOpen(true)} className="block w-full cursor-zoom-in" aria-label={heading}>
+          <img
+            src={`${import.meta.env.BASE_URL}images/${activeImage}`}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="h-[16rem] w-full object-cover transition-transform duration-500 hover:scale-[1.02] sm:h-[20rem] lg:h-[24rem]"
+          />
+        </button>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-mist/70 via-mist/20 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-4">
+          <button
+            type="button"
+            onClick={() => setActiveIndex((prev) => (prev - 1 + total) % total)}
+            className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-slate/60 bg-white/80 text-mist shadow-soft backdrop-blur transition-colors hover:bg-white"
+            aria-label={label}
           >
+            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveIndex((prev) => (prev + 1) % total)}
+            className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-slate/60 bg-white/80 text-mist shadow-soft backdrop-blur transition-colors hover:bg-white"
+            aria-label={label}
+          >
+            <ChevronRight className="h-5 w-5" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+
+      {isOpen ? (
+        <div
+          className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black/90"
+          role="dialog"
+          aria-modal="true"
+          aria-label={heading}
+        >
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/20"
+            aria-label="Cerrar"
+          >
+            <X className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            className="absolute inset-0 z-10 cursor-default"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="relative z-10 flex h-full w-full max-h-full items-center justify-center p-4 pt-16">
             <img
-              src={src}
+              src={`${import.meta.env.BASE_URL}images/${activeImage}`}
               alt=""
+              className="max-h-full max-w-full object-contain"
               loading="lazy"
               decoding="async"
-              className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] sm:h-60 lg:h-64"
+              onClick={(e) => e.stopPropagation()}
             />
           </div>
-        );
-      })}
+          <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/20 bg-black/50 px-4 py-2 backdrop-blur">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveIndex((prev) => (prev - 1 + total) % total);
+              }}
+              className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-white/20"
+              aria-label="Anterior"
+            >
+              <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveIndex((prev) => (prev + 1) % total);
+              }}
+              className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-white/20"
+              aria-label="Siguiente"
+            >
+              <ChevronRight className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
