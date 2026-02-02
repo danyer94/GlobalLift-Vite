@@ -1,13 +1,12 @@
-import { ArrowRight, Check } from 'lucide-react';
+﻿import { ArrowRight, Check } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { HeroCopy } from '../content/siteContent';
 
-const HERO_BG_IMAGES = [
-  '/images/aguacates.jpeg',
-  '/images/mangos_1.jpeg',
-  '/images/verdura.jpeg',
-];
+const heroBaseUrl = import.meta.env.BASE_URL;
+const HERO_BG_IMAGES = ['images/aguacates.jpeg', 'images/mangos_1.jpeg', 'images/verdura.jpeg'].map(
+  (path) => `${heroBaseUrl}${path}`,
+);
 const BG_ROTATE_INTERVAL_MS = 10_000;
 
 type HeroProps = {

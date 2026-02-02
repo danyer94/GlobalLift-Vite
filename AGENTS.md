@@ -15,8 +15,8 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 
 ## ESTADO ACTUAL DEL PROYECTO
 
-**Ultima modificacion:** 2026-01-30
-**Estado:** Proyecto web de Global Lift SRL con SEO multilenguaje completamente optimizado
+**Ultima modificacion:** 2026-02-02
+**Estado:** Proyecto web de Global Lift SRL con SEO multilenguaje completamente optimizado, soporte de idioma por query param y assets preparados para despliegues bajo subrutas
 **URL de produccion:** https://globallift.do
 
 ### Caracteristicas implementadas recientemente:
@@ -30,6 +30,11 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 - Open Graph y Twitter Cards dinamicos
 - FAQPage schema en componente Faq.tsx
 - Componente SEO.tsx para manejo dinamico de metadatos
+- Lectura de idioma desde parametro `?lang=` para alinear hreflang con el contenido servido
+- Imagenes del hero usando `import.meta.env.BASE_URL` para soportar despliegues en subruta
+- Imagenes de fondo del Hero usando `import.meta.env.BASE_URL` para respetar el `base` de Vite
+- pnpm-lock.yaml actualizado para coincidir con package.json en CI (Netlify con frozen-lockfile)
+- Correccion de rutas de imagenes del Hero para evitar doble BASE_URL
 
 ---
 
@@ -58,39 +63,39 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 
 ```
 /
-├── public/
-│   ├── images/           # Imagenes de productos y equipo
-│   ├── logo/            # Logotipos (PNG, ICO)
-│   ├── robots.txt       # Acceso a bots incluyendo IA
-│   └── sitemap.xml      # Mapa del sitio
-├── src/
-│   ├── components/       # Componentes React
-│   │   ├── SEO.tsx      # Gestion dinamica de SEO
-│   │   ├── Faq.tsx      # FAQ con Schema markup
-│   │   ├── Hero.tsx
-│   │   ├── About.tsx
-│   │   ├── Services.tsx
-│   │   ├── Products.tsx
-│   │   ├── Process.tsx
-│   │   ├── Why.tsx
-│   │   ├── Values.tsx
-│   │   ├── Commitment.tsx
-│   │   ├── Contact.tsx
-│   │   ├── Navigation.tsx
-│   │   ├── Footer.tsx
-│   │   ├── ProductGallery.tsx
-│   │   └── LanguageToggle.tsx
-│   ├── content/
-│   │   └── siteContent.ts  # Contenido bilingue (es/en)
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
-├── index.html           # Template HTML limpio (meta manejados por React)
-├── package.json
-├── tailwind.config.js
-├── vite.config.ts
-├── tsconfig.json
-└── eslint.config.js
+|-- public/
+|   |-- images/           # Imagenes de productos y equipo
+|   |-- logo/             # Logotipos (PNG, ICO)
+|   |-- robots.txt        # Acceso a bots incluyendo IA
+|   `-- sitemap.xml       # Mapa del sitio
+|-- src/
+|   |-- components/       # Componentes React
+|   |   |-- SEO.tsx        # Gestion dinamica de SEO
+|   |   |-- Faq.tsx        # FAQ con Schema markup
+|   |   |-- Hero.tsx
+|   |   |-- About.tsx
+|   |   |-- Services.tsx
+|   |   |-- Products.tsx
+|   |   |-- Process.tsx
+|   |   |-- Why.tsx
+|   |   |-- Values.tsx
+|   |   |-- Commitment.tsx
+|   |   |-- Contact.tsx
+|   |   |-- Navigation.tsx
+|   |   |-- Footer.tsx
+|   |   |-- ProductGallery.tsx
+|   |   `-- LanguageToggle.tsx
+|   |-- content/
+|   |   `-- siteContent.ts  # Contenido bilingue (es/en)
+|   |-- App.tsx
+|   |-- main.tsx
+|   `-- index.css
+|-- index.html           # Template HTML limpio (meta manejados por React)
+|-- package.json
+|-- tailwind.config.js
+|-- vite.config.ts
+|-- tsconfig.json
+`-- eslint.config.js
 ```
 
 ---
@@ -98,17 +103,20 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 ## ARCHIVOS CLAVE Y SU PROPOSITO
 
 ### Configuracion y SEO
+
 - **index.html:** Template base limpio. Meta tags gestionados dinamicamente por SEO.tsx
 - **public/robots.txt:** Permite acceso a todos los bots incluyendo IA
 - **public/sitemap.xml:** Mapa del sitio para indexacion
 - **src/components/SEO.tsx:** Componente dinamico para meta tags bilingues
 
 ### Contenido
+
 - **src/content/siteContent.ts:** Fuente unica de contenido en espanol e ingles
   - Tipo: `Record<Language, SiteContent>` donde Language = 'es' | 'en'
   - Incluye: navItems, seo, hero, about, services, products, process, why, values, commitment, faq, contact
 
 ### Componentes Principales
+
 - **App.tsx:** Componente raiz con logica de cambio de idioma y componente SEO
 - **main.tsx:** Punto de entrada con HelmetProvider para SEO
 - **Navigation.tsx:** Incluye LanguageToggle para cambio entre es/en
@@ -119,12 +127,14 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 ## SISTEMA DE IDIOMAS
 
 **Implementacion:**
+
 - Estado en App.tsx: `const [language, setLanguage] = useState<Language>('es')`
 - Persistencia: localStorage con key 'globallift-language'
 - Deteccion: browser language con fallback a 'es'
 - Contenido: Objetos separados para 'es' y 'en' en siteContent.ts
 
 **SEO Multilenguaje:**
+
 - HTML lang attribute dinamico
 - Hreflang tags: es, en, x-default
 - OG locale dinamico: es_DO / en_US
@@ -153,6 +163,7 @@ npm run lint
 ## CONFIGURACION SEO/GEO IMPLEMENTADA
 
 ### Meta Tags Dinamicos (SEO.tsx)
+
 - Title y description segun idioma
 - Keywords optimizadas por idioma
 - Geo-targeting: DO (Republica Dominicana)
@@ -161,13 +172,16 @@ npm run lint
 - Twitter Cards (card, url, title, description, image)
 
 ### Schema.org Markup
+
 1. **Organization:** Datos de Global Lift SRL, logo, direccion, contacto
 2. **WebPage:** Informacion de la pagina actual con idioma dinamico
 3. **WebSite:** Informacion del sitio con soporte multilenguaje
 4. **FAQPage:** En componente Faq.tsx con microdatos y JSON-LD
 
 ### Robots.txt
+
 Permite explicitamente:
+
 - Googlebot, Bingbot (buscadores tradicionales)
 - PerplexityBot, ChatGPT-User, ClaudeBot, GPTBot (IA)
 
@@ -186,17 +200,20 @@ Permite explicitamente:
 ## NOTAS PARA DESARROLLADORES
 
 ### Convenciones de codigo:
+
 - Componentes en PascalCase (SEO.tsx, Faq.tsx)
 - Hooks en camelCase (useState, useEffect)
 - Tipos en siteContent.ts con sufijo Copy (HeroCopy, FaqCopy)
 - CSS con clases Tailwind, prefijo 'section' para secciones
 
 ### Manejo de idiomas:
+
 - SIEMPRE actualizar ambos idiomas (es/en) en siteContent.ts
 - El componente SEO.tsx se encarga de renderizar metadatos correctos
 - El cambio de idioma actualiza localStorage y document.documentElement.lang
 
 ### SEO:
+
 - NUNCA hardcodear meta tags en index.html (usar SEO.tsx)
 - FAQ items automaticamente generan schema markup
 - Cada cambio de contenido debe considerar ambos idiomas
@@ -206,12 +223,14 @@ Permite explicitamente:
 ## DEPENDENCIAS INSTALADAS
 
 ### Produccion
+
 - react: ^18.3.1
 - react-dom: ^18.3.1
 - lucide-react: ^0.344.0
-- react-helmet-async: ^(instalado recientemente)
+- react-helmet-async: ^2.0.5
 
 ### Desarrollo
+
 - vite: ^5.4.2
 - typescript: ^5.5.3
 - tailwindcss: ^3.4.17
@@ -224,7 +243,7 @@ Permite explicitamente:
 
 **Empresa:** Global Lift SRL  
 **Ubicacion:** Republica Dominicana  
-**Tipo de negocio:** Importacion, exportacion, logistica B2B  
+**Tipo de negocio:** Importacion, exportacion, logistica B2B
 
 ---
 

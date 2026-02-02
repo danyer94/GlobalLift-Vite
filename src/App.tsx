@@ -21,6 +21,12 @@ const getInitialLanguage = (): Language => {
     return 'es';
   }
 
+  const params = new URLSearchParams(window.location.search);
+  const paramLanguage = params.get('lang')?.toLowerCase();
+  if (paramLanguage === 'es' || paramLanguage === 'en') {
+    return paramLanguage;
+  }
+
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored === 'es' || stored === 'en') {
     return stored;
