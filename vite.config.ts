@@ -12,6 +12,9 @@ export default defineConfig(({ mode }) => {
   return {
     base,
     plugins: [react()],
+    resolve: {
+      dedupe: ['react', 'react-dom'],
+    },
     // Use dual-stack to avoid localhost IPv6/IPv4 mismatches on Windows.
     server: {
       host: '::',
