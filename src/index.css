@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --brand-primary: 32 64 96;
-  --brand-secondary: 64 160 208;
-  --brand-accent: 64 144 208;
+  --brand-primary: 32 64 96; 
+  --brand-secondary: 64 160 208; /* rgb(64, 160, 208) */
+  --brand-accent: 64 144 208; 
   --ink: 248 250 252;
   --graphite: 236 243 249;
   --steel: 226 235 245;
@@ -21,7 +21,7 @@
   --shadow-soft: 0 24px 60px rgba(15, 33, 55, 0.12);
   --shadow-lift: 0 18px 46px rgba(15, 33, 55, 0.16);
   --shadow-signal:
-    0 0 0 1px rgba(64, 160, 208, 0.25), 0 26px 60px rgba(15, 33, 55, 0.2);
+    0 0 0 1px rgba(9, 166, 245, 0.25), 0 26px 60px rgba(15, 33, 55, 0.2);
   --background: 248 250 252;
   --foreground: 15 33 55;
   --card: 255 255 255;
@@ -50,7 +50,7 @@
     font-family: "Onest", system-ui, sans-serif;
     line-height: 1.6;
     text-rendering: optimizeLegibility;
-    -webkit-tap-highlight-color: rgba(64, 160, 208, 0.2);
+    -webkit-tap-highlight-color: rgba(7, 163, 241, 0.2);
     overflow-x: hidden;
   }
 
