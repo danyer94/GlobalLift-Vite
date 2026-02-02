@@ -1,4 +1,4 @@
-﻿import { ArrowRight, Check } from 'lucide-react';
+﻿import { ArrowRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { HeroCopy } from '../content/siteContent';

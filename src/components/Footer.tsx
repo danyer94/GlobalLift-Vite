@@ -16,7 +16,9 @@ export function Footer({ items, logoSrc, note }: FooterProps) {
               <span className="logo-plate">
                 <img src={logoSrc} alt="Global Lift SRL" className="h-9 w-auto" width={200} height={110} decoding="async" />
               </span>
-              <span className="text-sm font-semibold tracking-[0.2em] text-foreground font-display">Global Lift SRL</span>
+              <span className="text-sm tracking-tight text-foreground md:text-lg font-brand">
+                Global <span className="font-bold  italic">Lift</span> <span className="font-brand font-medium  text-muted-foreground ml-1">SRL</span>
+              </span>
             </a>
             <p className="text-sm text-muted-foreground max-w-md">{note}</p>
           </div>

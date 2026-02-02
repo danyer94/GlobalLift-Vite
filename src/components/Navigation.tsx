@@ -27,8 +27,8 @@ export function Navigation({ items, logoSrc, copy, language, onLanguageChange }:
                 decoding="async"
               />
             </span>
-            <span className="text-sm font-semibold tracking-[0.2em] text-foreground md:text-base font-display">
-              Global <span className="text-primary">Lift</span> SRL
+            <span className="text-sm tracking-tight text-foreground md:text-lg font-brand">
+              Global <span className="italic font-brand font-bold">Lift</span> <span className="font-brand font-medium text-muted-foreground ml-1">SRL</span>
             </span>
           </a>
           <div className="hidden items-center gap-8 md:flex">
