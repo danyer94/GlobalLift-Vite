@@ -5,6 +5,7 @@ import { Contact } from './components/Contact';
 import { Faq } from './components/Faq';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
+import { ImageRevealSection } from './components/ImageRevealSection';
 import { Navigation } from './components/Navigation';
 import { Process } from './components/Process';
 import { Products } from './components/Products';
@@ -61,6 +62,14 @@ function App() {
 
       <main id="main-content">
         <Hero copy={content.hero} />
+        <ImageRevealSection 
+          image1={`${import.meta.env.BASE_URL}images/barco.jpg`}
+          title1={content.revealSection.title1}
+          subtitle1={content.revealSection.subtitle1}
+          image2={`${import.meta.env.BASE_URL}images/mangos_1.jpeg`}
+          title2={content.revealSection.title2}
+          subtitle2={content.revealSection.subtitle2}
+        />
         <About copy={content.about} />
         <Services copy={content.services} />
         <Products copy={content.products} />
