@@ -4,10 +4,10 @@ import type { ReactNode } from 'react';
 import type { HeroCopy } from '../content/siteContent';
 
 const heroBaseUrl = import.meta.env.BASE_URL;
-const HERO_BG_IMAGES = ['images/aguacates.jpeg', 'images/mangos_1.jpeg', 'images/verdura.jpeg'].map(
+const HERO_BG_IMAGES = ['images/mangos_1.png', 'images/aguacates.png', 'images/products.png'].map(
   (path) => `${heroBaseUrl}${path}`,
 );
-const BG_ROTATE_INTERVAL_MS = 10_000;
+const BG_ROTATE_INTERVAL_MS = 6_000;
 
 type HeroProps = {
   copy: HeroCopy;
