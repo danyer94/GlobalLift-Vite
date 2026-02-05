@@ -15,8 +15,8 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 
 ## ESTADO ACTUAL DEL PROYECTO
 
-**Ultima modificacion:** 2026-02-02
-**Estado:** Proyecto web de Global Lift SRL con SEO multilenguaje completamente optimizado, soporte de idioma por query param y assets preparados para despliegues bajo subrutas
+**Ultima modificacion:** 2026-02-05
+**Estado:** Proyecto web de Global Lift SRL con SEO multilenguaje completamente optimizado, soporte de idioma por query param, assets preparados para despliegues bajo subrutas y animaciones de scroll/parallax con framer-motion
 **URL de produccion:** https://globallift.do
 
 ### Caracteristicas implementadas recientemente:
@@ -35,6 +35,11 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 - Imagenes de fondo del Hero usando `import.meta.env.BASE_URL` para respetar el `base` de Vite
 - pnpm-lock.yaml actualizado para coincidir con package.json en CI (Netlify con frozen-lockfile)
 - Correccion de rutas de imagenes del Hero para evitar doble BASE_URL
+- Sistema de animaciones con framer-motion (reveal + parallax por seccion)
+- Componente MotionSection para decoraciones y reveal consistente
+- Elemento "barco" fijo sincronizado al scroll
+- Optimizaciones de scroll (reveal sin blur y throttling en seccion de imagenes)
+- Ajuste del Hero para centrar el panel principal de CTA
 
 ---
 
@@ -55,6 +60,7 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 - **Styling:** Tailwind CSS 3.4.17
 - **Icons:** Lucide React 0.344.0
 - **SEO:** react-helmet-async (dinamico)
+- **Animaciones:** framer-motion
 - **Linting:** ESLint con typescript-eslint
 
 ---
@@ -63,6 +69,8 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 
 ```
 /
+|-- docs/
+|   `-- plans/             # Documentos de diseno y planes
 |-- public/
 |   |-- images/           # Imagenes de productos y equipo
 |   |-- logo/             # Logotipos (PNG, ICO)
@@ -81,12 +89,17 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 |   |   |-- Values.tsx
 |   |   |-- Commitment.tsx
 |   |   |-- Contact.tsx
+|   |   |-- MotionSection.tsx
+|   |   |-- Boat.tsx
 |   |   |-- Navigation.tsx
 |   |   |-- Footer.tsx
 |   |   |-- ProductGallery.tsx
 |   |   `-- LanguageToggle.tsx
 |   |-- content/
 |   |   `-- siteContent.ts  # Contenido bilingue (es/en)
+|   |-- utils/
+|   |   |-- formatters.ts
+|   |   `-- scroll.tsx
 |   |-- App.tsx
 |   |-- main.tsx
 |   `-- index.css
@@ -121,6 +134,9 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 - **main.tsx:** Punto de entrada con HelmetProvider para SEO
 - **Navigation.tsx:** Incluye LanguageToggle para cambio entre es/en
 - **Faq.tsx:** FAQPage schema markup para SEO/GEO (AI search engines)
+- **MotionSection.tsx:** Wrapper de secciones con reveal y parallax decorativo (soporta `background` para fondos como el Hero)
+- **Boat.tsx:** Elemento fijo decorativo sincronizado al scroll
+- **src/utils/scroll.tsx:** Proveedor de scrollYProgress compartido
 
 ---
 
@@ -228,6 +244,7 @@ Permite explicitamente:
 - react-dom: ^18.3.1
 - lucide-react: ^0.344.0
 - react-helmet-async: ^2.0.5
+- framer-motion: ^11.3.0
 
 ### Desarrollo
 

@@ -1,7 +1,8 @@
-﻿import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { HeroCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 const heroBaseUrl = import.meta.env.BASE_URL;
 const HERO_BG_IMAGES = ['images/mangos_1.png', 'images/aguacates.png', 'images/products.png'].map(
@@ -43,22 +44,28 @@ export function Hero({ copy }: HeroProps) {
   }, []);
 
   return (
-    <section className="hero-aurora section min-h-[88vh] pt-28 pb-16 flex items-center">
-      <div className="hero-bg-slides" aria-hidden="true">
-        {HERO_BG_IMAGES.map((src, i) => (
-          <div
-            key={src}
-            className="hero-bg-slide"
-            style={{
-              backgroundImage: `url(${src})`,
-              opacity: i === bgIndex ? 1 : 0,
-            }}
-          />
-        ))}
-      </div>
+    <MotionSection
+      className="hero-aurora section min-h-[88vh] pt-28 pb-16 flex items-center justify-center"
+      decorVariant="aurora"
+      parallaxStrength={24}
+      background={
+        <div className="hero-bg-slides" aria-hidden="true">
+          {HERO_BG_IMAGES.map((src, i) => (
+            <div
+              key={src}
+              className="hero-bg-slide"
+              style={{
+                backgroundImage: `url(${src})`,
+                opacity: i === bgIndex ? 1 : 0,
+              }}
+            />
+          ))}
+        </div>
+      }
+    >
       <div className="container flex justify-center">
-        <div className="w-full max-w-4xl">
-          <div className="hero-copy space-y-7 text-center reveal" style={{ animationDelay: '0.1s' }}>
+        <div className="w-full max-w-4xl flex justify-center">
+          <div className="hero-copy w-full max-w-3xl space-y-7 text-center">
             <div className="space-y-5">
               <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-6xl font-display">
                 {highlightTitle(copy.title)}
@@ -85,6 +92,6 @@ export function Hero({ copy }: HeroProps) {
           </div>
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

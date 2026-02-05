@@ -1,5 +1,6 @@
-﻿import { Boxes, Globe2, Handshake, Package, Ship, Truck } from 'lucide-react';
+import { Boxes, Globe2, Handshake, Package, Ship, Truck } from 'lucide-react';
 import type { ServicesCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 type ServicesProps = {
   copy: ServicesCopy;
@@ -23,7 +24,7 @@ const splitItem = (item: string) => {
 
 export function Services({ copy }: ServicesProps) {
   return (
-    <section id="services" className="section section-alt">
+    <MotionSection id="services" className="section section-alt" decorVariant="grid" parallaxStrength={20}>
       <div className="container">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
@@ -50,6 +51,6 @@ export function Services({ copy }: ServicesProps) {
           })}
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

@@ -3,11 +3,11 @@
 Date: 2026-02-05
 
 ## Summary
-Add intense, scroll-driven motion across all sections with a parallax layer and a fixed “boat” element that travels with scroll. Use framer-motion for smooth animations, shared scroll progress, and prefers-reduced-motion fallbacks.
+Add intense, scroll-driven motion across all sections with a parallax layer and a fixed â€œboatâ€ element that travels with scroll. Use framer-motion for smooth animations, shared scroll progress, and prefers-reduced-motion fallbacks.
 
 ## Goals
 - Increase visual impact and interactivity across every section.
-- Add a persistent, scroll-synced “boat” visual at the page edge.
+- Add a persistent, scroll-synced â€œboatâ€ visual at the page edge.
 - Keep performance smooth and avoid content obstruction.
 - Respect prefers-reduced-motion.
 
@@ -29,7 +29,7 @@ Add intense, scroll-driven motion across all sections with a parallax layer and 
 
 ## Animation Specs
 - Reveal: opacity 0->1, y 24->0, blur 6->0, spring transition.
-- Parallax: decor layer y mapped to scroll progress +/- 12–24px.
+- Parallax: decor layer y mapped to scroll progress +/- 12â€“24px.
 - Boat: y mapped to scroll progress (vh range), with light rotate/x oscillation.
 
 ## Testing

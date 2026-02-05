@@ -1,4 +1,5 @@
-﻿import type { CommitmentCopy } from '../content/siteContent';
+import type { CommitmentCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 type CommitmentProps = {
   copy: CommitmentCopy;
@@ -6,7 +7,7 @@ type CommitmentProps = {
 
 export function Commitment({ copy }: CommitmentProps) {
   return (
-    <section id="commitment" className="section section-plain">
+    <MotionSection id="commitment" className="section section-plain" decorVariant="tide" parallaxStrength={18}>
       <div className="container">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-soft">
           <span
@@ -24,6 +25,6 @@ export function Commitment({ copy }: CommitmentProps) {
           </div>
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { About } from './components/About';
+import { Boat } from './components/Boat';
 import { Commitment } from './components/Commitment';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -13,6 +14,7 @@ import { Services } from './components/Services';
 import { Values } from './components/Values';
 import { Why } from './components/Why';
 import { brandLogoSrc, siteContent, type Language } from './content/siteContent';
+import { ScrollProvider } from './utils/scroll';
 
 const STORAGE_KEY = 'globallift-language';
 
@@ -52,32 +54,41 @@ function App() {
 
   return (
     <div id="top" className="bg-background text-foreground antialiased">
-      <SEO 
+      <SEO
         language={language}
         title={content.seo.title}
         description={content.seo.description}
       />
-      <Navigation items={content.navItems} logoSrc={brandLogoSrc} copy={content.navigation} language={language} onLanguageChange={setLanguage} />
+      <Navigation
+        items={content.navItems}
+        logoSrc={brandLogoSrc}
+        copy={content.navigation}
+        language={language}
+        onLanguageChange={setLanguage}
+      />
 
-      <main id="main-content">
-        <Hero copy={content.hero} />
-        <About copy={content.about} />
-        <ImageRevealSection 
-          image1={`${import.meta.env.BASE_URL}images/barco.jpg`}
-          title1={content.revealSection.title1}
-          subtitle1={content.revealSection.subtitle1}
-          image2={`${import.meta.env.BASE_URL}images/avion.png`}
-          title2={content.revealSection.title2}
-          subtitle2={content.revealSection.subtitle2}
-        />
-        <Services copy={content.services} />
-        <Products copy={content.products} />
-        <Process copy={content.process} />
-        <Why copy={content.why} />
-        <Values copy={content.values} />
-        <Commitment copy={content.commitment} />
-        <Contact copy={content.contact} trustCues={content.hero.trustCues} />
-      </main>
+      <ScrollProvider>
+        <Boat />
+        <main id="main-content">
+          <Hero copy={content.hero} />
+          <About copy={content.about} />
+          <ImageRevealSection
+            image1={`${import.meta.env.BASE_URL}images/barco.jpg`}
+            title1={content.revealSection.title1}
+            subtitle1={content.revealSection.subtitle1}
+            image2={`${import.meta.env.BASE_URL}images/avion.png`}
+            title2={content.revealSection.title2}
+            subtitle2={content.revealSection.subtitle2}
+          />
+          <Services copy={content.services} />
+          <Products copy={content.products} />
+          <Process copy={content.process} />
+          <Why copy={content.why} />
+          <Values copy={content.values} />
+          <Commitment copy={content.commitment} />
+          <Contact copy={content.contact} trustCues={content.hero.trustCues} />
+        </main>
+      </ScrollProvider>
       <Footer items={content.navItems} logoSrc={brandLogoSrc} note={content.about.oneLine} />
     </div>
   );

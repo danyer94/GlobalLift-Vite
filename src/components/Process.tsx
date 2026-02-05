@@ -1,4 +1,5 @@
-﻿import type { ProcessCopy } from '../content/siteContent';
+import type { ProcessCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 type ProcessProps = {
   copy: ProcessCopy;
@@ -20,7 +21,7 @@ const splitItem = (item: string) => {
 
 export function Process({ copy }: ProcessProps) {
   return (
-    <section id="process" className="section section-plain">
+    <MotionSection id="process" className="section section-plain" decorVariant="grid" parallaxStrength={18}>
       <div className="container">
         <div>
           <p className="badge">{copy.label}</p>
@@ -62,6 +63,6 @@ export function Process({ copy }: ProcessProps) {
           </ol>
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

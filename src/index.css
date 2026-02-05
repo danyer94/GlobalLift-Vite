@@ -41,7 +41,6 @@
 @layer base {
   html {
     color-scheme: light;
-    scroll-behavior: smooth;
   }
 
   body {
@@ -191,6 +190,90 @@
   }
 }
 
+.motion-section {
+  position: relative;
+  isolation: isolate;
+}
+
+.motion-content {
+  position: relative;
+  z-index: 1;
+}
+
+.motion-decor {
+  position: absolute;
+  inset: -18% -8%;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(16px);
+  opacity: 0.32;
+}
+
+.motion-decor--aurora {
+  background:
+    radial-gradient(
+      closest-side at 16% 18%,
+      rgba(64, 160, 208, 0.35),
+      transparent 65%
+    ),
+    radial-gradient(
+      closest-side at 84% 12%,
+      rgba(32, 64, 96, 0.28),
+      transparent 60%
+    ),
+    radial-gradient(
+      closest-side at 58% 82%,
+      rgba(64, 144, 208, 0.24),
+      transparent 62%
+    );
+}
+
+.motion-decor--grid {
+  background-image:
+    linear-gradient(rgba(15, 33, 55, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 33, 55, 0.08) 1px, transparent 1px),
+    radial-gradient(
+      circle at 22% 32%,
+      rgba(64, 160, 208, 0.28),
+      transparent 60%
+    );
+  background-size: 54px 54px, 54px 54px, auto;
+  filter: blur(6px);
+  opacity: 0.2;
+}
+
+.motion-decor--tide {
+  background:
+    linear-gradient(120deg, rgba(64, 160, 208, 0.22), transparent 55%),
+    linear-gradient(300deg, rgba(32, 64, 96, 0.2), transparent 60%),
+    radial-gradient(
+      circle at 70% 58%,
+      rgba(64, 144, 208, 0.24),
+      transparent 55%
+    );
+  opacity: 0.3;
+}
+
+.boat {
+  mix-blend-mode: multiply;
+}
+
+.boat-shell {
+  border-radius: 999px;
+  padding: 0.7rem;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+}
+
+.boat-icon {
+  width: 72px;
+  height: 72px;
+  color: rgb(var(--brand-primary));
+  filter: drop-shadow(0 10px 16px rgba(15, 33, 55, 0.2));
+}
+
 .text-gradient {
   background: linear-gradient(
     120deg,
@@ -276,13 +359,19 @@
   z-index: 0;
 }
 
-.hero-aurora > *:not(.hero-bg-slides) {
+.hero-aurora .hero-bg-slides {
+  z-index: 1;
+}
+
+.hero-aurora .motion-content {
   position: relative;
   z-index: 2;
+  width: 100%;
 }
 
 .hero-copy {
   position: relative;
+  z-index: 3;
   padding: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem)
     clamp(1.5rem, 1rem + 2vw, 2.5rem);
   border-radius: var(--radius-2xl);

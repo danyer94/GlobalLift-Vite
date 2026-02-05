@@ -1,6 +1,7 @@
-﻿import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import type { FormEvent, HTMLAttributes } from 'react';
 import type { ContactCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 type ContactProps = {
   copy: ContactCopy;
@@ -39,7 +40,7 @@ export function Contact({ copy, trustCues }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="section section-base">
+    <MotionSection id="contact" className="section section-base" decorVariant="aurora" parallaxStrength={20}>
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-[1fr,1.1fr]">
           <div className="space-y-6">
@@ -98,6 +99,6 @@ export function Contact({ copy, trustCues }: ContactProps) {
           </div>
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

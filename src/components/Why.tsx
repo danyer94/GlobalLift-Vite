@@ -1,5 +1,6 @@
-﻿import { BadgeCheck, Building2, Gauge, Leaf, ShieldCheck, Sparkles, Waypoints } from 'lucide-react';
+import { BadgeCheck, Building2, Gauge, Leaf, ShieldCheck, Sparkles, Waypoints } from 'lucide-react';
 import type { WhyCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 type WhyProps = {
   copy: WhyCopy;
@@ -23,7 +24,7 @@ const splitItem = (item: string) => {
 
 export function Why({ copy }: WhyProps) {
   return (
-    <section id="why" className="section section-alt">
+    <MotionSection id="why" className="section section-alt" decorVariant="aurora" parallaxStrength={20}>
       <div className="container">
         <div>
           <p className="badge">{copy.label}</p>
@@ -46,6 +47,6 @@ export function Why({ copy }: WhyProps) {
           })}
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

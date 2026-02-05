@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 
 interface ImageRevealSectionProps {
   image1: string;
@@ -17,54 +18,45 @@ export function ImageRevealSection({
   subtitle1,
   subtitle2,
 }: ImageRevealSectionProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
+  const containerRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      
-      const rect = containerRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      
-      // Calculate progress based on how much of the container has been scrolled past
-      // The container is 200vh, so we want to map the scroll from when it starts sticking (top: 0)
-      // to when it finishes (bottom: viewportHeight)
-      const start = rect.top;
-      const totalDist = rect.height - viewportHeight;
-      
-      if (start > 0) {
-        setProgress(0);
-      } else if (Math.abs(start) > totalDist) {
-        setProgress(1);
-      } else {
-        setProgress(Math.abs(start) / totalDist);
-      }
-    };
+  // We use useScroll directly on this container to get progress relative to its view
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Transform scroll progress into useful animation values
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["inset(100% 0% 0% 0%)", "inset(0% 0% 0% 0%)"]
+  );
+
+  const opacity1 = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const y1 = useTransform(scrollYProgress, [0, 0.4], [0, -50]);
+  
+  const opacity2 = useTransform(scrollYProgress, [0.6, 1], [0, 1]);
+  const y2 = useTransform(scrollYProgress, [0.6, 1], [50, 0]);
 
   return (
-    <section ref={containerRef} className="relative h-[250vh] bg-background overflow-visible">
+    <section ref={containerRef} className="relative h-[250vh] bg-background">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {/* Base Layer (Image 1) */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src={image1} 
+          <img
+            src={image1}
             alt={title1}
             className="w-full h-full object-cover brightness-[0.85]"
           />
           <div className="absolute inset-0 bg-black/20" />
-          
-          <div 
-            className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 transition-all duration-700 ease-out"
-            style={{ 
-              opacity: progress < 0.4 ? 1 : 0,
-              transform: `translateY(${progress * -50}px)`
+
+          <motion.div
+            className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
+            style={{
+              opacity: reduceMotion ? 1 : opacity1,
+              y: reduceMotion ? 0 : y1,
             }}
           >
             <span className="badge mb-4 bg-white/10 backdrop-blur-md text-white border-white/20">
@@ -76,28 +68,29 @@ export function ImageRevealSection({
             <p className="text-lg md:text-xl text-white/90 max-w-2xl font-medium drop-shadow-md">
               {subtitle1}
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Reveal Layer (Image 2) */}
-        <div 
+        <motion.div
           className="absolute inset-0 z-10 overflow-hidden pointer-events-none"
-          style={{ 
-            clipPath: `inset(${Math.max(0, 100 - (progress * 100))}% 0 0 0)` 
+          style={{
+            clipPath: reduceMotion ? "inset(0% 0% 0% 0%)" : clipPath,
+            willChange: 'clip-path'
           }}
         >
-          <img 
-            src={image2} 
+          <img
+            src={image2}
             alt={title2}
             className="w-full h-full object-cover brightness-[0.85]"
           />
           <div className="absolute inset-0 bg-black/20" />
-          
-          <div 
-            className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 transition-all duration-700 ease-out"
-            style={{ 
-              opacity: progress > 0.6 ? 1 : 0,
-              transform: `translateY(${(1 - progress) * 50}px)`
+
+          <motion.div
+            className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
+            style={{
+              opacity: reduceMotion ? 1 : opacity2,
+              y: reduceMotion ? 0 : y2,
             }}
           >
             <span className="badge mb-4 bg-white/10 backdrop-blur-md text-white border-white/20">
@@ -109,15 +102,15 @@ export function ImageRevealSection({
             <p className="text-lg md:text-xl text-white/90 max-w-2xl font-medium drop-shadow-md">
               {subtitle2}
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
           <div className="w-[1px] h-12 bg-white/30 relative overflow-hidden">
-            <div 
-              className="absolute top-0 left-0 w-full bg-white transition-transform duration-100 ease-out origin-top"
-              style={{ height: '100%', transform: `scaleY(${progress})` }}
+            <motion.div
+              className="absolute top-0 left-0 w-full bg-white origin-top"
+              style={{ height: '100%', scaleY: scrollYProgress }}
             />
           </div>
         </div>
@@ -125,3 +118,4 @@ export function ImageRevealSection({
     </section>
   );
 }
+

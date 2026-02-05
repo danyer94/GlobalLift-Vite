@@ -1,5 +1,6 @@
-﻿import { ArrowUpRight, Package, Ship } from 'lucide-react';
+import { ArrowUpRight, Package, Ship } from 'lucide-react';
 import type { ProductsCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 import { ProductGallery } from './ProductGallery';
 
 type ProductsProps = {
@@ -8,7 +9,7 @@ type ProductsProps = {
 
 export function Products({ copy }: ProductsProps) {
   return (
-    <section id="products" className="section section-base">
+    <MotionSection id="products" className="section section-base" decorVariant="tide" parallaxStrength={20}>
       <div className="container">
         <div className="grid gap-10 lg:grid-cols-[1fr,1.1fr] lg:items-start">
           <div>
@@ -26,7 +27,9 @@ export function Products({ copy }: ProductsProps) {
               <span className="icon-dot">
                 <Ship className="h-4 w-4" aria-hidden="true" />
               </span>
-              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{copy.exportTitle}</p>
+              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">
+                {copy.exportTitle}
+              </p>
             </div>
             <p className="text-sm text-muted-foreground">{copy.exportText}</p>
           </div>
@@ -35,7 +38,9 @@ export function Products({ copy }: ProductsProps) {
               <span className="icon-dot">
                 <Package className="h-4 w-4" aria-hidden="true" />
               </span>
-              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{copy.supplyTitle}</p>
+              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">
+                {copy.supplyTitle}
+              </p>
             </div>
             <p className="text-sm text-muted-foreground">{copy.supplyText}</p>
           </div>
@@ -48,6 +53,6 @@ export function Products({ copy }: ProductsProps) {
         </div>
         <ProductGallery label={copy.label} heading={copy.heading} />
       </div>
-    </section>
+    </MotionSection>
   );
 }

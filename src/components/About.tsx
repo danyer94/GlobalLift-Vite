@@ -1,4 +1,5 @@
-﻿import type { AboutCopy } from '../content/siteContent';
+import type { AboutCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 type AboutProps = {
   copy: AboutCopy;
@@ -6,7 +7,7 @@ type AboutProps = {
 
 export function About({ copy }: AboutProps) {
   return (
-    <section id="about" className="section section-plain">
+    <MotionSection id="about" className="section section-plain" decorVariant="tide" parallaxStrength={16}>
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-[1.1fr,0.9fr] lg:items-start">
           <div className="space-y-6">
@@ -26,6 +27,6 @@ export function About({ copy }: AboutProps) {
           </div>
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

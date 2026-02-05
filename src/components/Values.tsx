@@ -1,4 +1,5 @@
-﻿import type { ValuesCopy } from '../content/siteContent';
+import type { ValuesCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 type ValuesProps = {
   copy: ValuesCopy;
@@ -6,7 +7,7 @@ type ValuesProps = {
 
 export function Values({ copy }: ValuesProps) {
   return (
-    <section id="values" className="section section-base">
+    <MotionSection id="values" className="section section-base" decorVariant="grid" parallaxStrength={18}>
       <div className="container">
         <div>
           <p className="badge">{copy.label}</p>
@@ -34,6 +35,6 @@ export function Values({ copy }: ValuesProps) {
           </div>
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }
