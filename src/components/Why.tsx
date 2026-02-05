@@ -24,11 +24,11 @@ const splitItem = (item: string) => {
 
 export function Why({ copy }: WhyProps) {
   return (
-    <MotionSection id="why" className="section section-alt" decorVariant="aurora" parallaxStrength={20}>
+    <MotionSection id="why" className="section section-dark" decorVariant="aurora" parallaxStrength={20}>
       <div className="container">
         <div>
-          <p className="badge">{copy.label}</p>
-          <h2 className="section-title font-display mt-6">{copy.heading}</h2>
+          <p className="badge bg-white/10 text-white border-white/20">{copy.label}</p>
+          <h2 className="section-title font-display mt-6 !text-white">{copy.heading}</h2>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {copy.items.map((item, index) => {
@@ -36,7 +36,7 @@ export function Why({ copy }: WhyProps) {
             const Icon = icons[index % icons.length];
 
             return (
-              <div key={item} className="tile group">
+              <div key={item} className="tile group border-white/10">
                 <span className="icon-dot">
                   <Icon className="h-4 w-4" aria-hidden="true" />
                 </span>
@@ -50,3 +50,4 @@ export function Why({ copy }: WhyProps) {
     </MotionSection>
   );
 }
+

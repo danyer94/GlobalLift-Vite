@@ -37,9 +37,10 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 - **Refinamiento Visual (Design Audit):**
   - Tipografía unificada: `Unbounded` (Headings) y `Onest` (Body). Eliminado `Zalando Sans`.
   - Branding consistente: Componente `<Logo />` unificado en Nav y Footer.
-  - Paleta de colores profundizada: "Midnight" (`#0f172a`) y "Signal Blue" (`#0ea5e9`).
+  - Paleta de colores profundizada: "Midnight" (`#0f172a`), "Electric Cyan" (`#06b6d4`) y "Deep Violet" (`#7c3aed`).
   - Whitespace Premium: Aumento del padding en secciones (`py-32` a `py-48`).
-  - Gradients Tokenizados: `--gradient-aurora` y `--gradient-surface`.
+  - Gradients Tokenizados: `--gradient-aurora` (Vibrante) y `--gradient-surface`.
+  - Contrast Rhythm: Sección "Why" invertida (Dark Mode) para romper la monotonía.
 - **Interacciones y Movimiento:**
   - Efecto "Rack Focus" en reveals (Blur + Fade + Slide).
   - Parallax aumentado para mayor profundidad.
