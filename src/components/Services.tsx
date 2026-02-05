@@ -1,4 +1,4 @@
-import { Boxes, Globe2, Handshake, Package, Ship, Truck } from 'lucide-react';
+import { Boxes, FileCheck, Globe2, Handshake, Plane, Ship, ShieldCheck, Truck } from 'lucide-react';
 import type { ServicesCopy } from '../content/siteContent';
 import { MotionSection } from './MotionSection';
 
@@ -6,7 +6,17 @@ type ServicesProps = {
   copy: ServicesCopy;
 };
 
-const icons = [Globe2, Ship, Truck, Handshake, Package, Boxes, Globe2];
+const getIconForService = (title: string) => {
+  const t = title.toLowerCase();
+  if (t.includes('marítimo') || t.includes('ocean')) return Ship;
+  if (t.includes('aéreo') || t.includes('air')) return Plane;
+  if (t.includes('terrestre') || t.includes('land')) return Truck;
+  if (t.includes('aduanas') || t.includes('customs')) return FileCheck;
+  if (t.includes('almacenamiento') || t.includes('storage')) return Boxes;
+  if (t.includes('seguro') || t.includes('insurance')) return ShieldCheck;
+  if (t.includes('asesoría') || t.includes('consulting')) return Handshake;
+  return Globe2;
+};
 
 const splitItem = (item: string) => {
   const divider = ' — ';
@@ -33,9 +43,9 @@ export function Services({ copy }: ServicesProps) {
           </div>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {copy.items.map((item, index) => {
+          {copy.items.map((item) => {
             const { title, description } = splitItem(item);
-            const Icon = icons[index % icons.length];
+            const Icon = getIconForService(title);
 
             return (
               <div key={item} className="tile group">

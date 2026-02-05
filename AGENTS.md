@@ -11,16 +11,39 @@ CUALQUIER AGENTE DE IA QUE REALICE CAMBIOS EN ESTE PROYECTO DEBE:
 
 Este archivo sirve como fuente unica de verdad para todos los agentes de IA que trabajen en este proyecto.
 
+# AGENTS.md - Contexto para Agentes de IA
+
+## INSTRUCCION CRITICA DE ACTUALIZACION
+
+CUALQUIER AGENTE DE IA QUE REALICE CAMBIOS EN ESTE PROYECTO DEBE:
+
+1. ACTUALIZAR ESTE FICHERO AGENTS.md INMEDIATAMENTE DESPUES DE COMPLETAR LOS CAMBIOS
+2. REFLEJAR EL ESTADO ACTUAL DEL PROYECTO EN LA SECCION "ESTADO ACTUAL"
+3. DOCUMENTAR NUEVAS DEPENDENCIAS, ARCHIVOS O ESTRUCTURAS
+4. ACTUALIZAR LA FECHA DE "ULTIMA MODIFICACION"
+
+Este archivo sirve como fuente unica de verdad para todos los agentes de IA que trabajen en este proyecto.
+
 ---
 
 ## ESTADO ACTUAL DEL PROYECTO
 
 **Ultima modificacion:** 2026-02-05
-**Estado:** Proyecto web de Global Lift SRL con SEO multilenguaje completamente optimizado, soporte de idioma por query param, assets preparados para despliegues bajo subrutas y animaciones de scroll/parallax con framer-motion
+**Estado:** Proyecto web de Global Lift SRL con diseño refinado (Premium), tipografía unificada y sistema de movimiento "cinemetográfico".
 **URL de produccion:** https://globallift.do
 
 ### Caracteristicas implementadas recientemente:
 
+- **Refinamiento Visual (Design Audit):**
+  - Tipografía unificada: `Unbounded` (Headings) y `Onest` (Body). Eliminado `Zalando Sans`.
+  - Branding consistente: Componente `<Logo />` unificado en Nav y Footer.
+  - Paleta de colores profundizada: "Midnight" (`#0f172a`) y "Signal Blue" (`#0ea5e9`).
+  - Whitespace Premium: Aumento del padding en secciones (`py-32` a `py-48`).
+  - Gradients Tokenizados: `--gradient-aurora` y `--gradient-surface`.
+- **Interacciones y Movimiento:**
+  - Efecto "Rack Focus" en reveals (Blur + Fade + Slide).
+  - Parallax aumentado para mayor profundidad.
+  - Física de botones (`active:scale-95`).
 - SEO dinamico bilingue (es/en) con react-helmet-async
 - Schema.org markup completo (Organization, WebPage, WebSite, FAQPage)
 - Metadatos dinamicos segun idioma seleccionado

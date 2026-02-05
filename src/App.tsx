@@ -13,7 +13,7 @@ import { SEO } from './components/SEO';
 import { Services } from './components/Services';
 import { Values } from './components/Values';
 import { Why } from './components/Why';
-import { brandLogoSrc, siteContent, type Language } from './content/siteContent';
+import { siteContent, type Language } from './content/siteContent';
 import { ScrollProvider } from './utils/scroll';
 
 const STORAGE_KEY = 'globallift-language';
@@ -61,7 +61,6 @@ function App() {
       />
       <Navigation
         items={content.navItems}
-        logoSrc={brandLogoSrc}
         copy={content.navigation}
         language={language}
         onLanguageChange={setLanguage}
@@ -89,7 +88,7 @@ function App() {
           <Contact copy={content.contact} trustCues={content.hero.trustCues} />
         </main>
       </ScrollProvider>
-      <Footer items={content.navItems} logoSrc={brandLogoSrc} note={content.about.oneLine} />
+      <Footer items={content.navItems} note={content.about.oneLine} />
     </div>
   );
 }

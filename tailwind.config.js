@@ -42,7 +42,6 @@ export default {
       fontFamily: {
         sans: ["Onest", "system-ui", "sans-serif"],
         display: ["Unbounded", "system-ui", "sans-serif"],
-        brand: ["Zalando Sans Expanded", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       borderRadius: {

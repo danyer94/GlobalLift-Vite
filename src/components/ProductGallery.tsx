@@ -78,14 +78,14 @@ export function ProductGallery({ label, heading }: ProductGalleryProps) {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/20 text-white opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 hover:bg-black/40"
+          className="absolute left-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-plate/10 text-white opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 border border-white/10 hover:bg-plate/20"
           aria-label="Previous slide"
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/20 text-white opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 hover:bg-black/40"
+          className="absolute right-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-plate/10 text-white opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 border border-white/10 hover:bg-plate/20"
           aria-label="Next slide"
         >
           <ChevronRight className="h-6 w-6" />
@@ -94,7 +94,7 @@ export function ProductGallery({ label, heading }: ProductGalleryProps) {
         {/* Zoom Button */}
         <button
           onClick={() => setIsLightboxOpen(true)}
-          className="absolute right-6 bottom-6 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md border border-white/30 transform transition-transform hover:scale-110 active:scale-95"
+          className="absolute right-6 bottom-6 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-plate/10 text-white backdrop-blur-md border border-white/10 transform transition-transform hover:scale-110 active:scale-95 hover:bg-plate/20"
           aria-label="Zoom image"
         >
           <Maximize2 className="h-6 w-6" />

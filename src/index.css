@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --brand-primary: 32 64 96; 
-  --brand-secondary: 64 160 208; /* rgb(64, 160, 208) */
+  --brand-primary: 15 23 42;
+  --brand-secondary: 14 165 233;
   --brand-accent: 64 144 208; 
   --ink: 248 250 252;
   --graphite: 236 243 249;
@@ -36,6 +36,10 @@
   --muted-foreground: 86 102 120;
   --ring: 64 160 208;
   --input: 210 224 236;
+  --gradient-aurora: radial-gradient(closest-side at 16% 18%, rgba(14, 165, 233, 0.35), transparent 65%),
+    radial-gradient(closest-side at 84% 12%, rgba(15, 23, 42, 0.28), transparent 60%),
+    radial-gradient(closest-side at 58% 82%, rgba(14, 165, 233, 0.24), transparent 62%);
+  --gradient-surface: linear-gradient(150deg, rgba(247, 250, 252, 0.95) 0%, rgba(247, 250, 252, 0.84) 50%, rgba(238, 244, 249, 0.96) 100%);
 }
 
 @layer base {
@@ -107,7 +111,7 @@
   }
 
   .btn {
-    @apply inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition duration-200 ease-out;
+    @apply inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition duration-200 ease-out active:scale-95;
     touch-action: manipulation;
   }
 
@@ -145,7 +149,7 @@
   }
 
   .section {
-    @apply py-24 sm:py-28 lg:py-32;
+    @apply py-32 sm:py-40 lg:py-48;
   }
 
   .section-base {
@@ -210,22 +214,7 @@
 }
 
 .motion-decor--aurora {
-  background:
-    radial-gradient(
-      closest-side at 16% 18%,
-      rgba(64, 160, 208, 0.35),
-      transparent 65%
-    ),
-    radial-gradient(
-      closest-side at 84% 12%,
-      rgba(32, 64, 96, 0.28),
-      transparent 60%
-    ),
-    radial-gradient(
-      closest-side at 58% 82%,
-      rgba(64, 144, 208, 0.24),
-      transparent 62%
-    );
+  background: var(--gradient-aurora);
 }
 
 .motion-decor--grid {
@@ -375,12 +364,7 @@
   padding: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem)
     clamp(1.5rem, 1rem + 2vw, 2.5rem);
   border-radius: var(--radius-2xl);
-  background: linear-gradient(
-    150deg,
-    rgba(247, 250, 252, 0.95) 0%,
-    rgba(247, 250, 252, 0.84) 50%,
-    rgba(238, 244, 249, 0.96) 100%
-  );
+  background: var(--gradient-surface);
   border: 1px solid rgba(255, 255, 255, 0.72);
   box-shadow: var(--shadow-lift);
   overflow: hidden;

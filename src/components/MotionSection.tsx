@@ -13,12 +13,12 @@ type MotionSectionProps = HTMLMotionProps<'section'> & {
 };
 
 const revealVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 32, filter: 'blur(8px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
 };
 
 export const MotionSection = forwardRef<HTMLElement, MotionSectionProps>(function MotionSection(
-  { children, background, className, decorVariant = 'aurora', parallaxStrength = 18, reveal = true, ...props },
+  { children, background, className, decorVariant = 'aurora', parallaxStrength = 40, reveal = true, ...props },
   ref,
 ) {
   const scrollYProgress = useScrollProgress();
