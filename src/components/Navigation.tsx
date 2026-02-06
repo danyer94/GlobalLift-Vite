@@ -33,6 +33,19 @@ export function Navigation({ items, copy, language, onLanguageChange }: Navigati
             </a>
           </div>
         </div>
+        <div className="pb-3 md:hidden" aria-label="Section shortcuts">
+          <div className="-mx-1 flex gap-2 overflow-x-auto px-1">
+            {items.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="whitespace-nowrap rounded-full border border-border bg-card/80 px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:text-secondary"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </nav>
   );

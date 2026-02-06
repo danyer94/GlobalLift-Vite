@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { ValuesCopy } from '../content/siteContent';
 import { MotionSection } from './MotionSection';
 
@@ -6,8 +7,19 @@ type ValuesProps = {
 };
 
 export function Values({ copy }: ValuesProps) {
+  const cinematicStyle = {
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/values-team-warehouse.png)`,
+    '--cinema-position': 'center 46%',
+  } as CSSProperties;
+
   return (
-    <MotionSection id="values" className="section section-base" decorVariant="grid" parallaxStrength={18}>
+    <MotionSection
+      id="values"
+      className="section section-base cinema-surface"
+      decorVariant="grid"
+      parallaxStrength={18}
+      style={cinematicStyle}
+    >
       <div className="container">
         <div>
           <p className="badge">{copy.label}</p>

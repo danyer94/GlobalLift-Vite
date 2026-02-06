@@ -81,17 +81,6 @@ export type CommitmentCopy = {
   text: string;
 };
 
-export type FaqItem = {
-  question: string;
-  answer: string;
-};
-
-export type FaqCopy = {
-  label: string;
-  heading: string;
-  items: FaqItem[];
-};
-
 export type ContactCopy = {
   label: string;
   heading: string;
@@ -123,7 +112,6 @@ export type SiteContent = {
   why: WhyCopy;
   values: ValuesCopy;
   commitment: CommitmentCopy;
-  faq: FaqCopy;
   contact: ContactCopy;
 };
 
@@ -278,43 +266,6 @@ export const siteContent: Record<Language, SiteContent> = {
       label: "COMPROMISO",
       heading: "COMPROMISO",
       text: "En Global Lift SRL trabajamos para ser un aliado estratégico confiable, conectando mercados, optimizando operaciones y creando oportunidades comerciales con visión global y ejecución local. Nuestra prioridad es facilitar relaciones B2B sólidas a través de transparencia, cumplimiento y una operación estructurada que apoye el crecimiento responsable.",
-    },
-    faq: {
-      label: "FAQ",
-      heading: "FAQ",
-      items: [
-        {
-          question: "¿Qué tipo de productos exportan?",
-          answer:
-            "Principalmente frutas, vegetales y carbón. Si buscas algo específico, compártenos tu requerimiento para evaluar el apoyo posible.",
-        },
-        {
-          question:
-            "¿Cómo funciona el puente entre proveedores extranjeros y RD?",
-          answer:
-            "Facilitamos conexiones comerciales entre mercados, proveedores y clientes, alineando necesidades B2B con ejecución local en República Dominicana.",
-        },
-        {
-          question: "¿Pueden apoyar con logística?",
-          answer:
-            "Sí. Brindamos soluciones logísticas y coordinación para facilitar el flujo eficiente de bienes y servicios, como parte de una solución integral.",
-        },
-        {
-          question: "¿Trabajan con múltiples industrias?",
-          answer:
-            "Sí. Operamos con un enfoque multisectorial, facilitando oportunidades comerciales en distintas áreas según la necesidad del cliente.",
-        },
-        {
-          question: "¿Qué significa “cumplimiento legal” en su operación?",
-          answer:
-            "Significa operar con respeto a las leyes y estándares aplicables, con transparencia y ética empresarial en los procesos.",
-        },
-        {
-          question: "¿Cómo inicio una solicitud o conversación comercial?",
-          answer:
-            "Escríbenos con tu necesidad (importación, exportación, logística, abastecimiento) y te responderemos para entender el alcance.",
-        },
-      ],
     },
     contact: {
       label: "CONTACTO",
@@ -482,43 +433,6 @@ export const siteContent: Record<Language, SiteContent> = {
       label: "COMMITMENT",
       heading: "COMMITMENT",
       text: "At Global Lift SRL, we work to be a trusted strategic partner—connecting markets, optimizing operations, and creating commercial opportunities through global vision and local execution. Our priority is enabling strong B2B relationships through transparency, compliance, and a structured operation that supports responsible growth.",
-    },
-    faq: {
-      label: "FAQ",
-      heading: "FAQ",
-      items: [
-        {
-          question: "What products do you export?",
-          answer:
-            "Primarily fruits, vegetables, and coal. If you’re looking for something specific, share your request so we can assess how to support.",
-        },
-        {
-          question:
-            "How does your bridge between overseas sellers and the DR work?",
-          answer:
-            "We facilitate commercial connections among markets, suppliers, and clients—aligning B2B needs with local execution in the Dominican Republic.",
-        },
-        {
-          question: "Can you support logistics?",
-          answer:
-            "Yes. We provide logistics solutions and coordination to enable an efficient flow of goods and services as part of an integrated approach.",
-        },
-        {
-          question: "Do you work across multiple industries?",
-          answer:
-            "Yes. We operate with a multi-sector approach, facilitating opportunities across areas based on client needs.",
-        },
-        {
-          question: "What does “legal compliance” mean in your operations?",
-          answer:
-            "It means operating in accordance with applicable laws and standards—prioritizing transparency and ethical business processes.",
-        },
-        {
-          question: "How do I start a request or commercial conversation?",
-          answer:
-            "Message us with your need (import, export, logistics, sourcing) and we’ll follow up to understand the scope.",
-        },
-      ],
     },
     contact: {
       label: "CONTACT",

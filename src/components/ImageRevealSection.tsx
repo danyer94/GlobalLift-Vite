@@ -41,8 +41,11 @@ export function ImageRevealSection({
   const y2 = useTransform(scrollYProgress, [0.6, 1], [50, 0]);
 
   return (
-    <section ref={containerRef} className="relative h-[250vh] bg-background">
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+    <section
+      ref={containerRef}
+      className="relative min-h-[170vh] bg-background sm:min-h-[200vh] lg:h-[235vh] lg:min-h-0"
+    >
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         {/* Base Layer (Image 1) */}
         <div className="absolute inset-0 z-0">
           <img
@@ -50,7 +53,7 @@ export function ImageRevealSection({
             alt={title1}
             className="w-full h-full object-cover brightness-[0.85]"
           />
-          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-primary/25" />
 
           <motion.div
             className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
@@ -59,13 +62,13 @@ export function ImageRevealSection({
               y: reduceMotion ? 0 : y1,
             }}
           >
-            <span className="badge mb-4 bg-white/10 backdrop-blur-md text-white border-white/20">
+            <span className="badge badge-contrast mb-4">
               Global Lift
             </span>
-            <h2 className="text-4xl md:text-6xl font-display font-semibold text-white mb-4 drop-shadow-lg">
+            <h2 className="mb-4 text-3xl font-display font-semibold text-primary-foreground drop-shadow-lg md:text-6xl">
               {title1}
             </h2>
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl font-medium drop-shadow-md">
+            <p className="max-w-2xl text-base font-medium text-primary-foreground/90 drop-shadow-md md:text-xl">
               {subtitle1}
             </p>
           </motion.div>
@@ -84,7 +87,7 @@ export function ImageRevealSection({
             alt={title2}
             className="w-full h-full object-cover brightness-[0.85]"
           />
-          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-primary/25" />
 
           <motion.div
             className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
@@ -93,23 +96,23 @@ export function ImageRevealSection({
               y: reduceMotion ? 0 : y2,
             }}
           >
-            <span className="badge mb-4 bg-white/10 backdrop-blur-md text-white border-white/20">
+            <span className="badge badge-contrast mb-4">
               Global Lift
             </span>
-            <h2 className="text-4xl md:text-6xl font-display font-semibold text-white mb-4 drop-shadow-lg">
+            <h2 className="mb-4 text-3xl font-display font-semibold text-primary-foreground drop-shadow-lg md:text-6xl">
               {title2}
             </h2>
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl font-medium drop-shadow-md">
+            <p className="max-w-2xl text-base font-medium text-primary-foreground/90 drop-shadow-md md:text-xl">
               {subtitle2}
             </p>
           </motion.div>
         </motion.div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
-          <div className="w-[1px] h-12 bg-white/30 relative overflow-hidden">
+        <div className="absolute bottom-10 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 sm:flex">
+          <div className="relative h-12 w-[1px] overflow-hidden bg-primary-foreground/30">
             <motion.div
-              className="absolute top-0 left-0 w-full bg-white origin-top"
+              className="absolute top-0 left-0 w-full origin-top bg-primary-foreground"
               style={{ height: '100%', scaleY: scrollYProgress }}
             />
           </div>
@@ -118,4 +121,3 @@ export function ImageRevealSection({
     </section>
   );
 }
-

@@ -29,7 +29,7 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 ## ESTADO ACTUAL DEL PROYECTO
 
 **Ultima modificacion:** 2026-02-06
-**Estado:** Proyecto web de Global Lift SRL con diseño refinado (Premium), tipografía unificada y sistema de movimiento "cinemetográfico".
+**Estado:** Proyecto web corporativo de Global Lift SRL con diseño premium cinematográfico, sistema visual tokenizado y sin sección FAQ.
 **URL de produccion:** https://globallift.do
 
 ### Caracteristicas implementadas recientemente:
@@ -45,18 +45,49 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - Whitespace Premium: Aumento del padding en secciones (`py-32` a `py-48`).
   - Gradients Tokenizados: `--gradient-aurora` (Vibrante) y `--gradient-surface`.
   - Contrast Rhythm: Sección "Why" invertida (Dark Mode) para romper la monotonía.
+  - Navegación móvil visible con accesos rápidos por sección (sin menú oculto en mobile).
+  - ProductGallery refinado: controles visibles en touch/focus y overlays/control buttons tokenizados.
+  - Tokens nuevos de interfaz: `--overlay-soft`, `--overlay-strong`, `--control-glass-bg`, `--control-glass-border`.
+  - Nuevas clases de sistema: `.badge-contrast`, `.icon-button-overlay`, `.fullscreen-surface`.
+  - Direccion visual "Cinematico Dramatico" aplicada en Fase 1:
+    - Fondos fotograficos full-bleed en secciones clave (`About`, `Services`, `Process`, `Values`, `Commitment`) con mascara cinematica y glass surfaces.
+    - Hero reconstruido con capas `<img>` reales (en lugar de `background-image`) para controlar encuadre.
+    - Hero con `object-position` responsive por breakpoint (mobile/tablet/desktop) para reducir zoom perceptual y recorte agresivo.
+    - Overlays del Hero ajustados para mayor contraste dramatico sin perder legibilidad del panel principal.
+    - Nuevos tokens cinematograficos: `--cinema-overlay-strong`, `--cinema-overlay-soft`, `--cinema-vignette`.
+    - Nueva clase de sistema: `.cinema-surface` para estandarizar secciones con foto + overlay.
+  - Fase 2 aplicada:
+    - `Services` convertido a mosaico editorial asimetrico (tarjeta protagonista + tarjetas secundarias con spans variables).
+    - Tarjetas de `Services` con media layers propias (`--service-media`, `--service-media-position`) y tratamiento cinematografico consistente.
+    - `Process` redisenado a narrativa sticky: panel visual fijo a la izquierda + pasos progresivos en columna derecha.
+    - Nuevas clases de sistema para Fase 2: `.service-editorial-card`, `.process-stage`, `.process-step-card`.
+  - Fase 3 aplicada:
+    - Motion unificado con nuevos tokens: `--motion-fast`, `--motion-base`, `--motion-slow`, `--ease-standard`, `--ease-emphasis`.
+    - Textura cinematica sutil con grano tokenizado (`--cinema-grain-opacity`) en Hero y superficies cinematicas.
+    - Crossfade unificado para media (`.media-crossfade`) y nuevas animaciones de polish (`.cinema-fade-in`, `.cinema-zoom-in`).
+    - Estados hover/focus refinados en icon buttons, tarjetas editoriales y pasos de proceso para consistencia tactil.
+  - Calibracion de intensidad cinematica (3 presets):
+    - Presets disponibles a nivel global via `:root[data-cinema]`: `balanced`, `impact`, `immersive`.
+    - Preset activo actual: `immersive`.
+    - Cambio rapido de preset en `src/App.tsx` mediante constante `CINEMA_PRESET`.
+    - Tokens calibrables por preset: overlay hero, grano, opacidad de media, lift de cards/pasos y velocidad de motion.
+  - Integracion de fotografias nuevas en `public/images/generated` en todas las secciones principales (Hero, Reveal, About, Services, Products, Process, Why, Values, Commitment, Contact).
+  - Hero y fondos cinematicos actualizados para usar assets generados en lugar de imagenes legacy repetidas.
+  - Archivo unico de prompts fotograficos para generacion manual de fondos en `docs/prompts/chatgpt-image-prompts.md` con tamano fijo sugerido (`1536x1024`) en cada prompt.
+  - ImageRevealSection optimizado con altura responsive por viewport para reducir fatiga de scroll.
+  - Hero simplificado (menos wrappers) y Services con menor densidad visual.
+  - LanguageToggle con mejoras de accesibilidad (aria-label + navegación con flechas).
 - **Interacciones y Movimiento:**
   - Efecto "Rack Focus" en reveals (Blur + Fade + Slide).
   - Parallax aumentado para mayor profundidad.
   - Física de botones (`active:scale-95`).
 - SEO dinamico bilingue (es/en) con react-helmet-async
-- Schema.org markup completo (Organization, WebPage, WebSite, FAQPage)
+- Schema.org markup completo (Organization, WebPage, WebSite)
 - Metadatos dinamicos segun idioma seleccionado
 - Hreflang tags para SEO internacional
 - robots.txt con acceso a bots de IA (PerplexityBot, ChatGPT-User, ClaudeBot, GPTBot)
 - sitemap.xml configurado
 - Open Graph y Twitter Cards dinamicos
-- FAQPage schema en componente Faq.tsx
 - Componente SEO.tsx para manejo dinamico de metadatos
 - Lectura de idioma desde parametro `?lang=` para alinear hreflang con el contenido servido
 - Imagenes del hero usando `import.meta.env.BASE_URL` para soportar despliegues en subruta
@@ -98,16 +129,17 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 ```
 /
 |-- docs/
+|   |-- prompts/           # Prompts de IA para diseno y generacion visual
 |   `-- plans/             # Documentos de diseno y planes
 |-- public/
 |   |-- images/           # Imagenes de productos y equipo
+|   |   `-- generated/    # Fondos fotograficos generados (ChatGPT-Image)
 |   |-- logo/             # Logotipos (PNG, ICO)
 |   |-- robots.txt        # Acceso a bots incluyendo IA
 |   `-- sitemap.xml       # Mapa del sitio
 |-- src/
 |   |-- components/       # Componentes React
 |   |   |-- SEO.tsx        # Gestion dinamica de SEO
-|   |   |-- Faq.tsx        # FAQ con Schema markup
 |   |   |-- Hero.tsx
 |   |   |-- About.tsx
 |   |   |-- Services.tsx
@@ -154,14 +186,13 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 
 - **src/content/siteContent.ts:** Fuente unica de contenido en espanol e ingles
   - Tipo: `Record<Language, SiteContent>` donde Language = 'es' | 'en'
-  - Incluye: navItems, seo, hero, about, services, products, process, why, values, commitment, faq, contact
+  - Incluye: navItems, seo, hero, about, services, products, process, why, values, commitment, contact
 
 ### Componentes Principales
 
 - **App.tsx:** Componente raiz con logica de cambio de idioma y componente SEO
 - **main.tsx:** Punto de entrada con HelmetProvider para SEO
 - **Navigation.tsx:** Incluye LanguageToggle para cambio entre es/en
-- **Faq.tsx:** FAQPage schema markup para SEO/GEO (AI search engines)
 - **MotionSection.tsx:** Wrapper de secciones con reveal y parallax decorativo (soporta `background` para fondos como el Hero)
 - **Boat.tsx:** Elemento fijo decorativo sincronizado al scroll
 - **src/utils/scroll.tsx:** Proveedor de scrollYProgress compartido
@@ -220,7 +251,6 @@ npm run lint
 1. **Organization:** Datos de Global Lift SRL, logo, direccion, contacto
 2. **WebPage:** Informacion de la pagina actual con idioma dinamico
 3. **WebSite:** Informacion del sitio con soporte multilenguaje
-4. **FAQPage:** En componente Faq.tsx con microdatos y JSON-LD
 
 ### Robots.txt
 
@@ -245,9 +275,9 @@ Permite explicitamente:
 
 ### Convenciones de codigo:
 
-- Componentes en PascalCase (SEO.tsx, Faq.tsx)
+- Componentes en PascalCase (SEO.tsx, Hero.tsx)
 - Hooks en camelCase (useState, useEffect)
-- Tipos en siteContent.ts con sufijo Copy (HeroCopy, FaqCopy)
+- Tipos en siteContent.ts con sufijo Copy (HeroCopy, ContactCopy)
 - CSS con clases Tailwind, prefijo 'section' para secciones
 
 ### Manejo de idiomas:
@@ -259,7 +289,6 @@ Permite explicitamente:
 ### SEO:
 
 - NUNCA hardcodear meta tags en index.html (usar SEO.tsx)
-- FAQ items automaticamente generan schema markup
 - Cada cambio de contenido debe considerar ambos idiomas
 
 ---

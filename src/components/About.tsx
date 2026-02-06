@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { AboutCopy } from '../content/siteContent';
 import { MotionSection } from './MotionSection';
 
@@ -6,8 +7,19 @@ type AboutProps = {
 };
 
 export function About({ copy }: AboutProps) {
+  const cinematicStyle = {
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/about-bridge-ocean.png)`,
+    '--cinema-position': 'center 42%',
+  } as CSSProperties;
+
   return (
-    <MotionSection id="about" className="section section-plain" decorVariant="tide" parallaxStrength={16}>
+    <MotionSection
+      id="about"
+      className="section section-plain cinema-surface"
+      decorVariant="tide"
+      parallaxStrength={16}
+      style={cinematicStyle}
+    >
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-[1.1fr,0.9fr] lg:items-start">
           <div className="space-y-6">

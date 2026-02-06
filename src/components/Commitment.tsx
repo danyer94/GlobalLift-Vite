@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { CommitmentCopy } from '../content/siteContent';
 import { MotionSection } from './MotionSection';
 
@@ -6,8 +7,19 @@ type CommitmentProps = {
 };
 
 export function Commitment({ copy }: CommitmentProps) {
+  const cinematicStyle = {
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/commitment-ship-sunset.png)`,
+    '--cinema-position': 'center 52%',
+  } as CSSProperties;
+
   return (
-    <MotionSection id="commitment" className="section section-plain" decorVariant="tide" parallaxStrength={18}>
+    <MotionSection
+      id="commitment"
+      className="section section-plain cinema-surface"
+      decorVariant="tide"
+      parallaxStrength={18}
+      style={cinematicStyle}
+    >
       <div className="container">
         <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-soft">
           <span

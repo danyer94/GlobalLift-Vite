@@ -17,6 +17,7 @@ import { siteContent, type Language } from './content/siteContent';
 import { ScrollProvider } from './utils/scroll';
 
 const STORAGE_KEY = 'globallift-language';
+const CINEMA_PRESET = 'immersive';
 
 const getInitialLanguage = (): Language => {
   if (typeof window === 'undefined') {
@@ -45,6 +46,7 @@ function App() {
   useEffect(() => {
     if (typeof document !== 'undefined') {
       document.documentElement.lang = language;
+      document.documentElement.setAttribute('data-cinema', CINEMA_PRESET);
     }
 
     if (typeof window !== 'undefined') {
@@ -72,10 +74,10 @@ function App() {
           <Hero copy={content.hero} />
           <About copy={content.about} />
           <ImageRevealSection
-            image1={`${import.meta.env.BASE_URL}images/barco.jpg`}
+            image1={`${import.meta.env.BASE_URL}images/generated/reveal-export-orchard.png`}
             title1={content.revealSection.title1}
             subtitle1={content.revealSection.subtitle1}
-            image2={`${import.meta.env.BASE_URL}images/avion.png`}
+            image2={`${import.meta.env.BASE_URL}images/generated/reveal-air-cargo.png`}
             title2={content.revealSection.title2}
             subtitle2={content.revealSection.subtitle2}
           />

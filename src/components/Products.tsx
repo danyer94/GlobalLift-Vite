@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { ArrowUpRight, Package, Ship } from 'lucide-react';
 import type { ProductsCopy } from '../content/siteContent';
 import { MotionSection } from './MotionSection';
@@ -8,8 +9,19 @@ type ProductsProps = {
 };
 
 export function Products({ copy }: ProductsProps) {
+  const cinematicStyle = {
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/products-produce-table.png)`,
+    '--cinema-position': 'center 42%',
+  } as CSSProperties;
+
   return (
-    <MotionSection id="products" className="section section-base" decorVariant="tide" parallaxStrength={20}>
+    <MotionSection
+      id="products"
+      className="section section-base cinema-surface"
+      decorVariant="tide"
+      parallaxStrength={20}
+      style={cinematicStyle}
+    >
       <div className="container">
         <div className="grid gap-10 lg:grid-cols-[1fr,1.1fr] lg:items-start">
           <div>
