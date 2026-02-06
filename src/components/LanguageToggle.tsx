@@ -15,11 +15,11 @@ export function LanguageToggle({ value, onChange }: LanguageToggleProps) {
 
   return (
     <div
-      className="relative grid grid-cols-2 items-center rounded-full border border-border bg-card/80 p-1 text-xs font-semibold shadow-soft backdrop-blur"
+      className="relative grid grid-cols-2 items-center rounded-full border border-border bg-graphite/70 p-1 text-xs font-semibold shadow-soft backdrop-blur"
       role="radiogroup"
     >
       <span
-        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full bg-primary/90 shadow-soft transition-transform duration-300 ${indicatorClass}`}
+        className={`pointer-events-none absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full border border-border bg-card shadow-soft transition-transform duration-300 ${indicatorClass}`}
         aria-hidden="true"
       />
       {options.map((option) => {

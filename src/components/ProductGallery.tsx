@@ -2,7 +2,6 @@ import { useEffect, useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
 
 type ProductGalleryProps = {
-  label: string;
   heading: string;
 };
 
@@ -16,7 +15,7 @@ const PRODUCT_IMAGES = [
   'verdura.png',
 ];
 
-export function ProductGallery({ label, heading }: ProductGalleryProps) {
+export function ProductGallery({ heading }: ProductGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const total = PRODUCT_IMAGES.length;
@@ -116,8 +115,8 @@ export function ProductGallery({ label, heading }: ProductGalleryProps) {
             onClick={() => goToSlide(index)}
             className={`h-2.5 transition-all duration-300 rounded-full ${
               index === currentIndex 
-                ? 'w-8 bg-primary shadow-[0_0_10px_rgba(var(--brand-primary),0.5)]' 
-                : 'w-2.5 bg-primary/20 hover:bg-primary/40'
+                ? 'w-8 bg-secondary shadow-[0_0_0_4px_rgb(var(--secondary)_/_0.18)]' 
+                : 'w-2.5 bg-secondary/25 hover:bg-secondary/45'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

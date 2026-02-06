@@ -20,7 +20,7 @@ export function Navigation({ items, copy, language, onLanguageChange }: Navigati
           </a>
           <div className="hidden items-center gap-8 md:flex">
             {items.map((item) => (
-              <a key={item.label} href={item.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+              <a key={item.label} href={item.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-secondary">
                 {item.label}
               </a>
             ))}

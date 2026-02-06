@@ -28,7 +28,7 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 
 ## ESTADO ACTUAL DEL PROYECTO
 
-**Ultima modificacion:** 2026-02-05
+**Ultima modificacion:** 2026-02-06
 **Estado:** Proyecto web de Global Lift SRL con diseño refinado (Premium), tipografía unificada y sistema de movimiento "cinemetográfico".
 **URL de produccion:** https://globallift.do
 
@@ -38,6 +38,10 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - Tipografía unificada: `Unbounded` (Headings) y `Onest` (Body). Eliminado `Zalando Sans`.
   - Branding consistente: Componente `<Logo />` unificado en Nav y Footer.
   - Paleta de colores profundizada: "Midnight" (`#0f172a`), "Electric Cyan" (`#06b6d4`) y "Deep Violet" (`#7c3aed`).
+  - Sistema de color unificado con tokens: `--primary` (Midnight), `--secondary` (cian accesible para links/estados) y `--accent` (violet para highlights).
+  - Gradientes/overlays normalizados a tokens (`rgb(var(--...)/alpha)`) para consistencia global (Hero, decoraciones, mapas).
+  - Navegación y controles refinados: hover de links en `secondary`, `LanguageToggle` estilo segmented control.
+  - ProductGallery: indicadores de carrusel alineados al color de acento (`secondary`) y limpieza de prop no usada.
   - Whitespace Premium: Aumento del padding en secciones (`py-32` a `py-48`).
   - Gradients Tokenizados: `--gradient-aurora` (Vibrante) y `--gradient-surface`.
   - Contrast Rhythm: Sección "Why" invertida (Dark Mode) para romper la monotonía.

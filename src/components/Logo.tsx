@@ -16,7 +16,7 @@ export function Logo({ className = '', iconOnly = false }: { className?: string;
       </span>
       {!iconOnly && (
         <span className="text-sm tracking-tight text-foreground md:text-lg font-display">
-          Global <span className="italic font-bold text-signal-strong">Lift</span> <span className="font-medium text-muted-foreground ml-1">SRL</span>
+          Global <span className="italic font-bold text-secondary">Lift</span> <span className="font-medium text-muted-foreground ml-1">SRL</span>
         </span>
       )}
     </div>
