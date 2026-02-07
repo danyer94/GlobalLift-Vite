@@ -25,7 +25,7 @@ const splitItem = (item: string) => {
 
 export function Why({ copy }: WhyProps) {
   const cinematicStyle = {
-    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/why-compliance-inspection.png)`,
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/why-compliance-inspection.webp)`,
     '--cinema-position': 'center 40%',
     '--cinema-overlay-soft': 'rgb(var(--primary) / 0.66)',
     '--cinema-vignette': 'rgb(var(--primary) / 0.36)',

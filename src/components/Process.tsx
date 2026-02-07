@@ -23,12 +23,12 @@ const splitItem = (item: string) => {
 
 export function Process({ copy }: ProcessProps) {
   const cinematicStyle = {
-    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/process-operations-desk.png)`,
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/process-operations-desk.webp)`,
     '--cinema-position': 'center 46%',
   } as CSSProperties;
 
   const stageStyle = {
-    '--process-stage-image': `url(${import.meta.env.BASE_URL}images/generated/hero-cinematic-port.png)`,
+    '--process-stage-image': `url(${import.meta.env.BASE_URL}images/generated/hero-cinematic-port.webp)`,
   } as CSSProperties;
   const leadStep = splitItem(copy.steps[0] ?? copy.heading).title;
 

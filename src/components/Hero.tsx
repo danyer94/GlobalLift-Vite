@@ -7,19 +7,19 @@ import { MotionSection } from './MotionSection';
 const heroBaseUrl = import.meta.env.BASE_URL;
 const HERO_BG_IMAGES = [
   {
-    src: `${heroBaseUrl}images/generated/hero-cinematic-port.png`,
+    src: `${heroBaseUrl}images/generated/hero-cinematic-port.webp`,
     posMobile: 'center 40%',
     posTablet: 'center 38%',
     posDesktop: 'center 36%',
   },
   {
-    src: `${heroBaseUrl}images/generated/services-multimodal.png`,
+    src: `${heroBaseUrl}images/generated/services-multimodal.webp`,
     posMobile: 'center 44%',
     posTablet: 'center 42%',
     posDesktop: 'center 40%',
   },
   {
-    src: `${heroBaseUrl}images/generated/commitment-ship-sunset.png`,
+    src: `${heroBaseUrl}images/generated/commitment-ship-sunset.webp`,
     posMobile: 'center 46%',
     posTablet: 'center 44%',
     posDesktop: 'center 42%',
@@ -84,6 +84,9 @@ export function Hero({ copy }: HeroProps) {
                 style={slideStyle}
                 loading={i === 0 ? 'eager' : 'lazy'}
                 decoding="async"
+                width={1536}
+                height={1024}
+                sizes="100vw"
               />
             );
           })}

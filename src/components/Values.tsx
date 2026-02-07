@@ -8,7 +8,7 @@ type ValuesProps = {
 
 export function Values({ copy }: ValuesProps) {
   const cinematicStyle = {
-    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/values-team-warehouse.png)`,
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/values-team-warehouse.webp)`,
     '--cinema-position': 'center 46%',
   } as CSSProperties;
 

@@ -10,7 +10,7 @@ type ProductsProps = {
 
 export function Products({ copy }: ProductsProps) {
   const cinematicStyle = {
-    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/products-produce-table.png)`,
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/products-produce-table.webp)`,
     '--cinema-position': 'center 42%',
   } as CSSProperties;
 

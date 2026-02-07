@@ -18,16 +18,16 @@ export function Navigation({ items, copy, language, onLanguageChange }: Navigati
           <a href="#top">
             <Logo />
           </a>
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-6 md:flex lg:gap-8">
             {items.map((item) => (
               <a key={item.label} href={item.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-secondary">
                 {item.label}
               </a>
             ))}
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <LanguageToggle value={language} onChange={onLanguageChange} />
-            <a href="#contact" className="btn btn-primary hidden sm:inline-flex">
+            <a href="#contact" className="btn btn-primary hidden lg:inline-flex">
               {copy.cta}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>

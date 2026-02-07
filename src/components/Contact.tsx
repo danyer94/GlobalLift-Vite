@@ -29,7 +29,7 @@ const fieldConfig: FieldConfig[] = [
 
 export function Contact({ copy, trustCues }: ContactProps) {
   const cinematicStyle = {
-    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/contact-global-map-lights.png)`,
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/contact-global-map-lights.webp)`,
     '--cinema-position': 'center 44%',
   } as CSSProperties;
 

@@ -8,7 +8,7 @@ type AboutProps = {
 
 export function About({ copy }: AboutProps) {
   const cinematicStyle = {
-    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/about-bridge-ocean.png)`,
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/about-bridge-ocean.webp)`,
     '--cinema-position': 'center 42%',
   } as CSSProperties;
 

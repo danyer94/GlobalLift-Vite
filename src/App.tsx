@@ -74,10 +74,10 @@ function App() {
           <Hero copy={content.hero} />
           <About copy={content.about} />
           <ImageRevealSection
-            image1={`${import.meta.env.BASE_URL}images/generated/reveal-export-orchard.png`}
+            image1={`${import.meta.env.BASE_URL}images/generated/reveal-export-orchard.webp`}
             title1={content.revealSection.title1}
             subtitle1={content.revealSection.subtitle1}
-            image2={`${import.meta.env.BASE_URL}images/generated/reveal-air-cargo.png`}
+            image2={`${import.meta.env.BASE_URL}images/generated/reveal-air-cargo.webp`}
             title2={content.revealSection.title2}
             subtitle2={content.revealSection.subtitle2}
           />

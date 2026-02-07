@@ -52,6 +52,11 @@ export function ImageRevealSection({
             src={image1}
             alt={title1}
             className="w-full h-full object-cover brightness-[0.85]"
+            loading="lazy"
+            decoding="async"
+            width={1536}
+            height={1024}
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-primary/25" />
 
@@ -86,6 +91,11 @@ export function ImageRevealSection({
             src={image2}
             alt={title2}
             className="w-full h-full object-cover brightness-[0.85]"
+            loading="lazy"
+            decoding="async"
+            width={1536}
+            height={1024}
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-primary/25" />
 

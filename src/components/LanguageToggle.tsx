@@ -30,7 +30,7 @@ export function LanguageToggle({ value, onChange }: LanguageToggleProps) {
 
   return (
     <div
-      className="relative grid grid-cols-2 items-center rounded-full border border-border bg-graphite/70 p-1 text-xs font-semibold shadow-soft backdrop-blur"
+      className="relative grid w-[6.125rem] shrink-0 grid-cols-2 items-center overflow-hidden rounded-full border border-border bg-graphite/70 p-1 text-xs font-semibold shadow-soft backdrop-blur"
       role="radiogroup"
       aria-label="Language selector"
       onKeyDown={handleKeyDown}

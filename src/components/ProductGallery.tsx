@@ -6,13 +6,13 @@ type ProductGalleryProps = {
 };
 
 const PRODUCT_IMAGES = [
-  'aguacates.png',
-  'mango_product.png',
-  'mangos_1.png',
-  'pimientos.png',
-  'products.png',
-  'tomates.png',
-  'verdura.png',
+  'aguacates.webp',
+  'mango_product.webp',
+  'mangos_1.webp',
+  'pimientos.webp',
+  'products.webp',
+  'tomates.webp',
+  'verdura.webp',
 ];
 
 export function ProductGallery({ heading }: ProductGalleryProps) {
@@ -20,6 +20,8 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const total = PRODUCT_IMAGES.length;
   const autoPlayInterval = 5000;
+  const prevIndex = (currentIndex - 1 + total) % total;
+  const nextIndex = (currentIndex + 1) % total;
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % total);
@@ -57,22 +59,35 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
       {/* Carousel Container */}
       <div className="group relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-border/70 bg-card shadow-soft sm:aspect-[21/9]">
         {/* Images */}
-        {PRODUCT_IMAGES.map((img, index) => (
-          <div
-            key={img}
-            className={`media-crossfade absolute inset-0 ${
-              index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-            }`}
-          >
-            <img
-              src={`${import.meta.env.BASE_URL}images/${img}`}
-              alt={`${heading} - ${img.split('.')[0]}`}
-              className="h-full w-full object-cover"
-            />
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/45 via-primary/10 to-transparent" />
-          </div>
-        ))}
+        {PRODUCT_IMAGES.map((img, index) => {
+          const shouldRender = index === currentIndex || index === prevIndex || index === nextIndex;
+
+          if (!shouldRender) {
+            return null;
+          }
+
+          return (
+            <div
+              key={img}
+              className={`media-crossfade absolute inset-0 ${
+                index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+            >
+              <img
+                src={`${import.meta.env.BASE_URL}images/${img}`}
+                alt={`${heading} - ${img.split('.')[0]}`}
+                className="h-full w-full object-cover"
+                loading={index === currentIndex ? 'eager' : 'lazy'}
+                decoding="async"
+                width={1600}
+                height={900}
+                sizes="(min-width: 640px) 80vw, 100vw"
+              />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/45 via-primary/10 to-transparent" />
+            </div>
+          );
+        })}
 
         {/* Navigation Arrows */}
         <button
@@ -150,7 +165,7 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
 
             <img
               src={`${import.meta.env.BASE_URL}images/${PRODUCT_IMAGES[currentIndex]}`}
-              alt=""
+              alt={`${heading} - ${PRODUCT_IMAGES[currentIndex].split('.')[0].replace('_', ' ')}`}
               className="cinema-zoom-in max-h-full max-w-full rounded-2xl object-contain shadow-2xl"
               loading="lazy"
               decoding="async"

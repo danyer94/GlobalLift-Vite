@@ -28,7 +28,7 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 
 ## ESTADO ACTUAL DEL PROYECTO
 
-**Ultima modificacion:** 2026-02-06
+**Ultima modificacion:** 2026-02-07
 **Estado:** Proyecto web corporativo de Global Lift SRL con diseño premium cinematográfico, sistema visual tokenizado y sin sección FAQ.
 **URL de produccion:** https://globallift.do
 
@@ -77,6 +77,16 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - ImageRevealSection optimizado con altura responsive por viewport para reducir fatiga de scroll.
   - Hero simplificado (menos wrappers) y Services con menor densidad visual.
   - LanguageToggle con mejoras de accesibilidad (aria-label + navegación con flechas).
+- **Hardening Responsive + Performance (2026-02-07):**
+  - Correccion de colapso en tablet del `LanguageToggle` (sin solape de `ES/EN` entre `768px` y `960px`).
+  - Navegacion superior recalibrada: CTA de contacto visible desde `lg` para evitar compresion en `md`.
+  - `LanguageToggle` ahora con ancho fijo y `shrink-0` para estabilidad en breakpoints intermedios.
+  - `ProductGallery` optimizado: renderiza solo slide actual + adyacentes para reducir carga inicial.
+  - Imágenes de `Hero`, `ImageRevealSection` y `ProductGallery` con `loading`/`decoding` y dimensiones explicitas (`width`/`height`) para mejor rendimiento percibido.
+  - Lightbox de `ProductGallery` con `alt` descriptivo en la imagen ampliada.
+  - Conversion de imagenes de alto peso a formato `webp` en `public/images/generated` y `public/images` (se mantienen `.png` como fallback de archivo).
+  - Rutas de fondos cinematicos/reveal y carrusel migradas de `.png` a `.webp` para reducir transferencia inicial.
+  - Reduccion medida sobre pares convertidos (`png` vs `webp`): de `25.34 MB` a `1.71 MB` (aprox. `93.3%` menos peso en assets migrados).
 - **Interacciones y Movimiento:**
   - Efecto "Rack Focus" en reveals (Blur + Fade + Slide).
   - Parallax aumentado para mayor profundidad.
@@ -132,8 +142,8 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 |   |-- prompts/           # Prompts de IA para diseno y generacion visual
 |   `-- plans/             # Documentos de diseno y planes
 |-- public/
-|   |-- images/           # Imagenes de productos y equipo
-|   |   `-- generated/    # Fondos fotograficos generados (ChatGPT-Image)
+|   |-- images/           # Imagenes de productos y equipo (PNG legacy + WEBP optimizados)
+|   |   `-- generated/    # Fondos fotograficos generados (ChatGPT-Image) en PNG y WEBP
 |   |-- logo/             # Logotipos (PNG, ICO)
 |   |-- robots.txt        # Acceso a bots incluyendo IA
 |   `-- sitemap.xml       # Mapa del sitio

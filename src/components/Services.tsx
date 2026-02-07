@@ -32,13 +32,13 @@ const splitItem = (item: string) => {
 };
 
 const SERVICE_MEDIA = [
-  { src: 'images/generated/services-multimodal.png', position: 'center 40%' },
-  { src: 'images/generated/reveal-air-cargo.png', position: 'center 42%' },
-  { src: 'images/generated/reveal-export-orchard.png', position: 'center 44%' },
-  { src: 'images/generated/process-operations-desk.png', position: 'center 50%' },
-  { src: 'images/generated/products-produce-table.png', position: 'center 42%' },
-  { src: 'images/generated/why-compliance-inspection.png', position: 'center 38%' },
-  { src: 'images/generated/values-team-warehouse.png', position: 'center 44%' },
+  { src: 'images/generated/services-multimodal.webp', position: 'center 40%' },
+  { src: 'images/generated/reveal-air-cargo.webp', position: 'center 42%' },
+  { src: 'images/generated/reveal-export-orchard.webp', position: 'center 44%' },
+  { src: 'images/generated/process-operations-desk.webp', position: 'center 50%' },
+  { src: 'images/generated/products-produce-table.webp', position: 'center 42%' },
+  { src: 'images/generated/why-compliance-inspection.webp', position: 'center 38%' },
+  { src: 'images/generated/values-team-warehouse.webp', position: 'center 44%' },
 ];
 
 const getCardSpan = (index: number) => {
@@ -49,7 +49,7 @@ const getCardSpan = (index: number) => {
 
 export function Services({ copy }: ServicesProps) {
   const cinematicStyle = {
-    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/services-multimodal.png)`,
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/services-multimodal.webp)`,
     '--cinema-position': 'center 38%',
   } as CSSProperties;
 
