@@ -112,6 +112,7 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - Texto del bloque `Compromiso` recalibrado a escala tipográfica menor para mantener consistencia visual con los componentes adyacentes.
   - Nuevas imágenes de productos generadas por el cliente en `public/images/generated/products` convertidas a `.webp` manteniendo los `.png` originales.
   - `ProductGallery` configurado para usar esas imágenes nuevas en carrusel (`.webp`) con fallback directo a sus equivalentes `.png` del mismo set.
+  - Recompresion adicional de `.webp` de la galeria de productos (quality 76): de `2.07 MB` a `1.22 MB` (aprox. `41.2%` menos sobre los `.webp` del set).
   - Nuevo archivo de prompts para fotos del carrusel de productos: `docs/prompts/product-gallery-chatgpt-image-prompts.md`.
   - Carpeta nueva para assets de galeria de productos: `public/images/generated/products/`.
 - **Interacciones y Movimiento:**
