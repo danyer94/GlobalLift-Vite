@@ -34,6 +34,7 @@ export type AboutCopy = {
 export type ServicesCopy = {
   label: string;
   heading: string;
+  lead: string;
   items: string[];
 };
 
@@ -44,6 +45,8 @@ export type ProductsCopy = {
   supplyTitle: string;
   exportText: string;
   supplyText: string;
+  coalHighlight: string;
+  openCatalogHighlight: string;
   cta: string;
 };
 
@@ -120,10 +123,11 @@ export const brandLogoSrc = `${import.meta.env.BASE_URL}logo/Global-Lift.png`;
 export const siteContent: Record<Language, SiteContent> = {
   es: {
     navItems: [
+      { label: "Nosotros", href: "#nosotros" },
       { label: "Servicios", href: "#services" },
       { label: "Productos", href: "#products" },
       { label: "Proceso", href: "#process" },
-      { label: "Valores", href: "#values" },
+      { label: "Valores", href: "#nosotros-valores" },
       { label: "Contacto", href: "#contact" },
     ],
     seo: {
@@ -137,11 +141,11 @@ export const siteContent: Record<Language, SiteContent> = {
     hero: {
       title: "Conectamos mercados con República Dominicana",
       subtitle:
-        "Soluciones B2B de importación, exportación, logística y comercialización, con cumplimiento legal, transparencia y procesos estructurados.",
+        "Soluciones B2B de importación, exportación, logística y comercialización para frutas, verduras, carbón y otras categorías según demanda, con cumplimiento legal, transparencia y procesos estructurados.",
       primaryCta: "Contacto",
       secondaryCta: "Servicios",
       micro:
-        "Cuéntanos qué necesitas mover, abastecer o conectar entre mercados.",
+        "Si no ves tu producto en la web, escríbenos: activamos suministro a medida sin límite de catálogo.",
       slogans: [
         "Conectamos mercados, ejecutamos en RD",
         "Comercio global, ejecución local",
@@ -151,6 +155,7 @@ export const siteContent: Record<Language, SiteContent> = {
         "Cumplimiento legal",
         "Transparencia",
         "Procesos estructurados",
+        "Catálogo abierto sin límite",
       ],
     },
     revealSection: {
@@ -162,17 +167,20 @@ export const siteContent: Record<Language, SiteContent> = {
         "Conectamos su negocio con proveedores globales de confianza para asegurar su cadena de suministro.",
     },
     about: {
-      label: "QUIÉNES SOMOS",
-      heading: "Global Lift SRL",
+      label: "NOSOTROS",
+      heading: "Nosotros",
       paragraphs: [
         "Global Lift SRL es una empresa dominicana dedicada a la importación, exportación, logística y comercialización de bienes y servicios, con un enfoque multisectorial y una visión estratégica orientada al comercio nacional e internacional. Actuamos como puente entre vendedores en el extranjero y oportunidades de abastecimiento en República Dominicana, facilitando conexiones comerciales entre mercados, proveedores y clientes.",
         "Operamos bajo altos estándares de cumplimiento legal, eficiencia operativa y transparencia. Nuestro enfoque se centra en optimizar operaciones y habilitar relaciones comerciales sólidas, con una gestión orientada al crecimiento sostenible y a la creación de valor a largo plazo.",
+        "Trabajamos para ser un aliado estratégico confiable, conectando mercados y creando oportunidades comerciales con visión global y ejecución local.",
       ],
       oneLine: "Conectamos comercio internacional con ejecución local en RD.",
     },
     services: {
       label: "SERVICIOS",
       heading: "SERVICIOS",
+      lead:
+        "Diseñamos soluciones a la medida para importar, exportar, coordinar logística y sostener operaciones comerciales de forma continua.",
       items: [
         "Importación — Gestionamos soluciones integrales para apoyar operaciones de importación.",
         "Exportación — Facilitamos exportaciones con coordinación estructurada y enfoque B2B.",
@@ -189,10 +197,14 @@ export const siteContent: Record<Language, SiteContent> = {
       exportTitle: "Exportación",
       supplyTitle: "Abastecimiento",
       exportText:
-        "Exportamos principalmente frutas, vegetales y carbón, conectando oferta en República Dominicana con oportunidades comerciales en el exterior.",
+        "Exportamos una variedad amplia de frutas, verduras y carbón, conectando oferta en República Dominicana con oportunidades comerciales en mercados internacionales.",
       supplyText:
-        "Además, Global Lift SRL puede actuar como proveedor y apoyar procesos de abastecimiento de diversos productos, de forma coordinada y orientada a la relación B2B.",
-      cta: "¿Buscas un producto específico? Cuéntanos qué necesitas y evaluamos la mejor forma de apoyarte.",
+        "No estamos limitados a los productos mostrados en la web: podemos gestionar suministro de múltiples categorías según tu requerimiento, volumen y destino.",
+      coalHighlight:
+        "Carbón vegetal: línea de suministro activa para operaciones comerciales y contratos recurrentes.",
+      openCatalogHighlight:
+        "Catálogo abierto: si no ves el producto en la web, escríbenos. No tenemos límite en lo que podemos ayudarte a suministrar.",
+      cta: "¿Buscas un producto específico? Escríbenos y activamos una propuesta de suministro a tu medida.",
     },
     process: {
       label: "PROCESO",
@@ -265,13 +277,13 @@ export const siteContent: Record<Language, SiteContent> = {
     commitment: {
       label: "COMPROMISO",
       heading: "COMPROMISO",
-      text: "En Global Lift SRL trabajamos para ser un aliado estratégico confiable, conectando mercados, optimizando operaciones y creando oportunidades comerciales con visión global y ejecución local. Nuestra prioridad es facilitar relaciones B2B sólidas a través de transparencia, cumplimiento y una operación estructurada que apoye el crecimiento responsable.",
+      text: "Nuestro compromiso es responder con agilidad, cumplimiento y ejecución clara para cada operación comercial, cuidando resultados sostenibles para clientes y aliados.",
     },
     contact: {
       label: "CONTACTO",
       heading: "CONTACTO",
       description:
-        "Conversemos sobre tu operación. Cuéntanos qué necesitas importar, exportar, coordinar o abastecer y trabajemos una ruta clara, responsable y orientada a resultados.",
+        "Conversemos sobre tu operación. Exportamos variedad de frutas, verduras y carbón, y también gestionamos productos que no aparecen en la web. Cuéntanos tu necesidad y trabajemos una ruta clara, responsable y orientada a resultados.",
       form: {
         fields: [
           "Nombre",
@@ -284,16 +296,17 @@ export const siteContent: Record<Language, SiteContent> = {
         ],
         submitLabel: "Enviar solicitud",
         micro:
-          "Revisamos tu solicitud y respondemos con el siguiente paso más claro.",
+          "Comparte el producto y volumen que necesitas: te respondemos con una propuesta concreta de suministro.",
       },
     },
   },
   en: {
     navItems: [
+      { label: "About Us", href: "#nosotros" },
       { label: "Services", href: "#services" },
       { label: "Products", href: "#products" },
       { label: "Process", href: "#process" },
-      { label: "Values", href: "#values" },
+      { label: "Values", href: "#nosotros-valores" },
       { label: "Contact", href: "#contact" },
     ],
     seo: {
@@ -307,17 +320,17 @@ export const siteContent: Record<Language, SiteContent> = {
     hero: {
       title: "Connecting markets with the Dominican Republic",
       subtitle:
-        "B2B solutions for import, export, logistics, and trade facilitation—built on legal compliance, transparency, and structured processes.",
+        "B2B solutions for import, export, logistics, and trade facilitation across fruits, vegetables, coal, and additional categories on demand—built on legal compliance, transparency, and structured processes.",
       primaryCta: "Contact",
       secondaryCta: "Services",
       micro:
-        "Tell us what you need to move, source, or connect between markets.",
+        "If your product is not listed on the website, contact us—we activate tailored supply with no fixed catalog limit.",
       slogans: [
         "Connecting markets. Local execution.",
         "Global trade, local delivery",
         "Logistics and trade, built trust",
       ],
-      trustCues: ["Legal compliance", "Transparency", "Structured processes"],
+      trustCues: ["Legal compliance", "Transparency", "Structured processes", "Open catalog supply"],
     },
     revealSection: {
       title1: "Export Excellence",
@@ -328,11 +341,12 @@ export const siteContent: Record<Language, SiteContent> = {
         "Connecting your business with trusted global suppliers to secure your supply chain.",
     },
     about: {
-      label: "ABOUT",
-      heading: "Global Lift SRL",
+      label: "ABOUT US",
+      heading: "About Us",
       paragraphs: [
         "Global Lift SRL is a Dominican company focused on importing, exporting, logistics, and the commercialization of goods and services—with a multi-sector approach and a strategic view of both national and international trade. We serve as a bridge between overseas sellers and sourcing opportunities in the Dominican Republic, facilitating commercial connections among markets, suppliers, and clients.",
         "We operate with strong standards for legal compliance, operational efficiency, and transparency. Our focus is to optimize operations and build lasting commercial relationships through structured processes, ethical business practices, and sustainability-oriented growth.",
+        "We work to be a reliable strategic partner, connecting markets and creating commercial opportunities through global vision and local execution.",
       ],
       oneLine:
         "International trade connectivity with local execution in the DR.",
@@ -340,6 +354,8 @@ export const siteContent: Record<Language, SiteContent> = {
     services: {
       label: "SERVICES",
       heading: "SERVICES",
+      lead:
+        "We build tailored solutions to import, export, coordinate logistics, and sustain commercial operations end-to-end.",
       items: [
         "Import — End-to-end support solutions for import operations.",
         "Export — B2B export facilitation through structured coordination.",
@@ -356,10 +372,14 @@ export const siteContent: Record<Language, SiteContent> = {
       exportTitle: "Export",
       supplyTitle: "Sourcing",
       exportText:
-        "We primarily export fruits, vegetables, and coal, connecting Dominican supply with international commercial opportunities.",
+        "We export a broad variety of fruits, vegetables, and coal, connecting Dominican supply with international commercial opportunities.",
       supplyText:
-        "In addition, Global Lift SRL can operate as a supplier and support sourcing and supply for various products, through coordinated, B2B-focused execution.",
-      cta: "Looking for a specific product? Tell us what you need and we’ll assess how to support you.",
+        "We are not limited to the products shown on this website: we can source and supply multiple product categories based on your needs, volumes, and destination markets.",
+      coalHighlight:
+        "Coal supply: active line for commercial operations and recurring contracts.",
+      openCatalogHighlight:
+        "Open catalog: if you don’t see your product on this website, contact us. We have no fixed limit on what we can help you supply.",
+      cta: "Looking for a specific product? Contact us and we’ll build a tailored supply proposal.",
     },
     process: {
       label: "PROCESS",
@@ -432,13 +452,13 @@ export const siteContent: Record<Language, SiteContent> = {
     commitment: {
       label: "COMMITMENT",
       heading: "COMMITMENT",
-      text: "At Global Lift SRL, we work to be a trusted strategic partner—connecting markets, optimizing operations, and creating commercial opportunities through global vision and local execution. Our priority is enabling strong B2B relationships through transparency, compliance, and a structured operation that supports responsible growth.",
+      text: "Our commitment is to deliver agile response, compliance, and clear execution in every commercial operation while supporting sustainable outcomes for clients and partners.",
     },
     contact: {
       label: "CONTACT",
       heading: "CONTACT",
       description:
-        "Let’s talk about your operation. Tell us what you need to import, export, coordinate, or source—so we can align a clear, responsible, results-driven path.",
+        "Let’s talk about your operation. We export a broad mix of fruits, vegetables, and coal, and we also source products beyond what is shown on the website. Tell us your need and we’ll define a clear, responsible, results-driven path.",
       form: {
         fields: [
           "Name",
@@ -450,7 +470,7 @@ export const siteContent: Record<Language, SiteContent> = {
           "Message",
         ],
         submitLabel: "Send request",
-        micro: "We review your request and reply with the clearest next step.",
+        micro: "Share the product and volume you need and we’ll reply with a concrete supply proposal.",
       },
     },
   },

@@ -11,6 +11,8 @@ type NavigationProps = {
 };
 
 export function Navigation({ items, copy, language, onLanguageChange }: NavigationProps) {
+  const headerItems = items.filter((item) => item.href !== '#nosotros-valores');
+
   return (
     <nav className="fixed top-0 z-50 w-full nav-blur" aria-label="Primary">
       <div className="container">
@@ -19,7 +21,7 @@ export function Navigation({ items, copy, language, onLanguageChange }: Navigati
             <Logo />
           </a>
           <div className="hidden items-center gap-6 md:flex lg:gap-8">
-            {items.map((item) => (
+            {headerItems.map((item) => (
               <a key={item.label} href={item.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-secondary">
                 {item.label}
               </a>
@@ -35,7 +37,7 @@ export function Navigation({ items, copy, language, onLanguageChange }: Navigati
         </div>
         <div className="pb-3 md:hidden" aria-label="Section shortcuts">
           <div className="-mx-1 flex gap-2 overflow-x-auto px-1">
-            {items.map((item) => (
+            {headerItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}

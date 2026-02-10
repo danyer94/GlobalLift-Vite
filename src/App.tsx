@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { About } from './components/About';
 import { Boat } from './components/Boat';
-import { Commitment } from './components/Commitment';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
@@ -11,7 +10,6 @@ import { Process } from './components/Process';
 import { Products } from './components/Products';
 import { SEO } from './components/SEO';
 import { Services } from './components/Services';
-import { Values } from './components/Values';
 import { Why } from './components/Why';
 import { siteContent, type Language } from './content/siteContent';
 import { ScrollProvider } from './utils/scroll';
@@ -72,7 +70,7 @@ function App() {
         <Boat />
         <main id="main-content">
           <Hero copy={content.hero} />
-          <About copy={content.about} />
+          <About copy={content.about} values={content.values} commitment={content.commitment} />
           <ImageRevealSection
             image1={`${import.meta.env.BASE_URL}images/generated/reveal-export-orchard.webp`}
             title1={content.revealSection.title1}
@@ -85,8 +83,6 @@ function App() {
           <Products copy={content.products} />
           <Process copy={content.process} />
           <Why copy={content.why} />
-          <Values copy={content.values} />
-          <Commitment copy={content.commitment} />
           <Contact copy={content.contact} trustCues={content.hero.trustCues} />
         </main>
       </ScrollProvider>

@@ -96,7 +96,7 @@ export function Hero({ copy }: HeroProps) {
       <div className="container flex justify-center">
         <div className="hero-copy w-full max-w-3xl space-y-7 text-center">
           <div className="space-y-5">
-            <h1 className="text-4xl font-semibold leading-tight tracking-tight md:text-6xl font-display">
+            <h1 className="hero-slogan hero-slogan--archivo text-4xl tracking-tight md:text-6xl">
               {highlightTitle(copy.title)}
             </h1>
             <p className="text-lg text-muted-foreground md:text-xl">{copy.subtitle}</p>

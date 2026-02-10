@@ -24,27 +24,16 @@ const getIconForService = (title: string) => {
 };
 
 const splitItem = (item: string) => {
-  const [title, ...rest] = item.split(/\s[—-]\s/u);
+  const [title, ...rest] = item.split(/\s(?:\u2014|-)\s/u);
   return {
     title: title ?? item,
     description: rest.join(' - '),
   };
 };
 
-const SERVICE_MEDIA = [
-  { src: 'images/generated/services-multimodal.webp', position: 'center 40%' },
-  { src: 'images/generated/reveal-air-cargo.webp', position: 'center 42%' },
-  { src: 'images/generated/reveal-export-orchard.webp', position: 'center 44%' },
-  { src: 'images/generated/process-operations-desk.webp', position: 'center 50%' },
-  { src: 'images/generated/products-produce-table.webp', position: 'center 42%' },
-  { src: 'images/generated/why-compliance-inspection.webp', position: 'center 38%' },
-  { src: 'images/generated/values-team-warehouse.webp', position: 'center 44%' },
-];
-
-const getCardSpan = (index: number) => {
-  if (index === 0) return 'md:col-span-2 lg:col-span-4 lg:row-span-2';
-  if (index === 5 || index === 6) return 'md:col-span-2 lg:col-span-3';
-  return 'lg:col-span-2';
+const getServiceTone = (index: number) => {
+  const tones = ['sea', 'air', 'land', 'trade'] as const;
+  return tones[index % tones.length];
 };
 
 export function Services({ copy }: ServicesProps) {
@@ -62,45 +51,33 @@ export function Services({ copy }: ServicesProps) {
       style={cinematicStyle}
     >
       <div className="container">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="badge">{copy.label}</p>
-            <h2 className="section-title mt-6 font-display">{copy.heading}</h2>
-          </div>
+        <div>
+          <p className="badge">{copy.label}</p>
+          <h2 className="section-title mt-6 font-display">{copy.heading}</h2>
+          <p className="section-lead mt-6 max-w-3xl">{copy.lead}</p>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-6 lg:auto-rows-[minmax(180px,1fr)]">
+        <ol className="service-route mt-12" aria-label={copy.heading}>
           {copy.items.map((item, index) => {
             const { title, description } = splitItem(item);
             const Icon = getIconForService(title);
-            const media = SERVICE_MEDIA[index % SERVICE_MEDIA.length];
-            const mediaStyle = {
-              '--service-media': `url(${import.meta.env.BASE_URL}${media.src})`,
-              '--service-media-position': media.position,
-            } as CSSProperties;
-            const isFeatured = index === 0;
 
             return (
-              <article
-                key={item}
-                className={`service-editorial-card ${getCardSpan(index)} ${
-                  isFeatured ? 'service-editorial-card--featured' : ''
-                }`}
-                style={mediaStyle}
-              >
-                <span className="icon-dot">
-                  <Icon className="h-4 w-4" aria-hidden="true" />
-                </span>
-                <p className={`mt-4 font-semibold text-foreground ${isFeatured ? 'text-base md:text-lg' : 'text-sm'}`}>
-                  {title}
-                </p>
-                <p className={`mt-2 text-muted-foreground ${isFeatured ? 'text-sm md:text-base' : 'text-sm'}`}>
-                  {description}
-                </p>
-              </article>
+              <li key={item} className={`service-route-item service-route-item--${getServiceTone(index)}`}>
+                <div className="service-route-marker">
+                  <span className="service-route-index">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="icon-dot">
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                </div>
+                <div className="service-route-copy">
+                  <p className="text-base font-semibold text-foreground md:text-lg">{title}</p>
+                  {description && <p className="mt-2 text-sm text-muted-foreground md:text-base">{description}</p>}
+                </div>
+              </li>
             );
           })}
-        </div>
+        </ol>
       </div>
     </MotionSection>
   );

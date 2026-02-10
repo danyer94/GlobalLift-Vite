@@ -28,14 +28,14 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 
 ## ESTADO ACTUAL DEL PROYECTO
 
-**Ultima modificacion:** 2026-02-07
-**Estado:** Proyecto web corporativo de Global Lift SRL con diseño premium cinematográfico, sistema visual tokenizado y sin sección FAQ.
+**Ultima modificacion:** 2026-02-10
+**Estado:** Proyecto web corporativo de Global Lift SRL con diseño premium cinematográfico, sistema visual tokenizado, sección Nosotros activa (incluye Valores y Compromiso) y Servicios en formato narrativo creativo (sin cards con imagen de fondo).
 **URL de produccion:** https://globallift.do
 
 ### Caracteristicas implementadas recientemente:
 
 - **Refinamiento Visual (Design Audit):**
-  - Tipografía unificada: `Unbounded` (Headings) y `Onest` (Body). Eliminado `Zalando Sans`.
+  - Tipografía unificada: `Archivo SemiExpanded` (Headings y slogan Hero) y `Onest` (Body). Eliminado `Zalando Sans` y retirada de `Unbounded`.
   - Branding consistente: Componente `<Logo />` unificado en Nav y Footer.
   - Paleta de colores profundizada: "Midnight" (`#0f172a`), "Electric Cyan" (`#06b6d4`) y "Deep Violet" (`#7c3aed`).
   - Sistema de color unificado con tokens: `--primary` (Midnight), `--secondary` (cian accesible para links/estados) y `--accent` (violet para highlights).
@@ -50,7 +50,7 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - Tokens nuevos de interfaz: `--overlay-soft`, `--overlay-strong`, `--control-glass-bg`, `--control-glass-border`.
   - Nuevas clases de sistema: `.badge-contrast`, `.icon-button-overlay`, `.fullscreen-surface`.
   - Direccion visual "Cinematico Dramatico" aplicada en Fase 1:
-    - Fondos fotograficos full-bleed en secciones clave (`About`, `Services`, `Process`, `Values`, `Commitment`) con mascara cinematica y glass surfaces.
+    - Fondos fotograficos full-bleed en secciones clave (`Nosotros`, `Services`, `Process`, `Commitment`) con mascara cinematica y glass surfaces.
     - Hero reconstruido con capas `<img>` reales (en lugar de `background-image`) para controlar encuadre.
     - Hero con `object-position` responsive por breakpoint (mobile/tablet/desktop) para reducir zoom perceptual y recorte agresivo.
     - Overlays del Hero ajustados para mayor contraste dramatico sin perder legibilidad del panel principal.
@@ -71,7 +71,7 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
     - Preset activo actual: `immersive`.
     - Cambio rapido de preset en `src/App.tsx` mediante constante `CINEMA_PRESET`.
     - Tokens calibrables por preset: overlay hero, grano, opacidad de media, lift de cards/pasos y velocidad de motion.
-  - Integracion de fotografias nuevas en `public/images/generated` en todas las secciones principales (Hero, Reveal, About, Services, Products, Process, Why, Values, Commitment, Contact).
+  - Integracion de fotografias nuevas en `public/images/generated` en todas las secciones principales (Hero, Reveal, Nosotros, Services, Products, Process, Why, Commitment, Contact).
   - Hero y fondos cinematicos actualizados para usar assets generados en lugar de imagenes legacy repetidas.
   - Archivo unico de prompts fotograficos para generacion manual de fondos en `docs/prompts/chatgpt-image-prompts.md` con tamano fijo sugerido (`1536x1024`) en cada prompt.
   - ImageRevealSection optimizado con altura responsive por viewport para reducir fatiga de scroll.
@@ -87,6 +87,29 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - Conversion de imagenes de alto peso a formato `webp` en `public/images/generated` y `public/images` (se mantienen `.png` como fallback de archivo).
   - Rutas de fondos cinematicos/reveal y carrusel migradas de `.png` a `.webp` para reducir transferencia inicial.
   - Reduccion medida sobre pares convertidos (`png` vs `webp`): de `25.34 MB` a `1.71 MB` (aprox. `93.3%` menos peso en assets migrados).
+  - Decision final de tipografia del slogan del Hero: opcion C (`Archivo SemiExpanded`) aplicada en bold.
+  - Selector temporal de opciones tipograficas removido del Hero para simplificar la interfaz final.
+  - Reemplazo global de tipografia antigua en titulos: `font-display`, estilos base `h1-h4` y carga de fuentes en `index.html` alineados a `Archivo SemiExpanded`.
+- **Actualizacion Comercial + UX (2026-02-10):**
+  - Seccion `About` renombrada conceptualmente a **Nosotros** y anclada en `#nosotros`.
+  - Navegacion actualizada con acceso directo a `Nosotros` en ambos idiomas.
+  - Mensajes de productos reforzados para destacar mayor variedad de frutas y verduras, enfasis en carbon y capacidad de suministro sin limite de catalogo web.
+  - `Products` con highlights nuevos: bloque de carbon y bloque de catalogo abierto con CTA de contacto.
+  - `Services` redisenado de mosaico/card a formato narrativo tipo ruta operativa (`service-route`) sin imagenes de fondo por item.
+  - Nuevas clases de sistema para Servicios: `.service-route`, `.service-route-item`, `.service-route-marker`, `.service-route-copy`.
+  - `ProductGallery` migrado a estructura de slides tipados con rutas nuevas en `public/images/generated/products`.
+  - `ProductGallery` con fallback automatico por slide para mantener experiencia estable si falta una imagen generada.
+  - Mensaje comercial reforzado en `Hero` y `Contact` (es/en) para comunicar: variedad amplia de frutas/verduras, enfasis en carbon y suministro de productos fuera del catalogo web.
+  - `Hero` incorpora cue de confianza de catalogo abierto y copy de micro-CTA orientado a solicitud de producto no listado.
+  - `Valores` movido dentro de la sección `Nosotros` (integrado en `About`) para consolidar el contenido institucional en un solo bloque.
+  - Componente separado `src/components/Values.tsx` removido al quedar sin uso.
+  - Navegación de `Valores` actualizada para apuntar al ancla interna `#nosotros-valores`.
+  - Presentacion visual de items de valores (`Integridad`, `Compromiso`, etc.) rediseñada sin boxes: ahora usa formato editorial vertical (`.value-thread`) con menor ruido visual y mismo espacio de layout.
+  - Sección `Compromiso` integrada dentro de `Nosotros` (renderizada al final de `About`) y removida como bloque independiente del flujo principal en `App`.
+  - Box de `Compromiso` reubicado justo debajo del box institucional de `Nosotros` (el de "Conectamos comercio internacional...").
+  - Enlace de `Valores` removido del header (desktop y shortcuts mobile) manteniendo disponible su ancla interna dentro de `Nosotros`.
+  - Nuevo archivo de prompts para fotos del carrusel de productos: `docs/prompts/product-gallery-chatgpt-image-prompts.md`.
+  - Carpeta nueva para assets de galeria de productos: `public/images/generated/products/`.
 - **Interacciones y Movimiento:**
   - Efecto "Rack Focus" en reveals (Blur + Fade + Slide).
   - Parallax aumentado para mayor profundidad.
@@ -139,11 +162,11 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 ```
 /
 |-- docs/
-|   |-- prompts/           # Prompts de IA para diseno y generacion visual
+|   |-- prompts/           # Prompts de IA para diseno y generacion visual (incluye galeria de productos)
 |   `-- plans/             # Documentos de diseno y planes
 |-- public/
 |   |-- images/           # Imagenes de productos y equipo (PNG legacy + WEBP optimizados)
-|   |   `-- generated/    # Fondos fotograficos generados (ChatGPT-Image) en PNG y WEBP
+|   |   `-- generated/    # Fondos fotograficos y galeria de productos generados (ChatGPT-Image) en PNG y WEBP
 |   |-- logo/             # Logotipos (PNG, ICO)
 |   |-- robots.txt        # Acceso a bots incluyendo IA
 |   `-- sitemap.xml       # Mapa del sitio
@@ -156,8 +179,6 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 |   |   |-- Products.tsx
 |   |   |-- Process.tsx
 |   |   |-- Why.tsx
-|   |   |-- Values.tsx
-|   |   |-- Commitment.tsx
 |   |   |-- Contact.tsx
 |   |   |-- MotionSection.tsx
 |   |   |-- Boat.tsx
@@ -191,6 +212,7 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 - **public/robots.txt:** Permite acceso a todos los bots incluyendo IA
 - **public/sitemap.xml:** Mapa del sitio para indexacion
 - **src/components/SEO.tsx:** Componente dinamico para meta tags bilingues
+- **docs/prompts/product-gallery-chatgpt-image-prompts.md:** Prompts para generar fotos del carrusel de productos con ChatGPT-Image
 
 ### Contenido
 

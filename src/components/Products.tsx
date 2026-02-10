@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { ArrowUpRight, Package, Ship } from 'lucide-react';
+import { ArrowUpRight, Flame, Package, Ship } from 'lucide-react';
 import type { ProductsCopy } from '../content/siteContent';
 import { MotionSection } from './MotionSection';
 import { ProductGallery } from './ProductGallery';
@@ -44,6 +44,9 @@ export function Products({ copy }: ProductsProps) {
               </p>
             </div>
             <p className="text-sm text-muted-foreground">{copy.exportText}</p>
+            <div className="mt-2 rounded-2xl border border-secondary/30 bg-secondary/10 p-4">
+              <p className="text-sm font-semibold text-foreground">{copy.coalHighlight}</p>
+            </div>
           </div>
           <div className="card flex flex-col gap-4">
             <div className="flex items-center gap-3">
@@ -55,6 +58,14 @@ export function Products({ copy }: ProductsProps) {
               </p>
             </div>
             <p className="text-sm text-muted-foreground">{copy.supplyText}</p>
+            <div className="mt-2 rounded-2xl border border-accent/30 bg-accent/10 p-4">
+              <div className="flex items-start gap-3">
+                <span className="icon-dot h-8 w-8 border-accent/35 bg-card/90">
+                  <Flame className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <p className="text-sm font-semibold text-foreground">{copy.openCatalogHighlight}</p>
+              </div>
+            </div>
           </div>
         </div>
         <div className="mt-8 flex justify-start">

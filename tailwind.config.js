@@ -41,7 +41,7 @@ export default {
       },
       fontFamily: {
         sans: ["Onest", "system-ui", "sans-serif"],
-        display: ["Unbounded", "system-ui", "sans-serif"],
+        display: ["Archivo SemiExpanded", "Onest", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       borderRadius: {

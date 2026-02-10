@@ -1,12 +1,14 @@
 import type { CSSProperties } from 'react';
-import type { AboutCopy } from '../content/siteContent';
+import type { AboutCopy, CommitmentCopy, ValuesCopy } from '../content/siteContent';
 import { MotionSection } from './MotionSection';
 
 type AboutProps = {
   copy: AboutCopy;
+  values: ValuesCopy;
+  commitment: CommitmentCopy;
 };
 
-export function About({ copy }: AboutProps) {
+export function About({ copy, values, commitment }: AboutProps) {
   const cinematicStyle = {
     '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/about-bridge-ocean.webp)`,
     '--cinema-position': 'center 42%',
@@ -14,7 +16,7 @@ export function About({ copy }: AboutProps) {
 
   return (
     <MotionSection
-      id="about"
+      id="nosotros"
       className="section section-plain cinema-surface"
       decorVariant="tide"
       parallaxStrength={16}
@@ -31,13 +33,60 @@ export function About({ copy }: AboutProps) {
               ))}
             </div>
           </div>
-          <div className="panel-solid p-7 flex flex-col gap-4">
-            <span className="pill">{copy.heading}</span>
-            <p className="text-lg text-foreground">{copy.oneLine}</p>
-            <div className="section-divider h-px" aria-hidden="true" />
-            <p className="text-sm text-muted-foreground">{copy.paragraphs[1]}</p>
+          <div className="space-y-6">
+            <div className="panel-solid p-7 flex flex-col gap-4">
+              <span className="pill">{copy.heading}</span>
+              <p className="text-lg text-foreground">{copy.oneLine}</p>
+              <div className="section-divider h-px" aria-hidden="true" />
+              <p className="text-sm text-muted-foreground">{copy.paragraphs[1]}</p>
+            </div>
+            <div id="nosotros-compromiso" className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-soft">
+              <span
+                className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-secondary/15 blur-3xl"
+                aria-hidden="true"
+              />
+              <span
+                className="pointer-events-none absolute -bottom-16 left-10 h-40 w-40 rounded-full bg-primary/10 blur-3xl"
+                aria-hidden="true"
+              />
+              <div className="relative space-y-6">
+                <p className="badge">{commitment.label}</p>
+                <h3 className="section-title font-display">{commitment.heading}</h3>
+                <p className="section-lead">{commitment.text}</p>
+              </div>
+            </div>
           </div>
         </div>
+
+        <div id="nosotros-valores" className="mt-16">
+          <div>
+            <p className="badge">{values.label}</p>
+            <h3 className="section-title font-display mt-6">{values.heading}</h3>
+          </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="panel-solid p-6">
+              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{values.visionLabel}</p>
+              <p className="mt-3 text-sm text-foreground">{values.visionText}</p>
+            </div>
+            <div className="panel-solid p-6">
+              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{values.missionLabel}</p>
+              <p className="mt-3 text-sm text-foreground">{values.missionText}</p>
+            </div>
+          </div>
+          <div className="mt-10">
+            <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{values.valuesLabel}</p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {values.values.map((value, index) => (
+                <article key={value.title} className="value-thread">
+                  <span className="value-thread-index">{String(index + 1).padStart(2, '0')}</span>
+                  <p className="value-thread-title">{value.title}</p>
+                  <p className="value-thread-description">{value.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
     </MotionSection>
   );
