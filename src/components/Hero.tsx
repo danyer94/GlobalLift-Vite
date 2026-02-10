@@ -32,20 +32,25 @@ type HeroProps = {
 };
 
 const highlightTitle = (title: string): ReactNode => {
-  const markers = ['República Dominicana', 'Dominican Republic'];
-  const marker = markers.find((item) => title.includes(item));
+  const markers = [
+    { text: 'sin fronteras', className: 'text-gradient' },
+    { text: 'without borders', className: 'text-gradient' },
+    { text: 'República Dominicana', className: 'text-gradient' },
+    { text: 'Dominican Republic', className: 'text-gradient' },
+  ];
+  const marker = markers.find((item) => title.includes(item.text));
 
   if (!marker) {
     return title;
   }
 
-  const index = title.indexOf(marker);
+  const index = title.indexOf(marker.text);
 
   return (
     <>
       {title.slice(0, index)}
-      <span className="text-gradient">{marker}</span>
-      {title.slice(index + marker.length)}
+      <span className={marker.className}>{marker.text}</span>
+      {title.slice(index + marker.text.length)}
     </>
   );
 };

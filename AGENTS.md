@@ -121,6 +121,8 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - `Boat` ahora detecta dirección de scroll: al bajar mantiene rumbo descendente y al subir gira 180° para navegar en sentido ascendente.
   - Orientación base de la imagen del barco ajustada +180° para alinear correctamente la percepción visual de dirección al subir/bajar.
   - Tamaño visual del barco decorativo incrementado para mejorar lectura inmediata de la silueta (carguero) durante el scroll.
+  - Slogan principal del Hero actualizado a: "Impulsamos tu cadena de suministro, sin fronteras." (con versión en inglés alineada).
+  - Hero ajustado para resaltar visualmente la frase "sin fronteras" (y "without borders") con color diferencial en el título principal (estilo `text-gradient`).
   - Nuevo archivo de prompts para fotos del carrusel de productos: `docs/prompts/product-gallery-chatgpt-image-prompts.md`.
   - Carpeta nueva para assets de galeria de productos: `public/images/generated/products/`.
 - **Interacciones y Movimiento:**

@@ -139,7 +139,7 @@ export const siteContent: Record<Language, SiteContent> = {
       cta: "Contacto",
     },
     hero: {
-      title: "Conectamos mercados con República Dominicana",
+      title: "Impulsamos tu cadena de suministro, sin fronteras.",
       subtitle:
         "Soluciones B2B de importación, exportación, logística y comercialización para frutas, verduras, carbón y otras categorías según demanda, con cumplimiento legal, transparencia y procesos estructurados.",
       primaryCta: "Contacto",
@@ -318,7 +318,7 @@ export const siteContent: Record<Language, SiteContent> = {
       cta: "Contact",
     },
     hero: {
-      title: "Connecting markets with the Dominican Republic",
+      title: "We power your supply chain, without borders.",
       subtitle:
         "B2B solutions for import, export, logistics, and trade facilitation across fruits, vegetables, coal, and additional categories on demand—built on legal compliance, transparency, and structured processes.",
       primaryCta: "Contact",
