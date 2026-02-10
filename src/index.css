@@ -832,6 +832,20 @@
   color: transparent;
 }
 
+.hero-highlight-match {
+  color: rgb(14 116 144);
+  -webkit-text-stroke: 1px rgb(255 255 255 / 0.9);
+  text-shadow:
+    0 0 0.8px rgb(255 255 255 / 0.95),
+    0 9px 20px rgb(14 116 144 / 0.36);
+}
+
+@media (max-width: 767px) {
+  .hero-highlight-match {
+    -webkit-text-stroke: 0.45px rgb(255 255 255 / 0.9);
+  }
+}
+
 .hero-aurora {
   position: relative;
   overflow: hidden;

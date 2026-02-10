@@ -33,10 +33,22 @@ type HeroProps = {
 
 const highlightTitle = (title: string): ReactNode => {
   const markers = [
-    { text: 'sin fronteras', className: 'text-gradient' },
-    { text: 'without borders', className: 'text-gradient' },
-    { text: 'República Dominicana', className: 'text-gradient' },
-    { text: 'Dominican Republic', className: 'text-gradient' },
+    {
+      text: 'sin fronteras',
+      className: 'hero-highlight-match',
+    },
+    {
+      text: 'without borders',
+      className: 'hero-highlight-match',
+    },
+    {
+      text: 'República Dominicana',
+      className: 'hero-highlight-match',
+    },
+    {
+      text: 'Dominican Republic',
+      className: 'hero-highlight-match',
+    },
   ];
   const marker = markers.find((item) => title.includes(item.text));
 
@@ -99,15 +111,18 @@ export function Hero({ copy }: HeroProps) {
       }
     >
       <div className="container flex justify-center">
-        <div className="hero-copy w-full max-w-3xl space-y-7 text-center">
+        <div className="w-full max-w-3xl space-y-7 px-4 text-center text-primary-foreground sm:px-6">
           <div className="space-y-5">
             <h1 className="hero-slogan hero-slogan--archivo text-4xl tracking-tight md:text-6xl">
               {highlightTitle(copy.title)}
             </h1>
-            <p className="text-lg text-muted-foreground md:text-xl">{copy.subtitle}</p>
+            <p className="text-lg text-primary-foreground/88 md:text-xl">{copy.subtitle}</p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row justify-center">
-            <a href="#contact" className="btn btn-primary">
+            <a
+              href="#contact"
+              className="btn border border-white/65 bg-[#0e7490] text-white shadow-[0_14px_34px_rgba(14,116,144,0.5)] hover:-translate-y-0.5 hover:bg-[#0c6278]"
+            >
               {copy.primaryCta}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>
@@ -115,10 +130,13 @@ export function Hero({ copy }: HeroProps) {
               {copy.secondaryCta}
             </a>
           </div>
-          <p className="text-sm text-muted-foreground md:text-base">{copy.micro}</p>
+          <p className="text-sm text-primary-foreground/84 md:text-base">{copy.micro}</p>
           <div className="flex flex-wrap justify-center gap-3">
             {copy.trustCues.map((item) => (
-              <span key={item} className="pill">
+              <span
+                key={item}
+                className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/28 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold text-primary-foreground/90"
+              >
                 {item}
               </span>
             ))}

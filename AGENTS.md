@@ -127,6 +127,21 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - Tamaño visual del barco decorativo incrementado para mejorar lectura inmediata de la silueta (carguero) durante el scroll.
   - Slogan principal del Hero actualizado a: "Impulsamos tu cadena de suministro, sin fronteras." (con versión en inglés alineada).
   - Hero ajustado para resaltar visualmente la frase "sin fronteras" (y "without borders") con color diferencial en el título principal (estilo `text-gradient`).
+  - Hero simplificado visualmente: texto principal/subtextos en blanco para mayor contraste y eliminación del panel blur (`hero-copy`) alrededor del contenido.
+  - Contraste del Hero refinado: texto resaltado del título migrado a tono cian de alta legibilidad y botón principal de contacto actualizado a estilo claro para mejor visibilidad sobre fondo oscuro.
+  - Header móvil rediseñado: accesos de sección movidos a menú hamburguesa (`3 rayas`) con drawer lateral, overlay y cierre por `Escape`, backdrop o selección de enlace.
+  - Botón principal de `Contacto` en Hero oscurecido (tono cian profundo + texto claro) para mejorar contraste de fondo/texto.
+  - Resaltado del slogan en Hero alineado al color del botón `Contacto` y con borde/blanco perceptual para mejorar legibilidad sobre fondos fotográficos.
+  - Ajuste responsive del Hero: en móvil el borde del texto resaltado del slogan (`hero-highlight-match`) se redujo para un acabado más fino y limpio.
+  - Afinación adicional del Hero en móvil: borde del texto resaltado ajustado a `0.45px` para una lectura más elegante y menos pesada visualmente.
+  - Menú lateral móvil refinado a panel rectangular uniforme con blur de fondo, enlaces en texto limpio y separadores lineales elegantes entre secciones.
+  - Fix de visibilidad en menú móvil: aumento de contraste en overlay/drawer, tipografía de enlaces en blanco sólido y capas `z-index` reforzadas para evitar que el contenido del Hero opaque la navegación.
+  - Menú móvil ajustado con panel ligeramente más ancho (`max-w-md` + margen lateral reducido) para mejorar lectura y presencia visual en pantallas pequeñas.
+  - Menú móvil evolucionado a panel lateral de altura completa (de arriba a abajo), con fondo claro alineado a la paleta del sitio (`bg-background`) y jerarquía visual limpia para navegación.
+  - Corrección estructural del drawer móvil: se renderiza fuera del `<nav>` para evitar clipping vertical por efectos de blur y garantizar cobertura completa del viewport.
+  - Sección `Products` simplificada a formato textual (sin boxes/cards alrededor de los textos), conservando iconos de `Exportación` y `Abastecimiento`; bloque `Exportación` muestra el mismo texto de referencia del panel superior derecho.
+  - Tipografía de los bloques textuales `Exportación` y `Abastecimiento` en `Products` incrementada para mejorar legibilidad y jerarquía visual.
+  - `Products` refinado con línea decorativa superior en cada subtítulo (`Exportación`/`Abastecimiento`) para delimitar visualmente los bloques sin reintroducir cajas.
   - Nuevo archivo de prompts para fotos del carrusel de productos: `docs/prompts/product-gallery-chatgpt-image-prompts.md`.
   - Carpeta nueva para assets de galeria de productos: `public/images/generated/products/`.
 - **Interacciones y Movimiento:**
