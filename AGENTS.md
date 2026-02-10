@@ -114,6 +114,8 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - `ProductGallery` configurado para usar esas imágenes nuevas en carrusel (`.webp`) con fallback directo a sus equivalentes `.png` del mismo set.
   - `ProductGallery` internacionalizado: captions/títulos del badge y visor ahora salen de `siteContent` por idioma activo (sin hardcode en español).
   - Controles del carrusel/visor (`abrir`, `cerrar`, `anterior`, `siguiente`, `go to slide`) movidos a copy bilingüe en `products.gallery.controls`.
+  - Bugfix responsive en mobile para sección `Nosotros`: ajuste del umbral de `whileInView` en `MotionSection` (`amount: 0.12`) para evitar estados en blanco en secciones altas.
+  - Animación reveal unificada sin blur en `MotionSection` (solo opacity + translate + scale) para mayor estabilidad visual en navegadores móviles.
   - Recompresion adicional de `.webp` de la galeria de productos (quality 76): de `2.07 MB` a `1.22 MB` (aprox. `41.2%` menos sobre los `.webp` del set).
   - Interacción del carrusel ajustada: doble clic y botón de zoom abren un visor modal en la misma pestaña (sin abrir nueva pestaña).
   - Bugfix validado con Playwright: el overlay del carrusel interceptaba el doble clic; se corrigió moviendo el handler al contenedor y aplicando `pointer-events-none` al gradiente superior.

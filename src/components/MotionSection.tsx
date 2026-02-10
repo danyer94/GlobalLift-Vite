@@ -13,8 +13,8 @@ type MotionSectionProps = HTMLMotionProps<'section'> & {
 };
 
 const revealVariants = {
-  hidden: { opacity: 0, y: 24, filter: 'blur(6px)', scale: 0.985 },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 },
+  hidden: { opacity: 0, y: 24, scale: 0.985 },
+  visible: { opacity: 1, y: 0, scale: 1 },
 };
 
 const revealTransition = {
@@ -38,7 +38,7 @@ export const MotionSection = forwardRef<HTMLElement, MotionSectionProps>(functio
       className={`motion-section ${className ?? ''}`}
       initial={shouldReveal ? 'hidden' : false}
       whileInView={shouldReveal ? 'visible' : undefined}
-      viewport={shouldReveal ? { once: true, amount: 0.3 } : undefined}
+      viewport={shouldReveal ? { once: true, amount: 0.12 } : undefined}
       transition={shouldReveal ? revealTransition : undefined}
       variants={shouldReveal ? revealVariants : undefined}
       {...props}
