@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react';
+import type { ProductsGalleryCopy } from '../content/siteContent';
 
 type ProductGalleryProps = {
   heading: string;
+  galleryCopy: ProductsGalleryCopy;
 };
 
 type ProductSlide = {
   key: string;
-  title: string;
   src: string;
   fallbackSrc: string;
 };
@@ -16,55 +17,47 @@ type ProductSlide = {
 const PRODUCT_IMAGES: ProductSlide[] = [
   {
     key: 'products-charcoal-premium',
-    title: 'Carb\u00F3n vegetal premium',
     src: 'images/generated/products/products-charcoal-premium.webp',
     fallbackSrc: 'images/generated/products/products-charcoal-premium.png',
   },
   {
     key: 'products-charcoal-bulk',
-    title: 'Carb\u00F3n para volumen comercial',
     src: 'images/generated/products/products-charcoal-bulk.webp',
     fallbackSrc: 'images/generated/products/products-charcoal-bulk.png',
   },
   {
     key: 'products-fruits-variety',
-    title: 'Variedad de frutas tropicales',
     src: 'images/generated/products/products-fruits-variety.webp',
     fallbackSrc: 'images/generated/products/products-fruits-variety.png',
   },
   {
     key: 'products-vegetables-variety',
-    title: 'Variedad de verduras frescas',
     src: 'images/generated/products/products-vegetables-variety.webp',
     fallbackSrc: 'images/generated/products/products-vegetables-variety.png',
   },
   {
     key: 'products-avocado-export',
-    title: 'Aguacate para exportaci\u00F3n',
     src: 'images/generated/products/products-avocado-export.webp',
     fallbackSrc: 'images/generated/products/products-avocado-export.png',
   },
   {
     key: 'products-mango-export',
-    title: 'Mango para exportaci\u00F3n',
     src: 'images/generated/products/products-mango-export.webp',
     fallbackSrc: 'images/generated/products/products-mango-export.png',
   },
   {
     key: 'products-peppers-tomatoes',
-    title: 'Pimientos y tomates de calidad',
     src: 'images/generated/products/products-peppers-tomatoes.webp',
     fallbackSrc: 'images/generated/products/products-peppers-tomatoes.png',
   },
   {
     key: 'products-mixed-catalog',
-    title: 'Cat\u00E1logo abierto bajo solicitud',
     src: 'images/generated/products/products-mixed-catalog.webp',
     fallbackSrc: 'images/generated/products/products-mixed-catalog.png',
   },
 ];
 
-export function ProductGallery({ heading }: ProductGalleryProps) {
+export function ProductGallery({ heading, galleryCopy }: ProductGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
@@ -73,6 +66,12 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
   const autoPlayInterval = 5000;
   const prevIndex = (currentIndex - 1 + total) % total;
   const nextIndex = (currentIndex + 1) % total;
+  const currentSlide = PRODUCT_IMAGES[currentIndex];
+
+  const getSlideTitle = useCallback(
+    (slideKey: string) => galleryCopy.slideTitles[slideKey] ?? slideKey,
+    [galleryCopy.slideTitles],
+  );
 
   const getImageSrc = useCallback(
     (slide: ProductSlide) => {
@@ -145,6 +144,8 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
             return null;
           }
 
+          const slideTitle = getSlideTitle(slide.key);
+
           return (
             <div
               key={slide.key}
@@ -154,7 +155,7 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
             >
               <img
                 src={getImageSrc(slide)}
-                alt={`${heading} - ${slide.title}`}
+                alt={`${heading} - ${slideTitle}`}
                 className="h-full w-full object-cover"
                 loading={index === currentIndex ? 'eager' : 'lazy'}
                 decoding="async"
@@ -177,14 +178,14 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
         <button
           onClick={prevSlide}
           className="icon-button-overlay absolute left-4 top-1/2 z-20 -translate-y-1/2 opacity-95 md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
-          aria-label="Previous slide"
+          aria-label={galleryCopy.controls.previousSlide}
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
         <button
           onClick={nextSlide}
           className="icon-button-overlay absolute right-4 top-1/2 z-20 -translate-y-1/2 opacity-95 md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
-          aria-label="Next slide"
+          aria-label={galleryCopy.controls.nextSlide}
         >
           <ChevronRight className="h-6 w-6" />
         </button>
@@ -192,14 +193,14 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
         <button
           onClick={openViewer}
           className="icon-button-overlay absolute bottom-6 right-6 z-20"
-          aria-label="Abrir visor de imagen"
+          aria-label={galleryCopy.controls.openViewer}
         >
           <Maximize2 className="h-6 w-6" />
         </button>
 
         <div className="absolute bottom-6 left-6 z-20">
           <span className="rounded-full border border-primary-foreground/25 bg-primary/80 px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-lg backdrop-blur-md">
-            {PRODUCT_IMAGES[currentIndex].title}
+            {getSlideTitle(currentSlide.key)}
           </span>
         </div>
       </div>
@@ -214,7 +215,7 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
                 ? 'w-8 bg-secondary shadow-[0_0_0_4px_rgb(var(--secondary)_/_0.18)]'
                 : 'w-2.5 bg-secondary/25 hover:bg-secondary/45'
             }`}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={`${galleryCopy.controls.goToSlide} ${index + 1}`}
           />
         ))}
       </div>
@@ -225,7 +226,7 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
             className="fixed inset-0 z-[220] flex items-center justify-center bg-primary/55 p-4 backdrop-blur-sm"
             role="dialog"
             aria-modal="true"
-            aria-label={PRODUCT_IMAGES[currentIndex].title}
+            aria-label={getSlideTitle(currentSlide.key)}
             onClick={closeViewer}
           >
             <div
@@ -236,7 +237,7 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
                 type="button"
                 onClick={closeViewer}
                 className="icon-button-overlay absolute right-4 top-4 z-20 h-10 w-10"
-                aria-label="Cerrar visor"
+                aria-label={galleryCopy.controls.closeViewer}
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -245,31 +246,31 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
                 type="button"
                 onClick={prevSlide}
                 className="icon-button-overlay absolute left-4 top-1/2 z-20 -translate-y-1/2 h-11 w-11"
-                aria-label="Imagen anterior"
+                aria-label={galleryCopy.controls.previousImage}
               >
                 <ChevronLeft className="h-5 w-5" aria-hidden="true" />
               </button>
 
               <img
-                src={getImageSrc(PRODUCT_IMAGES[currentIndex])}
-                alt={`${heading} - ${PRODUCT_IMAGES[currentIndex].title}`}
+                src={getImageSrc(currentSlide)}
+                alt={`${heading} - ${getSlideTitle(currentSlide.key)}`}
                 className="max-h-[78vh] w-full rounded-xl bg-background/70 object-contain"
                 loading="lazy"
                 decoding="async"
-                onError={() => handleImageError(PRODUCT_IMAGES[currentIndex].key)}
+                onError={() => handleImageError(currentSlide.key)}
               />
 
               <button
                 type="button"
                 onClick={nextSlide}
                 className="icon-button-overlay absolute right-4 top-1/2 z-20 -translate-y-1/2 h-11 w-11"
-                aria-label="Imagen siguiente"
+                aria-label={galleryCopy.controls.nextImage}
               >
                 <ChevronRight className="h-5 w-5" aria-hidden="true" />
               </button>
 
               <p className="mt-3 text-center text-sm font-semibold text-foreground">
-                {PRODUCT_IMAGES[currentIndex].title}
+                {getSlideTitle(currentSlide.key)}
               </p>
               <p className="text-center text-xs text-muted-foreground">
                 {currentIndex + 1} / {total}

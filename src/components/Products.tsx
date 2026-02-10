@@ -74,7 +74,7 @@ export function Products({ copy }: ProductsProps) {
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
-        <ProductGallery heading={copy.heading} />
+        <ProductGallery heading={copy.heading} galleryCopy={copy.gallery} />
       </div>
     </MotionSection>
   );

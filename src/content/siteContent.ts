@@ -38,6 +38,19 @@ export type ServicesCopy = {
   items: string[];
 };
 
+export type ProductsGalleryCopy = {
+  slideTitles: Record<string, string>;
+  controls: {
+    previousSlide: string;
+    nextSlide: string;
+    openViewer: string;
+    closeViewer: string;
+    previousImage: string;
+    nextImage: string;
+    goToSlide: string;
+  };
+};
+
 export type ProductsCopy = {
   label: string;
   heading: string;
@@ -48,6 +61,7 @@ export type ProductsCopy = {
   coalHighlight: string;
   openCatalogHighlight: string;
   cta: string;
+  gallery: ProductsGalleryCopy;
 };
 
 export type ProcessCopy = {
@@ -205,6 +219,27 @@ export const siteContent: Record<Language, SiteContent> = {
       openCatalogHighlight:
         "Catálogo abierto: si no ves el producto en la web, escríbenos. No tenemos límite en lo que podemos ayudarte a suministrar.",
       cta: "¿Buscas un producto específico? Escríbenos y activamos una propuesta de suministro a tu medida.",
+      gallery: {
+        slideTitles: {
+          "products-charcoal-premium": "Carbón vegetal premium",
+          "products-charcoal-bulk": "Carbón para volumen comercial",
+          "products-fruits-variety": "Variedad de frutas tropicales",
+          "products-vegetables-variety": "Variedad de verduras frescas",
+          "products-avocado-export": "Aguacate para exportación",
+          "products-mango-export": "Mango para exportación",
+          "products-peppers-tomatoes": "Pimientos y tomates de calidad",
+          "products-mixed-catalog": "Catálogo abierto bajo solicitud",
+        },
+        controls: {
+          previousSlide: "Imagen anterior",
+          nextSlide: "Imagen siguiente",
+          openViewer: "Abrir visor de imagen",
+          closeViewer: "Cerrar visor",
+          previousImage: "Imagen anterior",
+          nextImage: "Imagen siguiente",
+          goToSlide: "Ir a la imagen",
+        },
+      },
     },
     process: {
       label: "PROCESO",
@@ -380,6 +415,27 @@ export const siteContent: Record<Language, SiteContent> = {
       openCatalogHighlight:
         "Open catalog: if you don’t see your product on this website, contact us. We have no fixed limit on what we can help you supply.",
       cta: "Looking for a specific product? Contact us and we’ll build a tailored supply proposal.",
+      gallery: {
+        slideTitles: {
+          "products-charcoal-premium": "Premium charcoal supply",
+          "products-charcoal-bulk": "Bulk charcoal for commercial volumes",
+          "products-fruits-variety": "Tropical fruit variety",
+          "products-vegetables-variety": "Fresh vegetable variety",
+          "products-avocado-export": "Avocado for export",
+          "products-mango-export": "Mango for export",
+          "products-peppers-tomatoes": "Quality peppers and tomatoes",
+          "products-mixed-catalog": "Open catalog on request",
+        },
+        controls: {
+          previousSlide: "Previous slide",
+          nextSlide: "Next slide",
+          openViewer: "Open image viewer",
+          closeViewer: "Close viewer",
+          previousImage: "Previous image",
+          nextImage: "Next image",
+          goToSlide: "Go to slide",
+        },
+      },
     },
     process: {
       label: "PROCESS",
