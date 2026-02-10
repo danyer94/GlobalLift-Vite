@@ -108,6 +108,8 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - Sección `Compromiso` integrada dentro de `Nosotros` (renderizada al final de `About`) y removida como bloque independiente del flujo principal en `App`.
   - Box de `Compromiso` reubicado justo debajo del box institucional de `Nosotros` (el de "Conectamos comercio internacional...").
   - Enlace de `Valores` removido del header (desktop y shortcuts mobile) manteniendo disponible su ancla interna dentro de `Nosotros`.
+  - Boxes de `Visión` y `Misión` rediseñados con estilo moderno (`.statement-panel`): iconografía, gradientes sutiles y jerarquía tipográfica reforzada sin aumentar footprint de layout.
+  - Texto del bloque `Compromiso` recalibrado a escala tipográfica menor para mantener consistencia visual con los componentes adyacentes.
   - Nuevo archivo de prompts para fotos del carrusel de productos: `docs/prompts/product-gallery-chatgpt-image-prompts.md`.
   - Carpeta nueva para assets de galeria de productos: `public/images/generated/products/`.
 - **Interacciones y Movimiento:**

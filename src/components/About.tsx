@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import { Flag, Telescope } from 'lucide-react';
 import type { AboutCopy, CommitmentCopy, ValuesCopy } from '../content/siteContent';
 import { MotionSection } from './MotionSection';
 
@@ -52,7 +53,7 @@ export function About({ copy, values, commitment }: AboutProps) {
               <div className="relative space-y-6">
                 <p className="badge">{commitment.label}</p>
                 <h3 className="section-title font-display">{commitment.heading}</h3>
-                <p className="section-lead">{commitment.text}</p>
+                <p className="text-sm md:text-base text-muted-foreground">{commitment.text}</p>
               </div>
             </div>
           </div>
@@ -64,13 +65,23 @@ export function About({ copy, values, commitment }: AboutProps) {
             <h3 className="section-title font-display mt-6">{values.heading}</h3>
           </div>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <div className="panel-solid p-6">
-              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{values.visionLabel}</p>
-              <p className="mt-3 text-sm text-foreground">{values.visionText}</p>
+            <div className="statement-panel statement-panel--vision h-full">
+              <div className="statement-panel-head">
+                <span className="statement-panel-icon">
+                  <Telescope className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <p className="statement-panel-label">{values.visionLabel}</p>
+              </div>
+              <p className="statement-panel-text">{values.visionText}</p>
             </div>
-            <div className="panel-solid p-6">
-              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">{values.missionLabel}</p>
-              <p className="mt-3 text-sm text-foreground">{values.missionText}</p>
+            <div className="statement-panel statement-panel--mission h-full">
+              <div className="statement-panel-head">
+                <span className="statement-panel-icon">
+                  <Flag className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <p className="statement-panel-label">{values.missionLabel}</p>
+              </div>
+              <p className="statement-panel-text">{values.missionText}</p>
             </div>
           </div>
           <div className="mt-10">

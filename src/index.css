@@ -464,6 +464,95 @@
     border-color: rgb(var(--secondary) / 0.34);
   }
 
+  .statement-panel {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+    border: 1px solid rgb(var(--border) / 0.76);
+    padding: 1.5rem;
+    background:
+      linear-gradient(
+        160deg,
+        rgb(var(--card) / 0.92) 0%,
+        rgb(var(--card) / 0.78) 58%,
+        rgb(var(--graphite) / 0.82) 100%
+      );
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(8px) saturate(1.08);
+    transition:
+      transform var(--motion-fast) var(--ease-standard),
+      border-color var(--motion-fast) var(--ease-standard),
+      box-shadow var(--motion-base) var(--ease-standard);
+  }
+
+  .statement-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        80% 85% at 88% 10%,
+        rgb(var(--secondary) / 0.18),
+        transparent 64%
+      ),
+      radial-gradient(
+        75% 85% at 8% 96%,
+        rgb(var(--accent) / 0.12),
+        transparent 70%
+      );
+    pointer-events: none;
+  }
+
+  .statement-panel:hover,
+  .statement-panel:focus-within {
+    transform: translateY(-2px);
+    border-color: rgb(var(--secondary) / 0.44);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .statement-panel-head {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .statement-panel-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    border: 1px solid rgb(var(--secondary) / 0.34);
+    background: rgb(var(--background) / 0.88);
+    color: rgb(var(--primary));
+    box-shadow: 0 0 0 6px rgb(var(--background) / 0.42);
+  }
+
+  .statement-panel-label {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(var(--muted-foreground));
+  }
+
+  .statement-panel-text {
+    position: relative;
+    z-index: 1;
+    margin-top: 0.95rem;
+    font-size: 0.92rem;
+    line-height: 1.62;
+    color: rgb(var(--foreground));
+  }
+
+  .statement-panel--mission .statement-panel-icon {
+    border-color: rgb(var(--accent) / 0.38);
+  }
+
   .value-thread {
     position: relative;
     min-height: 126px;
