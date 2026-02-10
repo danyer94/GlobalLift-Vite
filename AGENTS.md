@@ -117,6 +117,10 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - Bugfix validado con Playwright: el overlay del carrusel interceptaba el doble clic; se corrigió moviendo el handler al contenedor y aplicando `pointer-events-none` al gradiente superior.
   - Ajuste adicional del carrusel para estabilidad de doble clic: pausa de autoplay durante interacción (`hover`/`touch`), slides inactivos con `pointer-events-none` y capa dedicada de zoom (`z-[15]`) para abrir el visor sin conflictos.
   - Footer depurado: eliminado enlace duplicado de `Contacto` (aparecía 2 veces en mobile) y mantenido resaltado tipográfico del enlace único de contacto.
+  - Ícono decorativo de scroll (`Boat`) actualizado a un carguero en vista superior con contenedores usando `public/images/barco-removebg.png`.
+  - `Boat` ahora detecta dirección de scroll: al bajar mantiene rumbo descendente y al subir gira 180° para navegar en sentido ascendente.
+  - Orientación base de la imagen del barco ajustada +180° para alinear correctamente la percepción visual de dirección al subir/bajar.
+  - Tamaño visual del barco decorativo incrementado para mejorar lectura inmediata de la silueta (carguero) durante el scroll.
   - Nuevo archivo de prompts para fotos del carrusel de productos: `docs/prompts/product-gallery-chatgpt-image-prompts.md`.
   - Carpeta nueva para assets de galeria de productos: `public/images/generated/products/`.
 - **Interacciones y Movimiento:**

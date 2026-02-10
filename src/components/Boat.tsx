@@ -1,4 +1,12 @@
-import { motion, useReducedMotion, useSpring, useTransform } from 'framer-motion';
+import {
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
+import { useRef } from 'react';
 import { useScrollProgress } from '../utils/scroll';
 
 type BoatProps = {
@@ -10,24 +18,47 @@ export function Boat({ className }: BoatProps) {
   const reduceMotion = useReducedMotion();
   const travel = useTransform(scrollYProgress, [0, 1], [24, 520]);
   const y = useSpring(travel, { stiffness: 100, damping: 30, mass: 1 });
+  const heading = useMotionValue(90);
+  const headingRotation = useSpring(heading, {
+    stiffness: 220,
+    damping: 22,
+    mass: 0.5,
+  });
+  const lastProgressRef = useRef(scrollYProgress.get());
+  const boatPhotoSrc = `${import.meta.env.BASE_URL}images/barco-removebg.png`;
+
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    const previous = lastProgressRef.current;
+    const delta = latest - previous;
+    const movementThreshold = 0.0005;
+
+    if (Math.abs(delta) >= movementThreshold) {
+      heading.set(delta > 0 ? 90 : 270);
+    }
+
+    lastProgressRef.current = latest;
+  });
 
   return (
     <motion.div
       className={`boat fixed right-6 top-[12vh] z-40 hidden md:block pointer-events-none ${className ?? ''}`}
-      style={{ y: reduceMotion ? 0 : y, willChange: 'transform' }}
+      style={{
+        y: reduceMotion ? 0 : y,
+        rotate: reduceMotion ? heading.get() : headingRotation,
+        willChange: 'transform',
+      }}
       animate={
         reduceMotion
           ? undefined
           : {
-              rotate: [-2.5, 2.5, -2.5],
-              x: [0, 6, 0],
+              x: [0, 4, 0],
             }
       }
       transition={
         reduceMotion
           ? undefined
           : {
-              duration: 5.2,
+              duration: 4.6,
               repeat: Infinity,
               ease: 'easeInOut',
             }
@@ -35,17 +66,15 @@ export function Boat({ className }: BoatProps) {
       aria-hidden="true"
     >
       <div className="boat-shell">
-        <svg viewBox="0 0 96 96" className="boat-icon" role="presentation">
-          <path
-            d="M16 64h64l-12 14H28L16 64Z"
-            fill="currentColor"
-            opacity="0.9"
-          />
-          <path d="M48 18v40" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
-          <path d="M48 22l26 28H48V22Z" fill="currentColor" opacity="0.85" />
-          <path d="M46 26l-20 24h20V26Z" fill="currentColor" opacity="0.5" />
-          <circle cx="48" cy="60" r="4" fill="currentColor" opacity="0.9" />
-        </svg>
+        <img
+          src={boatPhotoSrc}
+          alt=""
+          className="boat-photo"
+          loading="lazy"
+          decoding="async"
+          width={640}
+          height={360}
+        />
       </div>
     </motion.div>
   );
