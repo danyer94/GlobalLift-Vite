@@ -1,5 +1,6 @@
-import { useEffect, useState, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react';
 
 type ProductGalleryProps = {
   heading: string;
@@ -65,7 +66,8 @@ const PRODUCT_IMAGES: ProductSlide[] = [
 
 export function ProductGallery({ heading }: ProductGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
   const [fallbackMap, setFallbackMap] = useState<Record<string, boolean>>({});
   const total = PRODUCT_IMAGES.length;
   const autoPlayInterval = 5000;
@@ -96,30 +98,46 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
     setCurrentIndex(index);
   };
 
-  useEffect(() => {
-    if (isLightboxOpen) return;
-    const interval = setInterval(nextSlide, autoPlayInterval);
-    return () => clearInterval(interval);
-  }, [nextSlide, isLightboxOpen]);
+  const openViewer = useCallback(() => {
+    setIsViewerOpen(true);
+  }, []);
+
+  const closeViewer = useCallback(() => {
+    setIsViewerOpen(false);
+  }, []);
 
   useEffect(() => {
+    if (isViewerOpen || isCarouselPaused) return;
+    const interval = setInterval(nextSlide, autoPlayInterval);
+    return () => clearInterval(interval);
+  }, [isViewerOpen, isCarouselPaused, nextSlide]);
+
+  useEffect(() => {
+    if (!isViewerOpen) return;
+
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (isLightboxOpen) {
-        if (event.key === 'Escape') setIsLightboxOpen(false);
-        if (event.key === 'ArrowRight') nextSlide();
-        if (event.key === 'ArrowLeft') prevSlide();
+      if (event.key === 'Escape') {
+        setIsViewerOpen(false);
+      } else if (event.key === 'ArrowRight') {
+        setCurrentIndex((prev) => (prev + 1) % total);
+      } else if (event.key === 'ArrowLeft') {
+        setCurrentIndex((prev) => (prev - 1 + total) % total);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isLightboxOpen, nextSlide, prevSlide]);
+  }, [isViewerOpen, total]);
 
   return (
     <div className="mt-12 w-full max-w-5xl mx-auto">
-      {/* Carousel Container */}
-      <div className="group relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-border/70 bg-card shadow-soft sm:aspect-[21/9]">
-        {/* Images */}
+      <div
+        className="group relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-border/70 bg-card shadow-soft sm:aspect-[21/9]"
+        onMouseEnter={() => setIsCarouselPaused(true)}
+        onMouseLeave={() => setIsCarouselPaused(false)}
+        onTouchStart={() => setIsCarouselPaused(true)}
+        onTouchEnd={() => setIsCarouselPaused(false)}
+      >
         {PRODUCT_IMAGES.map((slide, index) => {
           const shouldRender = index === currentIndex || index === prevIndex || index === nextIndex;
 
@@ -131,7 +149,7 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
             <div
               key={slide.key}
               className={`media-crossfade absolute inset-0 ${
-                index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                index === currentIndex ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
               }`}
             >
               <img
@@ -145,13 +163,17 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
                 sizes="(min-width: 640px) 80vw, 100vw"
                 onError={() => handleImageError(slide.key)}
               />
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/45 via-primary/10 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary/45 via-primary/10 to-transparent" />
             </div>
           );
         })}
 
-        {/* Navigation Arrows */}
+        <div
+          className="absolute inset-0 z-[15] cursor-zoom-in"
+          onDoubleClick={openViewer}
+          aria-hidden="true"
+        />
+
         <button
           onClick={prevSlide}
           className="icon-button-overlay absolute left-4 top-1/2 z-20 -translate-y-1/2 opacity-95 md:opacity-0 md:group-hover:opacity-100 md:focus-visible:opacity-100"
@@ -167,16 +189,14 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
           <ChevronRight className="h-6 w-6" />
         </button>
 
-        {/* Zoom Button */}
         <button
-          onClick={() => setIsLightboxOpen(true)}
+          onClick={openViewer}
           className="icon-button-overlay absolute bottom-6 right-6 z-20"
-          aria-label="Zoom image"
+          aria-label="Abrir visor de imagen"
         >
           <Maximize2 className="h-6 w-6" />
         </button>
 
-        {/* Product Info Tag */}
         <div className="absolute bottom-6 left-6 z-20">
           <span className="rounded-full border border-primary-foreground/25 bg-primary/80 px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-lg backdrop-blur-md">
             {PRODUCT_IMAGES[currentIndex].title}
@@ -184,15 +204,14 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
         </div>
       </div>
 
-      {/* Navigation Dots */}
       <div className="mt-8 flex justify-center gap-3">
         {PRODUCT_IMAGES.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             className={`h-2.5 transition-all duration-300 rounded-full ${
-              index === currentIndex 
-                ? 'w-8 bg-secondary shadow-[0_0_0_4px_rgb(var(--secondary)_/_0.18)]' 
+              index === currentIndex
+                ? 'w-8 bg-secondary shadow-[0_0_0_4px_rgb(var(--secondary)_/_0.18)]'
                 : 'w-2.5 bg-secondary/25 hover:bg-secondary/45'
             }`}
             aria-label={`Go to slide ${index + 1}`}
@@ -200,61 +219,65 @@ export function ProductGallery({ heading }: ProductGalleryProps) {
         ))}
       </div>
 
-      {/* Lightbox Modal */}
-      {isLightboxOpen && (
-        <div
-          className="cinema-fade-in fullscreen-surface fixed inset-0 z-[100] flex flex-col items-center justify-center backdrop-blur-xl"
-          role="dialog"
-          aria-modal="true"
-        >
-          <button
-            type="button"
-            onClick={() => setIsLightboxOpen(false)}
-            className="icon-button-overlay absolute right-6 top-6 z-20"
-            aria-label="Cerrar"
+      {isViewerOpen &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[220] flex items-center justify-center bg-primary/55 p-4 backdrop-blur-sm"
+            role="dialog"
+            aria-modal="true"
+            aria-label={PRODUCT_IMAGES[currentIndex].title}
+            onClick={closeViewer}
           >
-            <X className="h-6 w-6" aria-hidden="true" />
-          </button>
-
-          <div className="relative z-10 flex h-full w-full max-h-[85vh] items-center justify-center p-4">
-            <button
-              onClick={prevSlide}
-              className="icon-button-overlay absolute left-4 z-20 h-14 w-14 lg:left-10"
-              aria-label="Anterior"
+            <div
+              className="relative w-full max-w-5xl rounded-2xl border border-border/70 bg-card/95 p-3 shadow-lift sm:p-4"
+              onClick={(event) => event.stopPropagation()}
             >
-              <ChevronLeft className="h-8 w-8" />
-            </button>
+              <button
+                type="button"
+                onClick={closeViewer}
+                className="icon-button-overlay absolute right-4 top-4 z-20 h-10 w-10"
+                aria-label="Cerrar visor"
+              >
+                <X className="h-5 w-5" aria-hidden="true" />
+              </button>
 
-            <img
-              src={getImageSrc(PRODUCT_IMAGES[currentIndex])}
-              alt={`${heading} - ${PRODUCT_IMAGES[currentIndex].title}`}
-              className="cinema-zoom-in max-h-full max-w-full rounded-2xl object-contain shadow-2xl"
-              loading="lazy"
-              decoding="async"
-              onError={() => handleImageError(PRODUCT_IMAGES[currentIndex].key)}
-            />
+              <button
+                type="button"
+                onClick={prevSlide}
+                className="icon-button-overlay absolute left-4 top-1/2 z-20 -translate-y-1/2 h-11 w-11"
+                aria-label="Imagen anterior"
+              >
+                <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+              </button>
 
-            <button
-              onClick={nextSlide}
-              className="icon-button-overlay absolute right-4 z-20 h-14 w-14 lg:right-10"
-              aria-label="Siguiente"
-            >
-              <ChevronRight className="h-8 w-8" />
-            </button>
-          </div>
+              <img
+                src={getImageSrc(PRODUCT_IMAGES[currentIndex])}
+                alt={`${heading} - ${PRODUCT_IMAGES[currentIndex].title}`}
+                className="max-h-[78vh] w-full rounded-xl bg-background/70 object-contain"
+                loading="lazy"
+                decoding="async"
+                onError={() => handleImageError(PRODUCT_IMAGES[currentIndex].key)}
+              />
 
-          <div className="mt-8 flex flex-col items-center gap-4 text-primary-foreground">
-            <span className="text-xl font-semibold tracking-widest uppercase">
-              {PRODUCT_IMAGES[currentIndex].title}
-            </span>
-            <div className="flex items-center gap-2 font-mono text-sm text-primary-foreground/60">
-              <span className="font-bold text-primary-foreground">{currentIndex + 1}</span>
-              <span>/</span>
-              <span>{total}</span>
+              <button
+                type="button"
+                onClick={nextSlide}
+                className="icon-button-overlay absolute right-4 top-1/2 z-20 -translate-y-1/2 h-11 w-11"
+                aria-label="Imagen siguiente"
+              >
+                <ChevronRight className="h-5 w-5" aria-hidden="true" />
+              </button>
+
+              <p className="mt-3 text-center text-sm font-semibold text-foreground">
+                {PRODUCT_IMAGES[currentIndex].title}
+              </p>
+              <p className="text-center text-xs text-muted-foreground">
+                {currentIndex + 1} / {total}
+              </p>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
