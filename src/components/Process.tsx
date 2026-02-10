@@ -1,60 +1,80 @@
-﻿import type { ProcessCopy } from '../content/siteContent';
+import type { CSSProperties } from 'react';
+import type { ProcessCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 type ProcessProps = {
   copy: ProcessCopy;
 };
 
 const splitItem = (item: string) => {
-  const divider = ' — ';
-  const index = item.indexOf(divider);
+  const separators = [' - ', ' — '];
+  const separator = separators.find((token) => item.includes(token));
 
-  if (index === -1) {
+  if (!separator) {
     return { title: item, description: '' };
   }
 
+  const index = item.indexOf(separator);
   return {
     title: item.slice(0, index),
-    description: item.slice(index + divider.length),
+    description: item.slice(index + separator.length),
   };
 };
 
 export function Process({ copy }: ProcessProps) {
+  const cinematicStyle = {
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/process-operations-desk.webp)`,
+    '--cinema-position': 'center 46%',
+  } as CSSProperties;
+
+  const stageStyle = {
+    '--process-stage-image': `url(${import.meta.env.BASE_URL}images/generated/hero-cinematic-port.webp)`,
+  } as CSSProperties;
+  const leadStep = splitItem(copy.steps[0] ?? copy.heading).title;
+
   return (
-    <section id="process" className="section section-plain">
+    <MotionSection
+      id="process"
+      className="section section-plain cinema-surface"
+      decorVariant="grid"
+      parallaxStrength={18}
+      style={cinematicStyle}
+    >
       <div className="container">
-        <div>
+        <div className="max-w-3xl">
           <p className="badge">{copy.label}</p>
-          <h2 className="section-title font-display mt-6">{copy.heading}</h2>
+          <h2 className="section-title mt-6 font-display">{copy.heading}</h2>
         </div>
-        <div className="mt-12">
-          <div className="relative hidden lg:block">
-            <span className="stepper-line" aria-hidden="true" />
-          </div>
-          <ol className="mt-6 grid gap-6 lg:grid-cols-4 lg:gap-8">
+
+        <div className="mt-14 grid gap-8 lg:grid-cols-[0.88fr,1.12fr] lg:gap-10">
+          <aside className="lg:sticky lg:top-28 lg:self-start">
+            <div className="process-stage">
+              <div className="process-stage-media" style={stageStyle}>
+                <p className="badge badge-contrast">{copy.label}</p>
+                <h3 className="mt-5 text-2xl font-display font-semibold text-primary-foreground">
+                  {leadStep}
+                </h3>
+              </div>
+              <ul className="process-stage-points">
+                {copy.steps.slice(0, 3).map((step) => {
+                  const { title } = splitItem(step);
+                  return <li key={step}>{title}</li>;
+                })}
+              </ul>
+            </div>
+          </aside>
+
+          <ol className="space-y-5 lg:space-y-7">
             {copy.steps.map((step, index) => {
               const { title, description } = splitItem(step);
               const stepNumber = `${index + 1}`.padStart(2, '0');
-              const showMobileConnector = index < copy.steps.length - 1;
 
               return (
-                <li key={step} className="relative">
-                  {showMobileConnector ? (
-                    <span
-                      className="absolute left-5 top-14 h-[calc(100%+1.5rem)] w-px bg-border/70 lg:hidden"
-                      aria-hidden="true"
-                    />
-                  ) : null}
-                  <div className="panel-solid h-full p-6">
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-graphite text-lg font-semibold text-primary">
-                        {stepNumber}
-                      </span>
-                      <span className="h-px flex-1 bg-border/70 lg:hidden" aria-hidden="true" />
-                    </div>
-                    <p className="mt-4 text-sm text-muted-foreground">
-                      <span className="font-semibold text-foreground">{title}</span>
-                      {description ? ` — ${description}` : ''}
-                    </p>
+                <li key={step} className="process-step-card">
+                  <span className="process-step-index">{stepNumber}</span>
+                  <div>
+                    <p className="text-base font-semibold text-foreground md:text-lg">{title}</p>
+                    <p className="mt-2 text-sm text-muted-foreground md:text-base">{description || title}</p>
                   </div>
                 </li>
               );
@@ -62,6 +82,6 @@ export function Process({ copy }: ProcessProps) {
           </ol>
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

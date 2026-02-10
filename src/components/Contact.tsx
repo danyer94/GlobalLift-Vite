@@ -1,6 +1,8 @@
-﻿import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
+import type { CSSProperties } from 'react';
 import type { FormEvent, HTMLAttributes } from 'react';
 import type { ContactCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 type ContactProps = {
   copy: ContactCopy;
@@ -26,6 +28,11 @@ const fieldConfig: FieldConfig[] = [
 ];
 
 export function Contact({ copy, trustCues }: ContactProps) {
+  const cinematicStyle = {
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/contact-global-map-lights.webp)`,
+    '--cinema-position': 'center 44%',
+  } as CSSProperties;
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -39,7 +46,13 @@ export function Contact({ copy, trustCues }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="section section-base">
+    <MotionSection
+      id="contact"
+      className="section section-base cinema-surface"
+      decorVariant="aurora"
+      parallaxStrength={20}
+      style={cinematicStyle}
+    >
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-[1fr,1.1fr]">
           <div className="space-y-6">
@@ -98,6 +111,6 @@ export function Contact({ copy, trustCues }: ContactProps) {
           </div>
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

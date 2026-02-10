@@ -1,55 +1,84 @@
-﻿import { Boxes, Globe2, Handshake, Package, Ship, Truck } from 'lucide-react';
+import type { CSSProperties } from 'react';
+import { Boxes, FileCheck, Globe2, Handshake, Plane, Ship, ShieldCheck, Truck } from 'lucide-react';
 import type { ServicesCopy } from '../content/siteContent';
+import { MotionSection } from './MotionSection';
 
 type ServicesProps = {
   copy: ServicesCopy;
 };
 
-const icons = [Globe2, Ship, Truck, Handshake, Package, Boxes, Globe2];
+const getIconForService = (title: string) => {
+  const normalized = title
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  if (normalized.includes('maritimo') || normalized.includes('ocean')) return Ship;
+  if (normalized.includes('aereo') || normalized.includes('air')) return Plane;
+  if (normalized.includes('terrestre') || normalized.includes('land')) return Truck;
+  if (normalized.includes('aduanas') || normalized.includes('customs')) return FileCheck;
+  if (normalized.includes('almacenamiento') || normalized.includes('storage')) return Boxes;
+  if (normalized.includes('seguro') || normalized.includes('insurance')) return ShieldCheck;
+  if (normalized.includes('asesoria') || normalized.includes('consulting')) return Handshake;
+  return Globe2;
+};
 
 const splitItem = (item: string) => {
-  const divider = ' — ';
-  const index = item.indexOf(divider);
-
-  if (index === -1) {
-    return { title: item, description: '' };
-  }
-
+  const [title, ...rest] = item.split(/\s(?:\u2014|-)\s/u);
   return {
-    title: item.slice(0, index),
-    description: item.slice(index + divider.length),
+    title: title ?? item,
+    description: rest.join(' - '),
   };
 };
 
+const getServiceTone = (index: number) => {
+  const tones = ['sea', 'air', 'land', 'trade'] as const;
+  return tones[index % tones.length];
+};
+
 export function Services({ copy }: ServicesProps) {
+  const cinematicStyle = {
+    '--cinema-image': `url(${import.meta.env.BASE_URL}images/generated/services-multimodal.webp)`,
+    '--cinema-position': 'center 38%',
+  } as CSSProperties;
+
   return (
-    <section id="services" className="section section-alt">
+    <MotionSection
+      id="services"
+      className="section section-alt cinema-surface"
+      decorVariant="grid"
+      parallaxStrength={20}
+      style={cinematicStyle}
+    >
       <div className="container">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="badge">{copy.label}</p>
-            <h2 className="section-title font-display mt-6">{copy.heading}</h2>
-          </div>
+        <div>
+          <p className="badge">{copy.label}</p>
+          <h2 className="section-title mt-6 font-display">{copy.heading}</h2>
+          <p className="section-lead mt-6 max-w-3xl">{copy.lead}</p>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+        <ol className="service-route mt-12" aria-label={copy.heading}>
           {copy.items.map((item, index) => {
             const { title, description } = splitItem(item);
-            const Icon = icons[index % icons.length];
+            const Icon = getIconForService(title);
 
             return (
-              <div key={item} className="tile group">
-                <span className="icon-dot">
-                  <Icon className="h-4 w-4" aria-hidden="true" />
-                </span>
-                <p className="mt-4 text-sm font-semibold text-foreground">{title}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{description}</p>
-                <div className="mt-6 h-px w-full bg-border/70" aria-hidden="true" />
-                <p className="mt-3 text-xs text-muted-foreground">{copy.label}</p>
-              </div>
+              <li key={item} className={`service-route-item service-route-item--${getServiceTone(index)}`}>
+                <div className="service-route-marker">
+                  <span className="service-route-index">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="icon-dot">
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                </div>
+                <div className="service-route-copy">
+                  <p className="text-base font-semibold text-foreground md:text-lg">{title}</p>
+                  {description && <p className="mt-2 text-sm text-muted-foreground md:text-base">{description}</p>}
+                </div>
+              </li>
             );
           })}
-        </div>
+        </ol>
       </div>
-    </section>
+    </MotionSection>
   );
 }
