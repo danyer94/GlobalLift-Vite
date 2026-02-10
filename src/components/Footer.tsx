@@ -19,13 +19,16 @@ export function Footer({ items, note }: FooterProps) {
           </div>
           <div className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
             {items.map((item) => (
-              <a key={item.label} href={item.href} className="transition-colors hover:text-secondary">
+              <a
+                key={item.label}
+                href={item.href}
+                className={`transition-colors hover:text-secondary ${
+                  item.href === '#contact' ? 'font-semibold text-primary' : ''
+                }`}
+              >
                 {item.label}
               </a>
             ))}
-            <a href="#contact" className="font-semibold text-primary">
-              {items[items.length - 1]?.label}
-            </a>
           </div>
         </div>
         <div className="mt-10 h-px bg-border/70" aria-hidden="true" />
