@@ -141,7 +141,6 @@ export const siteContent: Record<Language, SiteContent> = {
       { label: "Servicios", href: "#services" },
       { label: "Productos", href: "#products" },
       { label: "Proceso", href: "#process" },
-      { label: "Valores", href: "#nosotros-valores" },
       { label: "Contacto", href: "#contact" },
     ],
     seo: {
@@ -193,8 +192,7 @@ export const siteContent: Record<Language, SiteContent> = {
     services: {
       label: "SERVICIOS",
       heading: "SERVICIOS",
-      lead:
-        "Diseñamos soluciones a la medida para importar, exportar, coordinar logística y sostener operaciones comerciales de forma continua.",
+      lead: "Diseñamos soluciones a la medida para importar, exportar, coordinar logística y sostener operaciones comerciales de forma continua.",
       items: [
         "Importación — Gestionamos soluciones integrales para apoyar operaciones de importación.",
         "Exportación — Facilitamos exportaciones con coordinación estructurada y enfoque B2B.",
@@ -365,7 +363,12 @@ export const siteContent: Record<Language, SiteContent> = {
         "Global trade, local delivery",
         "Logistics and trade, built trust",
       ],
-      trustCues: ["Legal compliance", "Transparency", "Structured processes", "Open catalog supply"],
+      trustCues: [
+        "Legal compliance",
+        "Transparency",
+        "Structured processes",
+        "Open catalog supply",
+      ],
     },
     revealSection: {
       title1: "Export Excellence",
@@ -389,8 +392,7 @@ export const siteContent: Record<Language, SiteContent> = {
     services: {
       label: "SERVICES",
       heading: "SERVICES",
-      lead:
-        "We build tailored solutions to import, export, coordinate logistics, and sustain commercial operations end-to-end.",
+      lead: "We build tailored solutions to import, export, coordinate logistics, and sustain commercial operations end-to-end.",
       items: [
         "Import — End-to-end support solutions for import operations.",
         "Export — B2B export facilitation through structured coordination.",
@@ -526,7 +528,8 @@ export const siteContent: Record<Language, SiteContent> = {
           "Message",
         ],
         submitLabel: "Send request",
-        micro: "Share the product and volume you need and we’ll reply with a concrete supply proposal.",
+        micro:
+          "Share the product and volume you need and we’ll reply with a concrete supply proposal.",
       },
     },
   },
