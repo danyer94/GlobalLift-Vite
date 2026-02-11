@@ -121,7 +121,7 @@ export function Hero({ copy }: HeroProps) {
           <div className="flex flex-col gap-4 sm:flex-row justify-center">
             <a
               href="#contact"
-              className="btn border border-white/65 bg-[#0e7490] text-white shadow-[0_14px_34px_rgba(14,116,144,0.5)] hover:-translate-y-0.5 hover:bg-[#0c6278]"
+              className="btn btn-contact"
             >
               {copy.primaryCta}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
