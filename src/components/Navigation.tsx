@@ -54,6 +54,25 @@ export function Navigation({ items, copy, language, onLanguageChange }: Navigati
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const closeOnDesktopBreakpoint = () => {
+      if (window.innerWidth >= 768) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    closeOnDesktopBreakpoint();
+    window.addEventListener('resize', closeOnDesktopBreakpoint);
+    window.addEventListener('orientationchange', closeOnDesktopBreakpoint);
+
+    return () => {
+      window.removeEventListener('resize', closeOnDesktopBreakpoint);
+      window.removeEventListener('orientationchange', closeOnDesktopBreakpoint);
+    };
+  }, [isMenuOpen]);
+
   return (
     <>
       <nav className="fixed top-0 z-50 w-full nav-blur" aria-label="Primary">

@@ -28,7 +28,7 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
 
 ## ESTADO ACTUAL DEL PROYECTO
 
-**Ultima modificacion:** 2026-02-10
+**Ultima modificacion:** 2026-02-11
 **Estado:** Proyecto web corporativo de Global Lift SRL con diseño premium cinematográfico, sistema visual tokenizado, sección Nosotros activa (incluye Valores y Compromiso) y Servicios en formato narrativo creativo (sin cards con imagen de fondo).
 **URL de produccion:** https://globallift.do
 
@@ -134,11 +134,15 @@ Este archivo sirve como fuente unica de verdad para todos los agentes de IA que 
   - Resaltado del slogan en Hero alineado al color del botón `Contacto` y con borde/blanco perceptual para mejorar legibilidad sobre fondos fotográficos.
   - Ajuste responsive del Hero: en móvil el borde del texto resaltado del slogan (`hero-highlight-match`) se redujo para un acabado más fino y limpio.
   - Afinación adicional del Hero en móvil: borde del texto resaltado ajustado a `0.45px` para una lectura más elegante y menos pesada visualmente.
+  - Resaltado del slogan del Hero elevado a estética premium con gradiente cian luminoso y glow sutil, manteniendo contraste y legibilidad sobre el fondo fotográfico.
+  - Gradiente del texto resaltado del Hero recalibrado desde el mismo tono del botón `Contacto` (`#0e7490`) para una identidad visual más coherente y una diferencia más clara frente al texto blanco general.
+  - Resaltado del Hero con animación sutil de brillo (shimmer) sobre el gradiente para un acabado más premium, con respeto a accesibilidad mediante `prefers-reduced-motion`.
   - Menú lateral móvil refinado a panel rectangular uniforme con blur de fondo, enlaces en texto limpio y separadores lineales elegantes entre secciones.
   - Fix de visibilidad en menú móvil: aumento de contraste en overlay/drawer, tipografía de enlaces en blanco sólido y capas `z-index` reforzadas para evitar que el contenido del Hero opaque la navegación.
   - Menú móvil ajustado con panel ligeramente más ancho (`max-w-md` + margen lateral reducido) para mejorar lectura y presencia visual en pantallas pequeñas.
   - Menú móvil evolucionado a panel lateral de altura completa (de arriba a abajo), con fondo claro alineado a la paleta del sitio (`bg-background`) y jerarquía visual limpia para navegación.
   - Corrección estructural del drawer móvil: se renderiza fuera del `<nav>` para evitar clipping vertical por efectos de blur y garantizar cobertura completa del viewport.
+  - Fix responsive del drawer móvil: al cruzar a breakpoint `md` (resize/rotación) se cierra automáticamente para evitar bloqueo de scroll por `body overflow` en dispositivos táctiles.
   - Sección `Products` simplificada a formato textual (sin boxes/cards alrededor de los textos), conservando iconos de `Exportación` y `Abastecimiento`; bloque `Exportación` muestra el mismo texto de referencia del panel superior derecho.
   - Tipografía de los bloques textuales `Exportación` y `Abastecimiento` en `Products` incrementada para mejorar legibilidad y jerarquía visual.
   - `Products` refinado con línea decorativa superior en cada subtítulo (`Exportación`/`Abastecimiento`) para delimitar visualmente los bloques sin reintroducir cajas.
