@@ -60,7 +60,7 @@ export function Products({ copy }: ProductsProps) {
           </div>
         </div>
         <div className="mt-8 flex justify-center">
-          <a href="#contact" className="btn btn-outline">
+          <a href="#contact" className="btn btn-contact">
             {copy.cta}
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
