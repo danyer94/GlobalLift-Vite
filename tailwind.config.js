@@ -22,6 +22,7 @@ export default {
         signal: "rgb(var(--brand-secondary) / <alpha-value>)",
         "signal-strong": "rgb(var(--brand-primary) / <alpha-value>)",
         "signal-soft": "rgb(var(--brand-accent) / <alpha-value>)",
+        cta: "rgb(var(--brand-cta) / <alpha-value>)",
         plate: "rgb(var(--plate) / <alpha-value>)",
         background: "rgb(var(--background) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",

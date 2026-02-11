@@ -99,7 +99,7 @@ export function Contact({ copy, trustCues }: ContactProps) {
                 );
               })}
               <div className="sm:col-span-2">
-                <button type="submit" className="btn btn-primary w-full">
+                <button type="submit" className="btn btn-contact w-full">
                   {copy.form.submitLabel}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
