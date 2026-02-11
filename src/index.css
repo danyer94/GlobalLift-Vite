@@ -73,16 +73,15 @@
       rgb(var(--brand-secondary) / 0.3),
       transparent 62%
     );
-  --gradient-surface:
-    linear-gradient(
-      150deg,
-      rgb(var(--background) / 0.96) 0%,
-      rgb(var(--background) / 0.82) 50%,
-      rgb(var(--graphite) / 0.96) 100%
-    );
+  --gradient-surface: linear-gradient(
+    150deg,
+    rgb(var(--background) / 0.96) 0%,
+    rgb(var(--background) / 0.82) 50%,
+    rgb(var(--graphite) / 0.96) 100%
+  );
 }
 
-:root[data-cinema='impact'] {
+:root[data-cinema="impact"] {
   --cinema-overlay-soft: rgb(var(--background) / 0.78);
   --cinema-vignette: rgb(var(--brand-primary) / 0.22);
   --cinema-grain-opacity: 0.055;
@@ -97,7 +96,7 @@
   --motion-slow: 900ms;
 }
 
-:root[data-cinema='immersive'] {
+:root[data-cinema="immersive"] {
   --cinema-overlay-soft: rgb(var(--background) / 0.68);
   --cinema-vignette: rgb(var(--brand-primary) / 0.3);
   --cinema-grain-opacity: 0.075;
@@ -353,7 +352,11 @@
         transparent 62%
       ),
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: auto, auto, auto, 140px 140px;
+    background-size:
+      auto,
+      auto,
+      auto,
+      140px 140px;
     opacity: 1;
     box-shadow: inset 0 -110px 120px var(--cinema-vignette);
     pointer-events: none;
@@ -470,13 +473,12 @@
     border-radius: var(--radius-2xl);
     border: 1px solid rgb(var(--border) / 0.76);
     padding: 1.5rem;
-    background:
-      linear-gradient(
-        160deg,
-        rgb(var(--card) / 0.92) 0%,
-        rgb(var(--card) / 0.78) 58%,
-        rgb(var(--graphite) / 0.82) 100%
-      );
+    background: linear-gradient(
+      160deg,
+      rgb(var(--card) / 0.92) 0%,
+      rgb(var(--card) / 0.78) 58%,
+      rgb(var(--graphite) / 0.82) 100%
+    );
     box-shadow: var(--shadow-soft);
     backdrop-filter: blur(8px) saturate(1.08);
     transition:
@@ -750,7 +752,8 @@
 }
 
 .cinema-zoom-in {
-  animation: cinemaZoomIn calc(var(--motion-base) + 120ms) var(--ease-emphasis) both;
+  animation: cinemaZoomIn calc(var(--motion-base) + 120ms) var(--ease-emphasis)
+    both;
 }
 
 .motion-section {
@@ -785,7 +788,10 @@
       rgb(var(--secondary) / 0.22),
       transparent 60%
     );
-  background-size: 54px 54px, 54px 54px, auto;
+  background-size:
+    54px 54px,
+    54px 54px,
+    auto;
   filter: blur(6px);
   opacity: 0.2;
 }
@@ -819,7 +825,8 @@
   object-fit: contain;
   transform: rotate(180deg) scale(0.98);
   transform-origin: center;
-  filter: saturate(1.08) contrast(1.04) drop-shadow(0 10px 14px rgb(var(--primary) / 0.28));
+  filter: saturate(1.08) contrast(1.04)
+    drop-shadow(0 10px 14px rgb(var(--primary) / 0.28));
 }
 
 .text-gradient {
@@ -830,6 +837,46 @@
   );
   -webkit-background-clip: text;
   color: transparent;
+}
+
+.hero-highlight-match {
+  color: rgb(14 116 144);
+  background-image: linear-gradient(
+    118deg,
+    #0e7490 0%,
+    #0891b2 35%,
+    #2dd4bf 70%,
+    #34d399 100%
+  );
+  background-size: 220% 220%;
+  background-position: 18% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.3px rgb(255 255 255 / 0.45);
+  animation: hero-highlight-shimmer 7.2s var(--ease-standard) infinite alternate;
+}
+
+@keyframes hero-highlight-shimmer {
+  0% {
+    background-position: 12% 50%;
+  }
+  100% {
+    background-position: 88% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-highlight-match {
+    animation: none;
+    background-position: 52% 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-highlight-match {
+    -webkit-text-stroke: 0.45px rgb(255 255 255 / 0.9);
+  }
 }
 
 .hero-aurora {
@@ -987,7 +1034,10 @@
 
 @media (min-width: 1024px) {
   .hero-bg-image {
-    object-position: var(--hero-pos-desktop, var(--hero-pos-tablet, center 40%));
+    object-position: var(
+      --hero-pos-desktop,
+      var(--hero-pos-tablet, center 40%)
+    );
   }
 }
 

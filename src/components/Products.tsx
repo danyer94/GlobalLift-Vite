@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { ArrowUpRight, Flame, Package, Ship } from 'lucide-react';
+import { ArrowUpRight, Package, Ship } from 'lucide-react';
 import type { ProductsCopy } from '../content/siteContent';
 import { MotionSection } from './MotionSection';
 import { ProductGallery } from './ProductGallery';
@@ -28,47 +28,38 @@ export function Products({ copy }: ProductsProps) {
             <p className="badge">{copy.label}</p>
             <h2 className="section-title font-display mt-6">{copy.heading}</h2>
           </div>
-          <div className="space-y-4 section-lead">
-            <p>{copy.exportText}</p>
-            <p>{copy.supplyText}</p>
-          </div>
         </div>
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <div className="card flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <span className="icon-dot">
-                <Ship className="h-4 w-4" aria-hidden="true" />
-              </span>
-              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">
-                {copy.exportTitle}
-              </p>
-            </div>
-            <p className="text-sm text-muted-foreground">{copy.exportText}</p>
-            <div className="mt-2 rounded-2xl border border-secondary/30 bg-secondary/10 p-4">
-              <p className="text-sm font-semibold text-foreground">{copy.coalHighlight}</p>
-            </div>
-          </div>
-          <div className="card flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <span className="icon-dot">
-                <Package className="h-4 w-4" aria-hidden="true" />
-              </span>
-              <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">
-                {copy.supplyTitle}
-              </p>
-            </div>
-            <p className="text-sm text-muted-foreground">{copy.supplyText}</p>
-            <div className="mt-2 rounded-2xl border border-accent/30 bg-accent/10 p-4">
-              <div className="flex items-start gap-3">
-                <span className="icon-dot h-8 w-8 border-accent/35 bg-card/90">
-                  <Flame className="h-4 w-4" aria-hidden="true" />
-                </span>
-                <p className="text-sm font-semibold text-foreground">{copy.openCatalogHighlight}</p>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <span
+                className="block h-px w-24 bg-gradient-to-r from-secondary/80 via-secondary/35 to-transparent"
+                aria-hidden="true"
+              />
+              <div className="flex items-center gap-3">
+                <Ship className="h-4 w-4 text-secondary" aria-hidden="true" />
+                <p className="text-sm uppercase tracking-[0.28em] text-muted-foreground">{copy.exportTitle}</p>
               </div>
             </div>
+            <p className="text-base text-muted-foreground md:text-lg">{copy.exportText}</p>
+            <p className="text-base font-semibold text-foreground md:text-lg">{copy.coalHighlight}</p>
+          </div>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <span
+                className="block h-px w-24 bg-gradient-to-r from-accent/80 via-accent/35 to-transparent"
+                aria-hidden="true"
+              />
+              <div className="flex items-center gap-3">
+                <Package className="h-4 w-4 text-accent" aria-hidden="true" />
+                <p className="text-sm uppercase tracking-[0.28em] text-muted-foreground">{copy.supplyTitle}</p>
+              </div>
+            </div>
+            <p className="text-base text-muted-foreground md:text-lg">{copy.supplyText}</p>
+            <p className="text-base font-semibold text-foreground md:text-lg">{copy.openCatalogHighlight}</p>
           </div>
         </div>
-        <div className="mt-8 flex justify-start">
+        <div className="mt-8 flex justify-center">
           <a href="#contact" className="btn btn-outline">
             {copy.cta}
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
